@@ -1,11 +1,10 @@
-
 import java.time.LocalDate;
-import java.util.zip.DataFormatException;
 
-public class Tacgia {
-    private String matacgia;
+public class Nhanvien {
+    private String manhanvien;
     private String ho;
     private String ten;
     private String gioitinh;
     private LocalDate ngaysinh;
+    private String sdt;
 }

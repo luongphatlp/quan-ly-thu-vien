@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
 import java.time.LocalDate;
 import java.util.zip.DataFormatException;

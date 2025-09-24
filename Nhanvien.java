@@ -5,6 +5,6 @@ public class Nhanvien {
     private String ho;
     private String ten;
     private String gioitinh;
-    private LocalDate ngaysinh;
+    private String ngaysinh;
     private String sdt;
 }

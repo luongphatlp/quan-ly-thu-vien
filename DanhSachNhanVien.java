@@ -46,8 +46,7 @@ public class DanhSachNhanVien {
                 System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
                 System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n", "Ma Nv", "Ho", "Ten", "Gioi tinh", "Ngay sinh", "SDT");
                 System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
-                for(Nhanvien nv: ds)
-                   nv.xuat();
+                for(Nhanvien nv: ds) nv.xuat();
                 System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
         }
 

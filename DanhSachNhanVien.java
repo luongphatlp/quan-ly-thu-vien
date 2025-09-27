@@ -98,7 +98,7 @@ public class DanhSachNhanVien {
                 System.out.println("Khong tim thay nhan vien co ma: "+ma);
         }
 
-        public void ghifile(){
+        public void ghifile(){  
                 File file=new File("Nhanvien.txt");
                 try(PrintWriter pw=new PrintWriter(file)){
                         for(Nhanvien nv:ds){

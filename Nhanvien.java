@@ -8,9 +8,8 @@ public class Nhanvien {
     private String ngaysinh;
     private String sdt;
 
-    public Nhanvien() {
-    }
-
+    public Nhanvien() {}
+    
     public Nhanvien(String mnv, String ho, String ten, String gioitinh, String ngaysinh, String sdt) {
         this.mnv = mnv;
         this.ho = ho;
@@ -19,7 +18,6 @@ public class Nhanvien {
         this.ngaysinh = ngaysinh;
         this.sdt = sdt;
     }
-
     public Nhanvien(Nhanvien nv) {
         this.mnv = nv.mnv;
         this.ho = nv.ho;

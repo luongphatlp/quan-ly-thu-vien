@@ -21,13 +21,13 @@ class SachGiaoKhoa extends Sach{
     @Override public void nhap(){
         super.nhap();
         System.out.println("nhap mon: "); mon=sc.nextLine();
-        System.out.println("nhap lop: "); lop-sc.nextLine();
+        System.out.println("nhap lop: "); lop=sc.nextLine();
     }
     @Override public String toString(){
         return super.toString()+","+mon+","+lop;
     }
     @Override public void xuat(){
         super.xuat();
-        System.out.printf(" %-4s %-20s %-4s %-3s |\n","Mon:",mon,"Lop:",lop );
+        System.out.printf(" %-4s %-26s %-4s %-3s %-18s|\n","Mon:",mon,"Lop:",lop," ");
     }
 }

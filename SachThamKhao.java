@@ -14,7 +14,7 @@ class SachThamKhao extends Sach{
     }
     public String getLinhVuc(){return linhvuc;}
     public String getLoaiDocGia(){return loaidocgia;}
-    public void setMon(String linhvuc){this.linhvuc=linhvuc;}
+    public void setLinhVuc(String linhvuc){this.linhvuc=linhvuc;}
     public void setLoaiDocGia(String loaidocgia){this.loaidocgia=loaidocgia;}
 
     Scanner sc=new Scanner(System.in);
@@ -28,6 +28,6 @@ class SachThamKhao extends Sach{
     }
     @Override public void xuat(){
         super.xuat();
-        System.out.printf(" %-10s %-20s %-15s %-10s |\n","Linh vuc:",linhvuc,"Loai doc gia:",loaidocgia );
+        System.out.printf(" %-9s %-21s %-13s %-12s |\n","Linh vuc:",linhvuc,"Loai doc gia:",loaidocgia," ");
     }
 }

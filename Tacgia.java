@@ -56,8 +56,7 @@ public class Tacgia {
         System.out.println("Nhap ngay sinh: ");
         ngaysinh=sc.nextLine();
     }
-    @Override
-    public String toString(){
+    @Override public String toString(){
         return matacgia+","+ho+","+ten+","+gioitinh+","+ngaysinh;
     }
     public void xuat(){

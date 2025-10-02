@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 public class DanhSachSach {
     Sach[] ds=new Sach[0];
     public DanhSachSach (){}
@@ -81,6 +82,68 @@ public class DanhSachSach {
         }
         ds=Arrays.copyOf(ds,ds.length-1);
     }
+    public void sua(){
+        int c=0,sl=5;
+        System.out.println("Nhap ma sach can sua: ");
+        String ma=sc.nextLine();
+        for(int i=0;i<ds.length;i++){
+            if(ma.equals(ds[i].getMaSach())){
+                while(sl>=0){
+                    c=sc.nextInt();
+                    sc.nextLine();
+                    if(c==1){
+                        System.out.println("Nhap ten sach: ");
+                        ds[i].setTenSach(sc.nextLine());
+                    }else if(c==2){
+                        System.out.println("Nhap ma the loai: ");
+                        ds[i].setMaTheLoai(sc.nextLine());
+                    }else if(c==3){
+                        System.out.println("Nhap ma tac gia: ");
+                        ds[i].setMaTacGia(sc.nextLine());
+                    }else if(c==4){
+                        System.out.println("Nhap ma nha xuat ban: ");
+                        ds[i].setMaNXB(sc.nextLine());    
+                    }else if(c==5){
+                        System.out.println("Nhap nam xuat ban: ");    
+                        ds[i].setNamXuatBan(sc.nextLine());
+                    }else{
+                        System.out.println("Nhap lua chon khong dung.Vui long chon lai.");
+                    }
+                    sl--;
+                }
+            }    
+        } 
+    }
+    public void sua(String ma){
+        int c=0,sl=5;
+        for(int i=0;i<ds.length;i++){
+            if(ma.equals(ds[i].getMaSach())){
+                while(sl>=0){
+                    c=sc.nextInt();
+                    sc.nextLine();
+                    if(c==1){
+                        System.out.println("Nhap ten sach: ");
+                        ds[i].setTenSach(sc.nextLine());
+                    }else if(c==2){
+                        System.out.println("Nhap ma the loai: ");
+                        ds[i].setMaTheLoai(sc.nextLine());
+                    }else if(c==3){
+                        System.out.println("Nhap ma tac gia: ");
+                        ds[i].setMaTacGia(sc.nextLine());
+                    }else if(c==4){
+                        System.out.println("Nhap ma nha xuat ban: ");
+                        ds[i].setMaNXB(sc.nextLine());    
+                    }else if(c==5){
+                        System.out.println("Nhap nam xuat ban: ");    
+                        ds[i].setNamXuatBan(sc.nextLine());
+                    }else{
+                        System.out.println("Nhap lua chon khong dung.Vui long chon lai.");
+                    }
+                    sl--;
+                }
+            }    
+        } 
+    }
     public void docfile(){
         File file=new File("Sach.txt");
         try(Scanner f=new Scanner(file)){
@@ -92,7 +155,7 @@ public class DanhSachSach {
                     if("GK".equals(parts[0]))
                         ds[ds.length-1]=new SachGiaoKhoa(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],parts[8]);
                     else if("TK".equals(parts[0]))
-                        ds[ds.length-1]=new SachGiaoKhoa(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],parts[8]);
+                        ds[ds.length-1]=new SachThamKhao(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],parts[8]);
                 }    
             }
         }catch(FileNotFoundException e){
@@ -100,6 +163,16 @@ public class DanhSachSach {
         }
     }
     public void ghifile(){
-        
+        File file=new File("Sach.txt");
+        try(PrintWriter pw =new PrintWriter(file)){
+            for(int i=0;i<ds.length;i++){
+                if(ds[i] instanceof SachGiaoKhoa)
+                    pw.println("GK,"+ds[i].toString());
+                else if(ds[i] instanceof SachThamKhao)
+                    pw.println("TK,"+ds[i].toString());
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("Khong tao duoc file");
+        }
     }
 }

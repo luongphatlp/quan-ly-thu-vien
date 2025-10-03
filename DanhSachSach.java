@@ -105,14 +105,18 @@ public class DanhSachSach {
         ds=Arrays.copyOf(ds,ds.length-1);
     }
     public void sua(String ma){
+        boolean kt=false;
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getMaSach())){
-                if(ds[i] instanceof SachGiaoKhoa)
+                if(ds[i] instanceof SachGiaoKhoa){
                     suagiaokhoa((SachGiaoKhoa)ds[i]);
-                else 
+                }else{
                     suathamkhao((SachThamKhao)ds[i]);
+                } 
             }
         }    
+        if(!kt) 
+            System.out.println("Khong tim that sach co ma: "+ma);
     }
     public void sua(){
         System.out.println("Nhap ma sach can sua: ");
@@ -122,8 +126,6 @@ public class DanhSachSach {
     private void suagiaokhoa(SachGiaoKhoa s){
         int c=0,sl=5;
         System.out.println("Nhap lua chon muon sua (1.ten 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.mon 7.lop): ");
-        c=sc.nextInt();
-        sc.nextLine();
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();
@@ -164,8 +166,6 @@ public class DanhSachSach {
     private void suathamkhao(SachThamKhao s){
         int c=0,sl=5;
         System.out.println("Nhap lua chon muon sua (1.ten 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.linh vuc 7.loai doc gia): ");
-        c=sc.nextInt();
-        sc.nextLine();
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();
@@ -237,6 +237,9 @@ public class DanhSachSach {
     public static void main(String[] args){
         DanhSachSach ds=new DanhSachSach();
         ds.docfile();
+        //ds.them();
+        //ds.xoa();
+        //ds.sua();
         ds.xuat();
     }
 }

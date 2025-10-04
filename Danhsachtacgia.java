@@ -4,14 +4,14 @@ import java.util.Comparator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-public class Danhsachtacgia {
+public class DanhSachTacGia {
     Tacgia[] ds=new Tacgia[0];
     Scanner sc = new Scanner(System.in);
-    public Danhsachtacgia(){}
-    public Danhsachtacgia(Tacgia[] ds){
+    public DanhSachTacGia(){}
+    public DanhSachTacGia(Tacgia[] ds){
         this.ds=ds;
     }
-    public Danhsachtacgia(Danhsachtacgia ds){
+    public DanhSachTacGia(DanhSachTacGia ds){
         this.ds=ds.ds;
     }
     public void nhap(){
@@ -26,13 +26,53 @@ public class Danhsachtacgia {
             ds[i].nhap();
         }
     }
+    public void them(){
+        ds=Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=new Tacgia();
+        ds[ds.length-1].nhap();
+    }
+    public void them(Tacgia tg){
+        ds=Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=new Tacgia(tg);
+    }
     public void sua(){
         System.out.println("Nhap ma tac gia can sua: ");
-        String matg=sc.nextLine();
-        for(Tacgia tg: ds)
-            if(matg.equals(tg.getMaTacGia()))
-                tg.sua();
-        System.out.println("Khong tim thay tac gia co ma: "+matg);
+        String ma=sc.nextLine();
+        sua(ma);
+    }
+    public void sua(String ma){
+        int c=0,sl=5;
+        boolean kt=false;
+        for(int i=0;i<ds.length;i++){
+            if(ma.equals(ds[i].getMaTacGia())){
+                System.out.println("Nhap lua chon sua 1.ho 2.ten 3.gioi tinh 4.ngay sinh");
+                while(sl>0){
+                    if(c==1){
+                        System.out.println("Nhap ho tac gia: ");
+                        ds[i].setHo(sc.nextLine());
+                        System.out.println("Nhap ten tac gia: ");
+                        ds[i].setTen(sc.nextLine());
+                        kt=true;
+                    }else if(c==2){
+                        System.out.println("Nhap gioi tinh tac gia: ");
+                        ds[i].setGioiTinh(sc.nextLine());
+                        kt=true;
+                    }else if(c==3){
+                        System.out.println("Nhap ngay sinh tac gia: ");
+                        ds[i].setNgaySinh(sc.nextLine());
+                        kt=true;
+                    }else{
+                        System.out.println("Nhap lua chon khong dung. Vui long chon lai.");
+                        sl--;
+                    }
+                    if(kt){
+                        System.out.println("Sua thong tin thanh cong.");return;
+                    }
+                }   
+            }
+        }
+        if(!kt)
+            System.out.println("Khong tim thay tac gia co ma: "+ma);
     }
     public void xuat(){
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
@@ -42,12 +82,13 @@ public class Danhsachtacgia {
             tg.xuat();
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
     }
-    private void xuatd(){
+    private void xuatt(){
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
         System.out.printf("| %-10s | %-15s | %-10s | %-9s | %-12s |\n", "Ma tac gia", "Ho", "Ten", "Gioi tinh", "Ngay sinh");
-    }
-    private void xuatc(){
         System.out.println("|------------|-----------------|------------|-----------|--------------|");
+    }
+    private void xuatd(){
+        System.out.println("+------------+-----------------+------------+-----------+--------------+");
     }
     public void xoa(){
         System.out.println("Nhap ma tac gia muon xoa: ");
@@ -66,22 +107,22 @@ public class Danhsachtacgia {
         String ma=sc.nextLine();
         for(Tacgia tg:ds)
             if(ma.equals(tg.getMaTacGia())){
-                xuatd();
+                xuatt();
                 tg.xuat();
-                xuatc();
+                xuatd();
                 return;
             }
         System.out.println("Khong tim thay tac gia co ma: "+ma);       
     }
     public void timkiemtheoten(){
-        System.out.println("Nhap ma tac gia muon tim: ");
+        System.out.println("Nhap ten tac gia muon tim: ");
         String ten=sc.nextLine();
         Boolean kt=false;
         for(Tacgia tg:ds)
             if(ten.equals(tg.getTen())){
-                xuatd();
+                xuatt();
                 tg.xuat();
-                xuatc();
+                xuatd();
                 kt=true;
             }
         if(!kt)    
@@ -89,8 +130,9 @@ public class Danhsachtacgia {
     }
     public void docfile(){ 
         File file = new File("Tacgia.txt");
-        try{       
-            Scanner f = new Scanner(file);
+        if(!file.exists())
+            System.out.println("File khong ton tai!");
+        try(Scanner f = new Scanner(file)){       
             while(f.hasNextLine()){
                 String line=f.nextLine();
                 String[] parts=line.split(",");
@@ -98,21 +140,17 @@ public class Danhsachtacgia {
                     ds=Arrays.copyOf(ds,ds.length+1);
                     ds[ds.length-1]=new Tacgia(parts[0],parts[1],parts[2],parts[3],parts[4]);
                 }    
-                
             }
-            f.close();
         }catch(FileNotFoundException e){
             System.out.println("Khong tim duoc file!");
         }   
     }
     public void ghifile(){
         File file = new File("Tacgia.txt");
-        try {
-            PrintWriter pw = new PrintWriter(file);
+        try(PrintWriter pw = new PrintWriter(file)){
             for(Tacgia tg:ds)
                 pw.println(tg.toString());
             System.out.println("Ghi file thành công!");
-            pw.close();
         } catch (FileNotFoundException e){
             System.out.println("Không tạo được file!");
         }             
@@ -124,13 +162,13 @@ public class Danhsachtacgia {
         Arrays.sort(ds,Comparator.comparing(Tacgia::getTen).thenComparing(Tacgia::getHo));
     }
     public static void main(String[] agrs){
-        Danhsachtacgia ds=new Danhsachtacgia();
+        DanhSachTacGia ds=new DanhSachTacGia();
         ds.docfile();
         //ds.nhap();
         //ds.sua();
         //ds.xoa();
         //ds.timkiem();
-        //ds.timkiemtheoten();
+        ds.timkiemtheoten();
         //ds.sapxeptheoma();
         //ds.sapxeptheoten();
         //ds.ghifile();

@@ -1,0 +1,5 @@
+GK,100,Ngu van 10 tap 1,10,12,13,2020,Ngu van,10
+GK,101,Ngu van 10 tap 2,10,12,13,2020,Ngu van,10
+TK,200,Triet hoc Mac-Lenin,20,20,13,2018,khoa hoc xa hoi,khong chuyen
+TK,201,OOP,20,20,13,2019,khoa hoc tu nhien,chuyen
+TK,333,Cau truc roi rac,104,13,12,2022,khoa hoc tu nhien,chuyen

@@ -33,6 +33,13 @@ public class DanhSachTheLoai {
             System.out.println("+-------------+--------------+----------------------------------------------------+");
         }    
     }
+    private void xuatt(){
+        System.out.println("+-------------+--------------+----------------------------------------------------+");
+        System.out.printf("| %-11s | %-12s | %-50s |\n","Ma the loai","Ten the loai","mo ta");
+    }
+    private void xuatd(){
+        System.out.println("+-------------|--------------|----------------------------------------------------|");
+    }
     public void them(TheLoai tl){
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=new TheLoai(tl);
@@ -67,8 +74,8 @@ public class DanhSachTheLoai {
                         kt=true;
                     }else{
                         System.out.println("Nhap lua chon khong dung. Vui long nhap lai.");
+                        sl--;
                     }
-                    sl--;
                     if(kt){
                         System.out.println("Sua thong tin thanh cong.");
                         return;

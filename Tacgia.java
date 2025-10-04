@@ -46,16 +46,6 @@ public class Tacgia {
         System.out.println("Nhap ngay sinh: ");
         ngaysinh=sc.nextLine();
     }
-    public void sua(){
-        System.out.println("Nhap ho: ");
-        ho=sc.nextLine();
-        System.out.println("Nhap ten: ");
-        ten=sc.nextLine();
-        System.out.println("Nhap gioi tinh: ");
-        gioitinh=sc.nextLine();
-        System.out.println("Nhap ngay sinh: ");
-        ngaysinh=sc.nextLine();
-    }
     @Override public String toString(){
         return matacgia+","+ho+","+ten+","+gioitinh+","+ngaysinh;
     }

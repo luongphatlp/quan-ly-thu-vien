@@ -11,7 +11,7 @@ public class PhieuPhat {
         this.madocgia=madocgia;
         this.maphieumuon=maphieumuon;
         this.maphat=maphat;
-        QuyDinhPhat qdp =dsqdp.layquydinhphattuma(maphat);
+        QuyDinhPhat qdp =dsqdp.layQuyDinhPhatTuMa(maphat);
         if(qdp != null){
             this.tienphat=qdp.getTienPhat();
         }else{

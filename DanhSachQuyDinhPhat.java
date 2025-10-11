@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 public class DanhSachQuyDinhPhat {
-    QuyDinhPhat[] ds =new QuyDinhPhat[0];
+    private QuyDinhPhat[] ds =new QuyDinhPhat[0];
     public DanhSachQuyDinhPhat(){}
     public DanhSachQuyDinhPhat(QuyDinhPhat[] ds){this.ds=ds;}
     public DanhSachQuyDinhPhat(DanhSachQuyDinhPhat ds){this.ds=ds.ds;}
@@ -17,21 +17,22 @@ public class DanhSachQuyDinhPhat {
         sc.nextLine();
         ds=Arrays.copyOf(ds,ds.length+sl);
         for(int i=bd;i<ds.length;i++){
-            ds[i]=new QuyDinhPhat();
-            ds[i].nhap();
+            ds[i]=new QuyDinhPhat(); ds[i].nhap();
         }
     }
-    public int length(){
+    public int getLength(){
         return ds.length;
     }
     public void them(){
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=new QuyDinhPhat();
         ds[ds.length-1].nhap();
+        System.out.println("Them thanh cong.");
     }
     public void them(QuyDinhPhat qd){
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=new QuyDinhPhat(qd);
+        System.out.println("Them thanh cong.");
     }
     public void sua(){
         System.out.println("Nhap ma quy dinh phat can sua: ");
@@ -66,9 +67,11 @@ public class DanhSachQuyDinhPhat {
                 }
             }
         }
-        if(!kt){
+        if(!kt)
             System.out.println("Khong tim thay quy dinh phat co ma: "+ma);
-        }
+        else
+            System.out.println("Sua thanh cong.");
+
     }
     public int timkiem(String ma){
         for(int i=0;i<ds.length;i++){
@@ -80,6 +83,18 @@ public class DanhSachQuyDinhPhat {
     public void xoa(){
         System.out.println("Nhap ma quy dinh phat can xoa: ");
         String ma=sc.nextLine();
+        int k=timkiem(ma);
+        if(k==-1){
+            System.out.println("Khong tim thay quy dinh phat co ma: "+ma);
+            return;
+        }
+        for(int i=k;i<ds.length-1;i++){
+            ds[i]=ds[i+1];
+        }
+        ds=Arrays.copyOf(ds,ds.length-1);
+        System.out.println("Xoa thanh cong.");
+    }
+    public void xoa(String ma){
         int k=timkiem(ma);
         if(k==-1){
             System.out.println("Khong tim thay quy dinh phat co ma: "+ma);
@@ -120,10 +135,6 @@ public class DanhSachQuyDinhPhat {
     }
     public void ghifile(){
         File file=new File("Quydinhphat.txt");
-        if(!file.exists()){
-            System.out.println("Khong ton tai file.");
-            return;
-        }
         try(PrintWriter pw =new PrintWriter(file)){
             for(QuyDinhPhat qd:ds){
                 pw.println(qd.toString());
@@ -132,7 +143,7 @@ public class DanhSachQuyDinhPhat {
             System.out.println("Loi ghi file"+ e.getLocalizedMessage());
         }
     }
-    public QuyDinhPhat layquydinhphattuma(String ma){
+    public QuyDinhPhat layQuyDinhPhatTuMa(String ma){
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getMaPhat()))
                 return ds[i];

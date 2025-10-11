@@ -4,28 +4,38 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 public class DanhSachSach {
-    Sach[] ds=new Sach[0];
+    private Sach[] ds=new Sach[0];
     public DanhSachSach (){}
-    public DanhSachSach(Sach[] ds){this.ds=ds;}
-    public DanhSachSach(DanhSachSach ds){this.ds=ds.ds;}
+    public DanhSachSach(Sach[] ds2){this.ds=Arrays.copyOf(ds2,ds2.length);}
+    public DanhSachSach(DanhSachSach ds2){this.ds=Arrays.copyOf(ds2.ds,ds2.ds.length);}
     
     Scanner sc=new Scanner(System.in);
+    public int getLength(){return ds.length;}
     public void them(){
-        System.out.println("nhap lua chon (1.sach giao khoa 2.sach tham khao)");
-        int c=0;
+        int c=0,sl=5;
+        boolean kt=false;
         ds=Arrays.copyOf(ds,ds.length+1);
-        while(true){
+        while(sl>0){
+            System.out.println("nhap lua chon (1.sach giao khoa 2.sach tham khao)");
             c=sc.nextInt();
+            sc.nextLine();
             if(c==1){
                 ds[ds.length-1]=new SachGiaoKhoa();ds[ds.length-1].nhap();
+                kt=true;
                 break;
             }else if(c==2){
                 ds[ds.length-1]=new SachThamKhao();ds[ds.length-1].nhap();
+                kt=true;
                 break;
             }else{
                 System.out.println("Lua chon khong dung.Vui long chon lai.");
+                sl--;
             }
         }
+        if(!kt)
+            System.out.println("Them thanh cong.");
+        else
+            System.out.println("Them khong thanh cong.");
     }
     public void them(Sach s){
         if(s instanceof SachGiaoKhoa){
@@ -35,11 +45,12 @@ public class DanhSachSach {
         }
     }
     public void nhap(){
-        System.out.println("Nhap so luong sach muon nhap: ");
+        System.out.println("Nhap so luong sach muon them: ");
         int bd=ds.length;
         int sl=sc.nextInt();
         ds=Arrays.copyOf(ds,ds.length+sl);
         int c=0,k=5;
+        boolean kt=false;
         for(int i=bd;i<ds.length;i++){
             System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
             while(k>0){
@@ -47,16 +58,22 @@ public class DanhSachSach {
                 sc.nextLine();
                 if(c==1){
                     ds[i]=new SachGiaoKhoa();ds[i].nhap();
+                    kt=true;
                     break;
                 }else if(c==2){
                     ds[i]=new SachThamKhao();ds[i].nhap();
+                    kt=true;
                     break;
                 }else{
                     System.out.println("Lua chon khong dung.Vui long chon lai.");
+                    k--;
                 }
-                k--;
             }
         }
+        if(kt)
+            System.out.println("Them thanh cong.");
+        else 
+            System.out.println("Them khong thanh cong.");
     }
     public void xuat(){
         System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+");
@@ -89,10 +106,10 @@ public class DanhSachSach {
             System.out.println("Khong tim thay sach co ma: "+ma);
             return;
         }
-        for(int i=k;i<ds.length-1;i++){
+        for(int i=k;i<ds.length-1;i++)
             ds[i]=ds[i+1];
-        }
         ds=Arrays.copyOf(ds,ds.length-1);
+        System.out.println("Xoa thanh cong.");
     }
     public void xoa(String ma){
         int k=timKiem(ma);
@@ -100,10 +117,10 @@ public class DanhSachSach {
             System.out.println("Khong tim thay sach co ma: "+ma);
             return;
         }
-        for(int i=k;i<ds.length-1;i++){
+        for(int i=k;i<ds.length-1;i++)
             ds[i]=ds[i+1];
-        }
         ds=Arrays.copyOf(ds,ds.length-1);
+        System.out.println("Xoa thanh cong.");
     }
     public void sua(){
         System.out.println("Nhap ma sach can sua: ");
@@ -116,18 +133,23 @@ public class DanhSachSach {
             if(ma.equals(ds[i].getMaSach())){
                 if(ds[i] instanceof SachGiaoKhoa){
                     suaGiaoKhoa((SachGiaoKhoa)ds[i]);
+                    kt=true;
+                    break;
                 }else{
                     suaThamKhao((SachThamKhao)ds[i]);
+                    kt=true;
+                    break;
                 } 
             }
         }    
         if(!kt) 
             System.out.println("Khong tim that sach co ma: "+ma);
+        else 
+            System.out.println("sua thanh cong");
     }
-    
     private void suaGiaoKhoa(SachGiaoKhoa s){
         int c=0,sl=5;
-        System.out.println("Nhap lua chon muon sua (1.ten 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.mon 7.lop): ");
+        System.out.println("Nhap lua chon muon sua (1.ten sach 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.mon 7.lop): ");
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();
@@ -161,13 +183,13 @@ public class DanhSachSach {
                 break;    
             }else{
                 System.out.println("Nhap lua chon khong dung.Vui long chon lai.");
+                sl--;
             }
-            sl--;
         }
     }
     private void suaThamKhao(SachThamKhao s){
         int c=0,sl=5;
-        System.out.println("Nhap lua chon muon sua (1.ten 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.linh vuc 7.loai doc gia): ");
+        System.out.println("Nhap lua chon muon sua (1.ten sach 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.linh vuc 7.loai doc gia): ");
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();
@@ -201,12 +223,16 @@ public class DanhSachSach {
                 break;    
             }else{
                 System.out.println("Nhap lua chon khong dung.Vui long chon lai.");
+                sl--;
             }
-            sl--;
         }
     }
     public void docFile(){
         File file=new File("Sach.txt");
+        if(!file.exists()){
+            System.out.println("Khong tiem thay file.");
+            return;
+        }
         try(Scanner f=new Scanner(file)){
             while(f.hasNextLine()){
                 String line=f.nextLine();
@@ -226,12 +252,11 @@ public class DanhSachSach {
     public void ghiFile(){
         File file=new File("Sach.txt");
         try(PrintWriter pw =new PrintWriter(file)){
-            for(int i=0;i<ds.length;i++){
+            for(int i=0;i<ds.length;i++)
                 if(ds[i] instanceof SachGiaoKhoa)
                     pw.println("GK,"+ds[i].toString());
                 else if(ds[i] instanceof SachThamKhao)
                     pw.println("TK,"+ds[i].toString());
-            }
         }catch(FileNotFoundException e){
             System.out.println("Khong tao duoc file");
         }
@@ -404,6 +429,12 @@ public class DanhSachSach {
             return;
         }
         xuatd();           
+    }
+    public Sach laySachTuMa(String ma){
+        for(Sach s:ds)
+            if(ma.equals(s.getMaSach()))
+                return s;
+        return null;
     }
     public static void main(String[] args){
         DanhSachSach ds=new DanhSachSach();

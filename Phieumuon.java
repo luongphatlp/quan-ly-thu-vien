@@ -1,10 +1,9 @@
-import java.time.LocalDate;
 
-public class Phieumuon {
+public class PhieuMuon {
     private String maphieumuon;
     private String madocgia;
     private String manhanvien;
-    private LocalDate ngaylapphieu;
-    private LocalDate ngaytra;
-    private LocalDate ngaytrathucte;
+    private String ngaylapphieu;
+    private String ngaytra;
+    private String ngaytrathucte;
 }

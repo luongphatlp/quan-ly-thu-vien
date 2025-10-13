@@ -127,6 +127,7 @@ public class DanhSachNhanVien {
                 System.out.println("\t Thong tin sinh vien");
                 xuatd();
                 ds[index].xuat();
+                xuatc();
         }
         public void them(){
                 while(true){

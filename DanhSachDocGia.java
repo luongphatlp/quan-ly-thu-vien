@@ -4,65 +4,6 @@ import java.util.Scanner;
 
 public class DanhSachDocGia {
 
-    private List<Docgia> danhSachDG;
-    
-    public static class DocGia {
-        private String maDocGia;
-        private String tenDocGia;
-        private String diaChi;
-        private String dienThoai;
-        
-        public DocGia() {}
-        
-        public DocGia(String maDocGia, String tenDocGia, String diaChi, String dienThoai) {
-            this.maDocGia = maDocGia;
-            this.tenDocGia = tenDocGia;
-            this.diaChi = diaChi;
-            this.dienThoai = dienThoai;
-        }
-        
-        public DocGia(DocGia dg) {
-            this(dg.maDocGia, dg.tenDocGia, dg.diaChi, dg.dienThoai);
-        }
-        
-        public String getMaDocGia() { return maDocGia; }
-        public String getTenDocGia() { return tenDocGia; }
-        public String getDiaChi() { return diaChi; }
-        public String getDienThoai() { return dienThoai; }
-        
-        public void setTenDocGia(String tenDocGia) { this.tenDocGia = tenDocGia; }
-        public void setDiaChi(String diaChi) { this.diaChi = diaChi; }
-        public void setDienThoai(String dienThoai) { this.dienThoai = dienThoai; }
-        
-        public void nhap(Scanner sc) {
-            System.out.print("Nhap ma doc gia: ");
-            maDocGia = sc.nextLine();
-            System.out.print("Nhap ten doc gia: ");
-            tenDocGia = sc.nextLine();
-            System.out.print("Nhap dia chi: ");
-            diaChi = sc.nextLine();
-            System.out.print("Nhap dien thoai: ");
-            dienThoai = sc.nextLine();
-        }
-        
-        public void xuat() {
-            System.out.println("Ma doc gia: " + maDocGia);
-            System.out.println("Ten doc gia: " + tenDocGia);
-            System.out.println("Dia chi: " + diaChi);
-            System.out.println("Dien thoai: " + dienThoai);
-        }
-        
-        @Override
-        public String toString() {
-            return "DocGia{" +
-                    "maDocGia='" + maDocGia + '\'' +
-                    ", tenDocGia='" + tenDocGia + '\'' +
-                    ", diaChi='" + diaChi + '\'' +
-                    ", dienThoai='" + dienThoai + '\'' +
-                    '}';
-        }
-    }
-    
     private List<DocGia> danhSachDG;
     
     public DanhSachDocGia() {
@@ -92,7 +33,7 @@ public class DanhSachDocGia {
     
     public void hienThiTatCa() {
         if (danhSachDG.isEmpty()) {
-            System.out.println("Danh sach doc gia trong!");
+            System.out.println("Danh sach doc gia trong");
             return;
         }
         System.out.println("=== DANH SACH DOC GIA ===");
@@ -113,7 +54,7 @@ public class DanhSachDocGia {
             }
         }
         if (!found) {
-            System.out.println("Khong tim thay doc gia nao!");
+            System.out.println("Khong tim thay doc gia nao");
         }
     }
     

@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DanhSachDocGia {
+
+    private List<Docgia> danhSachDG;
     
     public static class DocGia {
         private String maDocGia;

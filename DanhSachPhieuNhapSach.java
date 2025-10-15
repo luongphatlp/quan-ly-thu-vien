@@ -143,6 +143,7 @@ public class DanhSachPhieuNhapSach {
     }
     public void xoa(String ma){
         for(int i=0;i<ds.length;i++){
+            
             if(ma.equals(ds[i].getMaPhieuNhapSach())){
                 for(int j=i;j<ds.length-1;j++)
                     ds[j]=ds[j+1];

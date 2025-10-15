@@ -114,7 +114,7 @@ public class DanhSachNhaCungCap {
             System.out.println("Loi doc file.");
         }
     }
-    public void ghifile(){
+    public void ghiFile(){
         try(PrintWriter w=new PrintWriter("Nhacungcap.txt")){
             for(NhaCungCap ncc:ds)
                 w.println(ncc.toString());
@@ -133,6 +133,6 @@ public class DanhSachNhaCungCap {
         dsncc.xuat();
         dsncc.xoa();
         dsncc.xuat();
-        dsncc.ghifile();
+        dsncc.ghiFile();
     }
 }

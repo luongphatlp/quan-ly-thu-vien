@@ -12,6 +12,7 @@ class SachGiaoKhoa extends Sach{
         this.lop=s.lop;
         this.mon=s.mon;
     }
+    public String getLoaiSach(){return "Sach giao khoa";}
     public String getMon(){return mon;}
     public String getLop(){return lop;}
     public void setMon(String mon){this.mon=mon;}

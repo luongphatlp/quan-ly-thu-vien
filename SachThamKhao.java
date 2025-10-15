@@ -12,6 +12,7 @@ class SachThamKhao extends Sach{
         this.linhvuc=s.linhvuc;
         this.loaidocgia=s.loaidocgia;
     }
+    public String getLoaiSach(){return "Sach tham khao";}
     public String getLinhVuc(){return linhvuc;}
     public String getLoaiDocGia(){return loaidocgia;}
     public void setLinhVuc(String linhvuc){this.linhvuc=linhvuc;}

@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class DanhSachChiTietPhieuNhapSach {
-    ChiTietPhieuNhapSach[] ds = new ChiTietPhieuNhapSach[0];
+    private ChiTietPhieuNhapSach[] ds = new ChiTietPhieuNhapSach[0];
 
     public DanhSachChiTietPhieuNhapSach() {}
     public DanhSachChiTietPhieuNhapSach(ChiTietPhieuNhapSach[] ds) {
@@ -14,6 +14,17 @@ public class DanhSachChiTietPhieuNhapSach {
         this.ds = Arrays.copyOf(other.ds, other.ds.length);
     }
 
+    public ChiTietPhieuNhapSach[] getDS() { return ds; }
+    public DanhSachChiTietPhieuNhapSach traVeDanhSachChiTietPhieuNhapSachTheoMa(String ma){
+        DanhSachChiTietPhieuNhapSach kq=new DanhSachChiTietPhieuNhapSach();
+        for(int i=0;i<ds.length;i++){
+            if(ds[i].getMaPhieuNhapSach().equals(ma)){
+                kq.ds=Arrays.copyOf(kq.ds,kq.ds.length+1);
+                kq.ds[kq.ds.length-1]=new ChiTietPhieuNhapSach(ds[i]);
+            }
+        }
+        return kq;
+    }
     public void docFile() {
         File file = new File("Chitietphieunhapsach.txt");
         if (!file.exists()) {
@@ -34,11 +45,19 @@ public class DanhSachChiTietPhieuNhapSach {
         }
     }
 
-    public 
+    public void xuatt(){
+        System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s |\n","Ma phieu nhap sach","Ma sach","So luong","Don gia","Thanh tien");
+        System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
+    }
+    public void xuatd(){
+        System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
+    }
     public void xuat() {
-        for (ChiTietPhieuNhapSach ctp : ds) {
-            ctp.xuat();
-            System.out.println("----------------------------");
+        xuatt();
+        for (int i = 0; i < ds.length; i++) {
+            ds[i].xuat();
         }
+        xuatd();
     }
 }

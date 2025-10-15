@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Sach {
+abstract public class Sach {
     private String masach,tensach,matheloai,matacgia,manxb,namxuatban;
     public Sach(){}
     public Sach(String masach,String tensach,String matheloai,String matacgia,String manxb,String namxuatban){
@@ -18,6 +18,7 @@ public class Sach {
         this.manxb=s.manxb;
         this.namxuatban=s.namxuatban;
     }
+    public abstract String getLoaiSach();
     public String getMaSach(){return masach;}
     public String getTenSach(){return tensach;}
     public String getMaTheLoai(){return matheloai;}

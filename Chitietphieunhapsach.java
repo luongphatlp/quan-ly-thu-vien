@@ -54,10 +54,6 @@ public class ChiTietPhieuNhapSach {
     }
 
     public void xuat() {
-        System.out.println("Ma phieu nhap sach: " + maphieunhapsach);
-        System.out.println("Ma sach: " + masach);
-        System.out.println("So luong: " + soluong);
-        System.out.println("Don gia: " + dongia);
-        System.out.println("Thanh tien: " + thanhtien);
+        System.out.printf("| %-15s | %-15s | %-15d | %-15.2f | %-15.2f |\n", maphieunhapsach, masach, soluong, dongia, thanhtien);
     }
 }

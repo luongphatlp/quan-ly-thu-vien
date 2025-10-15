@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Nhanvien {
+public class NhanVien {
     private String mnv;
     private String ho;
     private String ten;
@@ -8,9 +8,9 @@ public class Nhanvien {
     private String ngaysinh;
     private String sdt;
 
-    public Nhanvien() {}
+    public NhanVien() {}
     
-    public Nhanvien(String mnv, String ho, String ten, String gioitinh, String ngaysinh, String sdt) {
+    public NhanVien(String mnv, String ho, String ten, String gioitinh, String ngaysinh, String sdt) {
         this.mnv = mnv;
         this.ho = ho;
         this.ten = ten;
@@ -18,7 +18,7 @@ public class Nhanvien {
         this.ngaysinh = ngaysinh;
         this.sdt = sdt;
     }
-    public Nhanvien(Nhanvien nv) {
+    public NhanVien(NhanVien nv) {
         this.mnv = nv.mnv;
         this.ho = nv.ho;
         this.ten = nv.ten;
@@ -55,19 +55,6 @@ public class Nhanvien {
         ngaysinh = sc.nextLine();
         System.out.print("Nhap Sdt: ");
         sdt = sc.nextLine();
-    }
-
-    public void sua(){
-        System.out.print("Nhap ho: ");
-        ho=sc.nextLine();
-        System.out.print("Nhap ten: ");
-        ten=sc.nextLine();
-        System.out.print("Nhap gioi tinh: ");
-        gioitinh=sc.nextLine();
-        System.out.print("Nhap ngay sinh: ");
-        ngaysinh=sc.nextLine();
-        System.out.print("Nhap sdt: ");
-        sdt=sc.nextLine();
     }
     @Override
     public String toString(){

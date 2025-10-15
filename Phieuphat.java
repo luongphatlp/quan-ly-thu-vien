@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class PhieuPhat {
     private String maphieuphat;
     private String madocgia;
@@ -35,5 +37,26 @@ public class PhieuPhat {
     public void setMaDocGia(String madocgia){this.madocgia=madocgia;}
     public void setMaPhieuMuon(String maphieumuon){this.maphieumuon=maphieumuon;}
     public void setMaPhat(String maphat){this.maphat=maphat;}
+    public void setTienPhat(int tienphat){this.tienphat=tienphat;}
+
+    Scanner sc=new Scanner(System.in);
+    public void nhap(){
+        System.out.println("Nhap ma phieu phat: ");
+        maphieuphat=sc.nextLine();
+        System.out.println("Nhap ma doc gia: ");
+        madocgia=sc.nextLine();
+        System.out.println("Nhap ma phieu muon: ");
+        maphieumuon=sc.nextLine();
+        System.out.println("Nhap ma phat: ");
+        maphat=sc.nextLine();
+        tienphat=0;
+
+    }
+    public void xuat(){
+        System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-10d |\n",maphieuphat,madocgia,maphieumuon,maphat,tienphat);
+    }
+    @Override public String toString(){
+        return maphieuphat+","+madocgia+","+maphieumuon+","+maphat;
+    }
 
 }    

@@ -147,8 +147,10 @@ public class DanhSachTacGia {
     }
     public void docfile(){ 
         File file = new File("Tacgia.txt");
-        if(!file.exists())
+        if(!file.exists()){
             System.out.println("File khong ton tai!");
+            return;
+        }
         try(Scanner f = new Scanner(file)){       
             while(f.hasNextLine()){
                 String line=f.nextLine();

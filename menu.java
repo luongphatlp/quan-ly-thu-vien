@@ -33,8 +33,7 @@ public class menu {
                     ql.menuPhieuNhapSach();
                     break;
                 case 6:
-          
-                ql.menuPhieuMuon();
+                    ql.menuPhieuMuon();
                     break;
                 case 7:
                     System.out.println("Cam on ban da su dung chuong trinh!");

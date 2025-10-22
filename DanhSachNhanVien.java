@@ -167,7 +167,7 @@ public class DanhSachNhanVien {
                 
                 
 
-        public void ghifile(){
+        public void ghiFile(){
                 File file=new File("Nhanvien.txt");
                 try(PrintWriter pw=new PrintWriter(file)){
                         for(NhanVien nv:ds){
@@ -181,7 +181,7 @@ public class DanhSachNhanVien {
 
         }
 
-        public void docfile(){
+        public void docFile(){
                 File file=new File("Nhanvien.txt");
                 if(!file.exists()){
                         System.out.println("File khong ton tai!");
@@ -214,7 +214,7 @@ public class DanhSachNhanVien {
         }
         public static void main(String[] args) {
                 DanhSachNhanVien ds=new DanhSachNhanVien();
-                ds.docfile();
+                ds.docFile();
                 // ds.nhap();
                 // ds.them();
                 // ds.sua();
@@ -222,7 +222,7 @@ public class DanhSachNhanVien {
                 // ds.timkiem();
                 //ds.sapxepten();
                 //ds.sapxepma();
-                ds.ghifile();
+                ds.ghiFile();
                 ds.xuat();
                 }
 

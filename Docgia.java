@@ -11,8 +11,7 @@ public class DocGia {
 
     Scanner sc = new Scanner(System.in);
 
-    public DocGia() {
-    }
+    public DocGia(){}
 
     public DocGia(String madocgia, String ho, String ten, String gioitinh, String ngaysinh, String sdt) {
         this.madocgia = madocgia;
@@ -22,7 +21,6 @@ public class DocGia {
         this.ngaysinh = ngaysinh;
         this.sdt = sdt;
     }
-
     public DocGia(DocGia dg) {
         this.madocgia = dg.madocgia;
         this.ho = dg.ho;
@@ -31,55 +29,42 @@ public class DocGia {
         this.ngaysinh = dg.ngaysinh;
         this.sdt = dg.sdt;
     }
-
     public String getMaDocGia() {
         return madocgia;
     }
-
     public String getHo() {
         return ho;
     }
-
     public String getTen() {
         return ten;
     }
-
     public String getGioiTinh() {
         return gioitinh;
     }
-
     public String getNgaySinh() {
         return ngaysinh;
     }
-
     public String getSDT() {
         return sdt;
     }
-
     public void setMaDocGia(String madocgia) {
         this.madocgia = madocgia;
     }
-
     public void setHo(String ho) {
         this.ho = ho;
     }
-
     public void setTen(String ten) {
         this.ten = ten;
     }
-
     public void setGioiTinh(String gioitinh) {
         this.gioitinh = gioitinh;
     }
-
     public void setSDT(String sdt) {
         this.sdt = sdt;
     }
-
     public void setNgaySinh(String ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
-
     public void nhap() {
         System.out.println("Nhap ma doc gia: ");
         madocgia = sc.nextLine();

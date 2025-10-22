@@ -4,11 +4,13 @@ import java.util.Comparator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.Period;
 public class DanhSachTacGia {
-    private Tacgia[] ds=new Tacgia[0];
+    private TacGia[] ds=new TacGia[0];
     Scanner sc = new Scanner(System.in);
     public DanhSachTacGia(){}
-    public DanhSachTacGia(Tacgia[] ds2){
+    public DanhSachTacGia(TacGia[] ds2){
         this.ds=Arrays.copyOf(ds2,ds2.length);
     }
     public DanhSachTacGia(DanhSachTacGia ds2){
@@ -24,13 +26,13 @@ public class DanhSachTacGia {
         int tt=1;
         for(int i=bd;i<ds.length;i++){
             System.out.println("Nhap thong tin tac gia thu "+tt+" :");tt++;
-            ds[i]=new Tacgia();
+            ds[i]=new TacGia();
             ds[i].nhap();
         }
     }
     private boolean kiemTraMaTacGiaDuyNhat(String ma){
         int i=0;
-        for(Tacgia tg:ds)
+        for(TacGia tg:ds)
             if(ma.equals(tg.getMaTacGia()))
                 i++;
         if(i>1) return false;
@@ -38,16 +40,16 @@ public class DanhSachTacGia {
     }
     public void them(){
         ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new Tacgia();
+        ds[ds.length-1]=new TacGia();
         System.out.println("Nhap thong tin tac gia can them");
         ds[ds.length-1].nhap();
     }
-    public void them(Tacgia tg){
+    public void them(TacGia tg){
         ds=Arrays.copyOf(ds,ds.length+1);
         if(kiemTraMaTacGiaDuyNhat(tg.getMaTacGia()))
             System.out.println("Trung ma tac gia.");
         else    
-        ds[ds.length-1]=new Tacgia(tg);
+        ds[ds.length-1]=new TacGia(tg);
     }
     public void sua(){
         System.out.println("Nhap ma tac gia can sua: ");
@@ -95,7 +97,7 @@ public class DanhSachTacGia {
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
         System.out.printf("| %-10s | %-15s | %-10s | %-9s | %-12s |\n", "Ma tac gia", "Ho", "Ten", "Gioi tinh", "Ngay sinh");
         System.out.println("|------------|-----------------|------------|-----------|--------------|");
-        for(Tacgia tg:ds)
+        for(TacGia tg:ds)
             tg.xuat();
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
     }
@@ -119,10 +121,10 @@ public class DanhSachTacGia {
             }
         System.out.println("Khong tim thay tac gia co ma: "+ ma);
     }
-    public void timkiem(){
+    public void timKiemTheoMaTacGia(){
         System.out.println("Nhap ma tac gia muon tim: ");
         String ma=sc.nextLine();
-        for(Tacgia tg:ds)
+        for(TacGia tg:ds)
             if(ma.equals(tg.getMaTacGia())){
                 xuatt();
                 tg.xuat();
@@ -131,12 +133,12 @@ public class DanhSachTacGia {
             }
         System.out.println("Khong tim thay tac gia co ma: "+ma);       
     }
-    public void timkiemtheoten(){
+    public void timKiemTheoTen(){
         System.out.println("Nhap ten tac gia muon tim: ");
         String ten=sc.nextLine();
         Boolean kt=false;
-        for(Tacgia tg:ds)
-            if(ten.equals(tg.getTen())){
+        for(TacGia tg:ds)
+            if(ten.contains(tg.getTen())){
                 xuatt();
                 tg.xuat();
                 xuatd();
@@ -145,7 +147,7 @@ public class DanhSachTacGia {
         if(!kt)    
             System.out.println("Khong tim thay tac gia co ten: "+ten);
     }
-    public void docfile(){ 
+    public void docFile(){ 
         File file = new File("Tacgia.txt");
         if(!file.exists()){
             System.out.println("File khong ton tai!");
@@ -157,41 +159,61 @@ public class DanhSachTacGia {
                 String[] parts=line.split(",");
                 if(parts.length==5){
                     ds=Arrays.copyOf(ds,ds.length+1);
-                    ds[ds.length-1]=new Tacgia(parts[0],parts[1],parts[2],parts[3],parts[4]);
+                    ds[ds.length-1]=new TacGia(parts[0],parts[1],parts[2],parts[3],parts[4]);
                 }    
             }
         }catch(FileNotFoundException e){
             System.out.println("Khong tim duoc file!");
         }   
     }
-    public void ghifile(){
+    public void ghiFile(){
         File file = new File("Tacgia.txt");
         try(PrintWriter pw = new PrintWriter(file)){
-            for(Tacgia tg:ds)
+            for(TacGia tg:ds)
                 pw.println(tg.toString());
             System.out.println("Ghi file thành công!");
         } catch (FileNotFoundException e){
             System.out.println("Không tạo được file!");
         }             
     }
-    public void sapxeptheoma(){
-        Arrays.sort(ds,Comparator.comparing(tg -> tg.getMaTacGia()));
-    } 
-    public void sapxeptheoten(){
-        Arrays.sort(ds,Comparator.comparing(Tacgia::getTen).thenComparing(Tacgia::getHo));
+    public void thongKeTheoGioiTinh(){
+        int nam=0,nu=0;
+        for(TacGia tg:ds){
+            if("Nam".equalsIgnoreCase(tg.getGioiTinh()))
+                nam++;
+            else 
+                nu++;
+        }
+        System.out.println("So luong tac gia co gioi tinh nam: "+nam);
+        System.out.println("So luong tac gia co gioi tinh nu: "+nu);
+    }
+    private int tinhTuoi( TacGia tg){
+        LocalDate date1=LocalDate.parse(tg.getNgaySinh());
+        LocalDate date2=LocalDate.now();
+        Period tuoi=Period.between(date1,date2);
+        return tuoi.getYears();
+    }
+    public void thongKeTheoTuoi(){
+        int duoi30=0,ngay30=0,tren30=0;
+        for(TacGia tg:ds){
+            if(tinhTuoi(tg) < 30) duoi30++;
+            else if(tinhTuoi(tg)>30) tren30++;
+            else ngay30++;
+        }
+        System.out.println("So luong tac gia tren 30 tuoi: "+tren30);
+        System.out.println("So luong tac gia 30 tuoi: "+ngay30);
+        System.out.println("So luong tac gia duoi 30 tuoi: "+duoi30);
     }
     public static void main(String[] agrs){
         DanhSachTacGia ds=new DanhSachTacGia();
-        //ds.docfile();
-        ds.nhap();
-        ds.them();
-        ds.sua();
-        ds.xoa();
-        ds.timkiem();
+        ds.docFile();
+        ds.xuat();
+        ds.timKiemTheoMaTacGia();
+        ds.timKiemTheoTen();
         //ds.timkiemtheoten();
         //ds.sapxeptheoma();
         //ds.sapxeptheoten();
         //ds.ghifile();
-        ds.xuat();
+         ds.xuat();
     }
 }

@@ -98,7 +98,7 @@ public class DanhSachTheLoai {
             }
         System.out.println("Khong tim thay tac gia co ma: "+ ma);
     }
-    public void docfile(){
+    public void docFile(){
         File file=new File("Theloai.txt");
         try(Scanner f=new Scanner(file)){
             while(f.hasNextLine()){
@@ -114,7 +114,7 @@ public class DanhSachTheLoai {
         }
     }
     
-    public void ghifile(){
+    public void ghiFile(){
         File file=new File("Theloai.txt");
         try(PrintWriter pw=new PrintWriter(file)){
             for(TheLoai tl:ds){
@@ -130,6 +130,6 @@ public class DanhSachTheLoai {
         //ds.them();
         //ds.sua();
         //ds.xoa();
-        ds.ghifile();
+        ds.ghiFile();
     }
 }

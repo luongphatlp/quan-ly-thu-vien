@@ -1,21 +1,29 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
-public class Tacgia {
+public class TacGia implements tuoi {
     private String matacgia;
     private String ho;
     private String ten;
     private String gioitinh;
     private String ngaysinh;
 
-    public Tacgia(){};
-    public Tacgia(String matacgia,String ho,String ten,String gioitinh,String ngaysinh){
+    public int sotuoi(){
+        LocalDate date1=LocalDate.parse(ngaysinh);
+        LocalDate date2=LocalDate.now();
+        Period tuoi=Period.between(date1, date2);
+        return tuoi.getYears();
+    }
+    public TacGia(){};
+    public TacGia(String matacgia,String ho,String ten,String gioitinh,String ngaysinh){
         this.matacgia=matacgia;
         this.ho=ho;
         this.ten=ten;
         this.gioitinh=gioitinh;
         this.ngaysinh=ngaysinh;
     }
-    public Tacgia(Tacgia tg){
+    public TacGia(TacGia tg){
         this.matacgia=tg.matacgia;
         this.ho=tg.ho;
         this.ten=tg.ten;

@@ -114,7 +114,7 @@ public class DanhSachQuyDinhPhat {
             qd.xuat();
         System.out.println("+------------+----------------------------------------------------+------------+");    
     }
-    public void docfile(){
+    public void docFile(){
         File file=new File("Quydinhphat.txt");
         if(!file.exists()){
             System.out.println("Khong ton tai file.");
@@ -133,7 +133,7 @@ public class DanhSachQuyDinhPhat {
                 System.out.println("Khong the doc file."+e.getMessage());
         }
     }
-    public void ghifile(){
+    public void ghiFile(){
         File file=new File("Quydinhphat.txt");
         try(PrintWriter pw =new PrintWriter(file)){
             for(QuyDinhPhat qd:ds){
@@ -152,12 +152,12 @@ public class DanhSachQuyDinhPhat {
     }
     public static void main(String[] args){
         DanhSachQuyDinhPhat ds =new DanhSachQuyDinhPhat();
-        ds.docfile();
+        ds.docFile();
         ds.them();
         //ds.nhap();
         //ds.sua();
         //ds.xoa();
         //ds.xuat();
-        ds.ghifile();
+        ds.ghiFile();
     }
 }

@@ -1,8 +1,7 @@
-import java.util.Scanner;
-import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.*;
 public class DanhSachSach {
     private Sach[] ds=new Sach[0];
     public DanhSachSach (){}
@@ -435,6 +434,27 @@ public class DanhSachSach {
             if(ma.equals(s.getMaSach()))
                 return s;
         return null;
+    }
+    public String thongKeTheoLoai(){
+        int sgk=0,stk=0;
+        for(Sach s:ds)
+            if(s instanceof SachGiaoKhoa)
+                sgk++;
+            else 
+                stk++;
+        System.out.println("So sach giao khoa: "+sgk);
+        System.out.println("So sach tham khao: "+stk);
+        return sgk+" "+stk;
+    }
+    public void thongKeTheoNXB(){
+        Map<String,Integer> thongke= new HashMap();
+        for(Sach s:ds){
+            String nxb=s.getMaNXB();
+            thongke.put(nxb, thongke.getOrDefault(nxb, 0)+1);
+        }
+        System.out.println("Thong ke theo NXB");
+            for(Map.Entry<String,Integer> entry: thongke.entrySet())
+                System.out.println("Nha xuat ban: "+ entry.getKey() +" - So luong sach: "+entry.getValue());
     }
     public static void main(String[] args){
         DanhSachSach ds=new DanhSachSach();

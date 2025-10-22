@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Comparator;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.Period;
 public class DanhSachNhanVien {
         private int n;
         NhanVien[] ds=new NhanVien[0];
@@ -111,23 +113,65 @@ public class DanhSachNhanVien {
                 }
         }
 
-        public void timkiem() {
+        public void timKiemTheoMaNhanVien() {
                 System.out.print("Nhap ma nhan vien can tim: ");
                 String ma=sc.nextLine();
                 int index=-1;
                 for (int i=0;i<n;i++) {
                         if (ds[i].getMnv().compareTo(ma)==0) {
-                                index=1;
+                                index=i;
                                 break;
                         }
                 } if(index==-1){
-                System.out.println("Khong tim thay nhan vien co ma: "+ma);
-                return;
+                        System.out.println("Khong tim thay nhan vien co ma: "+ma);
+                        return;
                 }
-                System.out.println("\t Thong tin sinh vien");
                 xuatd();
                 ds[index].xuat();
                 xuatc();
+        }
+        public void timKiemTheoTen(){
+                System.out.println("Nhap ten nhan vien can tim: ");
+                String ten=sc.nextLine();
+                Boolean kt=false;
+                for(NhanVien nv:ds)
+                if(ten.contains(nv.getTen())){
+                        if(!kt) xuatd();
+                        nv.xuat();
+                        xuatc();
+                        kt=true;
+                }
+                if(kt)xuatc();
+                if(!kt)    
+                System.out.println("Khong tim thay tac gia co ten: "+ten);
+        }
+        public void thongKeTheoGioiTinh(){
+                int nam=0,nu=0;
+                for(NhanVien tg:ds){
+                if("Nam".equalsIgnoreCase(tg.getGioiTinh()))
+                        nam++;
+                else 
+                        nu++;
+                }
+                System.out.println("So luong tac gia co gioi tinh nam: "+nam);
+                System.out.println("So luong tac gia co gioi tinh nu: "+nu);
+        }
+        private int tinhTuoi( NhanVien tg){
+                LocalDate date1=LocalDate.parse(tg.getNgaySinh());
+                LocalDate date2=LocalDate.now();
+                Period tuoi=Period.between(date1,date2);
+                return tuoi.getYears();
+        }
+        public void thongKeTheoTuoi(){
+                int duoi30=0,ngay30=0,tren30=0;
+                for(NhanVien tg:ds){
+                if(tinhTuoi(tg) < 30) duoi30++;
+                else if(tinhTuoi(tg)>30) tren30++;
+                else ngay30++;
+                }
+                System.out.println("So luong tac gia tren 30 tuoi: "+tren30);
+                System.out.println("So luong tac gia 30 tuoi: "+ngay30);
+                System.out.println("So luong tac gia duoi 30 tuoi: "+duoi30);
         }
         public void them(){
                 while(true){
@@ -222,8 +266,10 @@ public class DanhSachNhanVien {
                 // ds.timkiem();
                 //ds.sapxepten();
                 //ds.sapxepma();
-                ds.ghiFile();
+                //ds.ghiFile();
                 ds.xuat();
+                ds.thongKeTheoGioiTinh();
+                ds.thongKeTheoTuoi();
                 }
 
 }

@@ -30,8 +30,8 @@ public class NhanVien {
     public String getMnv() {return mnv;}
     public String getHo() {return ho;}
     public String getTen() {return ten;}
-    public String getGioitinh() {return gioitinh;}
-    public String getNgaysinh() {return ngaysinh;}
+    public String getGioiTinh() {return gioitinh;}
+    public String getNgaySinh() {return ngaysinh;}
     public String getSdt() {return sdt;}
 
     public void setMnv(String mnv){this.mnv=mnv;}

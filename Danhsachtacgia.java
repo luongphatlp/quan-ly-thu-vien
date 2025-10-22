@@ -139,11 +139,11 @@ public class DanhSachTacGia {
         Boolean kt=false;
         for(TacGia tg:ds)
             if(ten.contains(tg.getTen())){
-                xuatt();
+                if(!kt)xuatt();
                 tg.xuat();
-                xuatd();
                 kt=true;
             }
+        if(kt)xuatd();
         if(!kt)    
             System.out.println("Khong tim thay tac gia co ten: "+ten);
     }

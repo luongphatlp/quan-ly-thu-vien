@@ -94,12 +94,10 @@ public class DanhSachTacGia {
             System.out.println("Khong tim thay tac gia co ma: "+ma);
     }
     public void xuat(){
-        System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
-        System.out.printf("| %-10s | %-15s | %-10s | %-9s | %-12s |\n", "Ma tac gia", "Ho", "Ten", "Gioi tinh", "Ngay sinh");
-        System.out.println("|------------|-----------------|------------|-----------|--------------|");
+        xuatt();
         for(TacGia tg:ds)
             tg.xuat();
-        System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");
+        xuatd();
     }
     private void xuatt(){
         System.out.printf("+------------+-----------------+------------+-----------+--------------+\n");

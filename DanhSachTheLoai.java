@@ -124,6 +124,50 @@ public class DanhSachTheLoai {
             System.out.println("Khong tao duoc File");
         }
     }
+    public void timKiemTheoMaTheLoai(){
+        System.out.println("Nhap ma the loai muon tim: ");
+        String ma=sc.nextLine();
+        boolean kt=false;
+        for(int i=0;i<ds.length;i++)
+            if(ma.equals(ds[i].getMaTheLoai())){
+                if(!kt) xuatt();
+                ds[i].xuat();
+                kt=true;
+            }
+        if(kt) 
+            xuatd();
+        else
+            System.out.println("Khong tim thay sach cua tac gia co ma: "+ma);  
+    }
+    public void timKiemTheoTen(){
+        System.out.println("Nhap ten the loai muon tim: ");
+        String ten=sc.nextLine();
+        Boolean kt=false;
+        for(TheLoai tl:ds)
+            if(ten.contains(tl.getTenTheLoai())){
+                if(!kt)xuatt();
+                tl.xuat();
+                kt=true;
+            }
+        if(kt)xuatd();
+        if(!kt)    
+            System.out.println("Khong tim thay the loai co ten: "+ten);
+    }
+    public int thongKeTongSoTheLoai(){
+        System.out.println("Tong so the loai hien co: "+ds.length);
+        return ds.length;
+    }
+    public int thongKeTheLoaiTheoTuKhoa(){
+        System.out.println("Nhap tu khoa the loai can thong ke");
+        String ten=sc.nextLine();
+        int i=0;
+        for(TheLoai tl:ds)
+            if(ten.contains(tl.getTenTheLoai()))
+                i++;
+        System.out.println("So luong the loai co tu khoa "+ten+": "+i);
+        return i;
+    }
+
     public static void main(String[] args){
         DanhSachTheLoai ds=new DanhSachTheLoai();
         ds.nhap();

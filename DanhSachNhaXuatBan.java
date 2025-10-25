@@ -23,6 +23,20 @@ public class DanhSachNhaXuatBan {
             ds[i].nhap();
         }
     }
+    public void xuat(){
+        xuatt();
+        for(NhaXuatBan nxb:ds)
+            nxb.xuat();
+        xuatd();
+    }
+    private void xuatt(){
+        System.out.println("+-----------------+------------------+");
+        System.out.printf("| %-15s | %-16s |","Ma nha xuat ban","Ten nha xuat ban");
+        System.out.println("|-----------------|------------------|");
+    }
+    private void xuatd(){
+        System.out.println("+-----------------+------------------+");
+    }
     public void them(){
         System.out.println("Nhap thong tin nha xuat ban can them.");
         ds=Arrays.copyOf(ds,ds.length+1);
@@ -49,6 +63,11 @@ public class DanhSachNhaXuatBan {
             }
         }
     }
+    public void xoa(){
+        System.out.println("Nhap ma nha xuat ban moun xoa: ");
+        String ma=sc.nextLine();
+        xoa(ma);
+    }
     public int timkiem(String ma){
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getTenNXB())){
@@ -66,5 +85,45 @@ public class DanhSachNhaXuatBan {
         for(int i=k;i<ds.length-1;i++)
             ds[i]=ds[i+1];
         ds=Arrays.copyOf(ds,ds.length-1);
+    }
+    public void timKiemTheoMaNhaXuatBan(){
+        System.out.println("Nhap ma tac gia muon tim: ");
+        String ma=sc.nextLine();
+        for(NhaXuatBan nxb:ds)
+            if(ma.equals(nxb.getMaNXB())){
+                xuatt();
+                nxb.xuat();
+                xuatd();
+                return;
+            }
+        System.out.println("Khong tim thay tac gia co ma: "+ma);       
+    }
+    public void timKiemTheoTen(){
+        System.out.println("Nhap ten nha xuat ban muon tim: ");
+        String ten=sc.nextLine();
+        Boolean kt=false;
+        for(NhaXuatBan nxb:ds)
+            if(ten.contains(nxb.getTenNXB())){
+                if(!kt)xuatt();
+                nxb.xuat();
+                kt=true;
+            }
+        if(kt)xuatd();
+        if(!kt)    
+            System.out.println("Khong tim thay tac gia co ten: "+ten);
+    }
+    public int thongKeTongSoNhaXuatBan(){
+        System.out.println("Tong so nha xuat ban hien co: "+ds.length);
+        return ds.length;
+    }
+    public int thongKeTheLoaiTheoTuKhoa(){
+        System.out.println("Nhap tu khoa nha xuat ban can thong ke");
+        String ten=sc.nextLine();
+        int i=0;
+        for(NhaXuatBan tl:ds)
+            if(ten.contains(tl.getTenNXB()))
+                i++;
+        System.out.println("So nha xuat ban co tu khoa "+ten+": "+i);
+        return i;
     }
 }

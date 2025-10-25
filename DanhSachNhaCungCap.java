@@ -123,6 +123,49 @@ public class DanhSachNhaCungCap {
             System.out.println("Loi ghi file.");
         }
     }
+    public void timKiemTheoMaNhaCungCap(){
+        System.out.println("Nhap ma nha cung cap muon tim: ");
+        String ma=sc.nextLine();
+        boolean kt=false;
+        for(int i=0;i<ds.length;i++)
+            if(ma.equals(ds[i].getMaNCC())){
+                if(!kt) xuatt();
+                ds[i].xuat();
+                kt=true;
+            }
+        if(kt) 
+            xuatd();
+        else
+            System.out.println("Khong tim thay nha cung cap co ma: "+ma);  
+    }
+    public void timKiemTheoTen(){
+        System.out.println("Nhap ten nha cung cap muon tim: ");
+        String ten=sc.nextLine();
+        Boolean kt=false;
+        for(NhaCungCap p:ds)
+            if(ten.contains(p.getTenNCC())){
+                if(!kt)xuatt();
+                p.xuat();
+                kt=true;
+            }
+        if(kt)xuatd();
+        if(!kt)    
+            System.out.println("Khong tim thay nha cung cap co ten: "+ten);
+    }
+     public int thongKeSoLuongNhaCungCap(){
+        System.out.println("So luong nha cung cap: "+ds.length);
+        return ds.length;
+    }
+    public int thongKeTheoTuKhoa(){
+        System.out.println("Nhap tu khoa nha cung cap can thong ke");
+        String ten=sc.nextLine();
+        int i=0;
+        for(NhaCungCap ncc:ds)
+            if(ten.contains(ncc.getTenNCC()))
+                i++;
+        System.out.println("So luong nha cung cap co tu khoa "+ten+": "+i);
+        return i;
+    }
     public static void main(String[] args){
         DanhSachNhaCungCap dsncc=new DanhSachNhaCungCap();
         dsncc.docFile();

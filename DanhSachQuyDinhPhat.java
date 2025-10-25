@@ -3,12 +3,14 @@ import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.*;
 public class DanhSachQuyDinhPhat {
     private QuyDinhPhat[] ds =new QuyDinhPhat[0];
     public DanhSachQuyDinhPhat(){}
-    public DanhSachQuyDinhPhat(QuyDinhPhat[] ds){this.ds=ds;}
-    public DanhSachQuyDinhPhat(DanhSachQuyDinhPhat ds){this.ds=ds.ds;}
+    public DanhSachQuyDinhPhat(QuyDinhPhat[] ds){this.ds=Arrays.copyOf(ds,ds.length);}
+    public DanhSachQuyDinhPhat(DanhSachQuyDinhPhat ds){this.ds=Arrays.copyOf(ds.ds,ds.ds.length);}
 
+    public QuyDinhPhat[] getDS(){return ds;}
     Scanner sc=new Scanner(System.in);
     public void nhap(){
         System.out.println("Nhap so luong quy dinh can nhap: ");
@@ -107,12 +109,18 @@ public class DanhSachQuyDinhPhat {
         System.out.println("Xoa thanh cong.");
     }
     public void xuat(){
+        xuatt();
+        for(QuyDinhPhat qd:ds)
+            qd.xuat();
+        xuatd();
+    }
+    private void xuatt(){
         System.out.println("+------------+----------------------------------------------------+------------+");
         System.out.printf("| %-10s | %-50s | %-10s |\n","Ma phat","Noi dung","Tien phat");
         System.out.println("|------------|----------------------------------------------------|------------|");
-        for(QuyDinhPhat qd:ds)
-            qd.xuat();
-        System.out.println("+------------+----------------------------------------------------+------------+");    
+    }
+    private void xuatd(){
+        System.out.println("+------------+----------------------------------------------------+------------+"); 
     }
     public void docFile(){
         File file=new File("Quydinhphat.txt");
@@ -149,6 +157,46 @@ public class DanhSachQuyDinhPhat {
                 return ds[i];
         }
         return null;
+    }
+    public void timKiemTheoMaQuyDinh(){
+        System.out.println("Nhap ma phat muon tim: ");
+        String ma=sc.nextLine();
+        boolean kt=false;
+        for(int i=0;i<ds.length;i++)
+            if(ma.equals(ds[i].getMaPhat())){
+                if(!kt) xuatt();
+                ds[i].xuat();
+                kt=true;
+            }
+        if(kt) 
+            xuatd();
+        else
+            System.out.println("Khong tim thay quy dinh co ma: "+ma);  
+    }
+    public void timKiemTheoMoTa(){
+        System.out.println("Nhap ten the loai muon tim: ");
+        String ten=sc.nextLine();
+        Boolean kt=false;
+        for(QuyDinhPhat p:ds)
+            if(ten.contains(p.getNoiDung())){
+                if(!kt)xuatt();
+                p.xuat();
+                kt=true;
+            }
+        if(kt)xuatd();
+        if(!kt)    
+            System.out.println("Khong tim thay quy dinh co noi dung: "+ten);
+    }
+    public void thongKeTheoTienPhat(){
+        Map<Integer,Integer> countmap =new HashMap<>();
+        for(QuyDinhPhat p:ds)
+            countmap.put(p.getTienPhat(),countmap.getOrDefault(p.getTienPhat(), 0)+1);   
+        for(Map.Entry<Integer,Integer> entry : countmap.entrySet())
+            System.out.println("So luong quy dinh co tien phat "+entry.getKey()+": "+entry.getValue());
+    }
+    public int thongKeSoLuongQuyDinh(){
+        System.out.println("So luong quy dinh phat: "+ds.length);
+        return ds.length;
     }
     public static void main(String[] args){
         DanhSachQuyDinhPhat ds =new DanhSachQuyDinhPhat();

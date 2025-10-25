@@ -95,9 +95,16 @@ public class QuanLyThuVien {
             System.out.println("1.Quan ly sach");
             System.out.println("2.Quan ly tac gia");
             System.out.println("3.Quan ly nhan vien");
-            System.out.println("4.Quan ly nha cung cap");
-            System.out.println("5.Quan ly phieu nhap sach");
+            System.out.println("4.Quan ly doc gia");
+            System.out.println("5.Quan ly the loai");
             System.out.println("6.Quan ly phieu muon");
+            System.out.println("7.Quan ly chi tiet phieu muon");
+            System.out.println("8.Quan ly nha xuat ban");
+            System.out.println("9.Quan ly phieu phat");
+            System.out.println("10.Quan ly quy dinh");
+            System.out.println("11.Quan ly phieu nhap sach");
+            System.out.println("12.Quan ly chi tiet phieu nhap sach");
+            System.out.println("13.Quan ly nha cung cap");
             System.out.println("14.Thoat");
             System.out.print("Ban chon: ");
             chon=sc.nextInt();
@@ -112,34 +119,34 @@ public class QuanLyThuVien {
                     menuNhanVien();
                     break;
                 case 4:
-                    //menuNhaCungCap();
+                    //menudocgia();
                     break;
                 case 5:
-                    //menuPhieuNhapSach();
+                    menuTheLoai();
                     break;
                 case 6:
-                    //menuPhieuMuon();
+                    menuPhieuMuon();
                     break;
                 case 7:
-                    //menuChiTietPhieuMuon();
+                    menuChiTietPhieuMuon();
                     break;
                 case 8:
-                    //menuTacGia();
+                    menuNhaXuatBan();
                     break;
                 case 9:
-                    //menuChiTietPhieuNhapSach();
+                    menuPhieuPhat();
                     break;
                 case 10:
-                    //menuNhanVien();
+                    menuQuyDinh();
                     break;
                 case 11:
-                    //menuTheLoai();
+                    menuPhieuNhapSach();
                     break;
                 case 12:
-                    //menuPhieuPhat();
+                    menuChiTietPhieuNhapSach();
                     break;
                 case 13:
-                    //menuQuyDinhPhat();
+                    menuNhaCungCap();
                     break;
                 case 14:
                     System.out.println("Cam on ban da su dung chuong trinh!");
@@ -179,8 +186,8 @@ public class QuanLyThuVien {
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim sach theo ma sach");
-                        System.out.println("2.Tim sach theo ten sach");
+                        System.out.println("1.Tim sach theo ma");
+                        System.out.println("2.Tim sach theo ten");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
@@ -261,8 +268,8 @@ public class QuanLyThuVien {
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim doc gia theo ma doc gia");
-                        System.out.println("2.Tim doc gia theo ten doc gia");
+                        System.out.println("1.Tim doc gia theo ma");
+                        System.out.println("2.Tim doc gia theo ten");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
@@ -344,8 +351,8 @@ public class QuanLyThuVien {
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim tac gia theo ma tac gia");
-                        System.out.println("2.Tim tac gia theo ten tac gia");
+                        System.out.println("1.Tim tac gia theo ma");
+                        System.out.println("2.Tim tac gia theo ten");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
@@ -369,7 +376,7 @@ public class QuanLyThuVien {
                         System.out.println("-------Menu Thong Ke-------");
                         System.out.println("1.Thong ke theo gioi tinh");
                         System.out.println("2.Thong ke theo tuoi");
-                        System.out.println("3.Quay lai menu chinh");
+                        System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
                         sc.nextLine();
@@ -426,8 +433,8 @@ public class QuanLyThuVien {
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim nhan vien theo ma nhan vien");
-                        System.out.println("2.Tim nhan vien theo ten nhan vien");
+                        System.out.println("1.Tim nhan vien theo ma");
+                        System.out.println("2.Tim nhan vien theo ten");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
@@ -451,7 +458,7 @@ public class QuanLyThuVien {
                         System.out.println("-------Menu Thong Ke-------");
                         System.out.println("1.Thong ke theo gioi tinh");
                         System.out.println("2.Thong ke theo tuoi");
-                        System.out.println("3.Quay lai menu chinh");
+                        System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
                         sc.nextLine();
@@ -476,6 +483,327 @@ public class QuanLyThuVien {
             }
         }while(chon!=7);
         
+    }
+    public void menuTheLoai(){
+        int chon;
+        do{
+            System.out.println("-------Menu The Loai-------");
+            System.out.println("1.Them the loai");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua the loai");
+            System.out.println("4.Xoa the loai");
+            System.out.println("5.Tim the loai");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+                    dstl.nhap();
+                    break;
+                case 2:
+                    dstl.xuat();
+                    break;
+                case 3:
+                    dstl.sua();
+                    break;
+                case 4:
+                    dstl.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim the loai theo ma");
+                        System.out.println("2.Tim the loai theo ten");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dstl.timKiemTheoMaTheLoai();
+                                break;
+                            case 2:
+                                dstl.timKiemTheoTen();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke theo gioi tinh");
+                        System.out.println("2.Thong ke theo tuoi");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dstl.thongKeTongSoTheLoai();
+                                break;
+                            case 2:
+                                dstl.thongKeTheLoaiTheoTuKhoa();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
+    }
+    public void menuNhaXuatBan(){
+        int chon;
+        do{
+            System.out.println("-------Menu Nha Xuat Ban-------");
+            System.out.println("1.Them nha xuat ban");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua nha xuat ban");
+            System.out.println("4.Xoa nha xuat ban");
+            System.out.println("5.Tim nha xuat ban");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+                    dsnxb.nhap();
+                    break;
+                case 2:
+                    dsnxb.xuat();
+                    break;
+                case 3:
+                    dsnxb.sua();
+                    break;
+                case 4:
+                    dsnxb.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim nha xuat ban theo ma");
+                        System.out.println("2.Tim nha xuat ban theo ten");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsnxb.timKiemTheoMaNhaXuatBan();
+                                break;
+                            case 2:
+                                dsnxb.timKiemTheoTen();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke so luong nha xuat ban");
+                        System.out.println("2.Thong ke theo tu khoa");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsnxb.thongKeTongSoNhaXuatBan();
+                                break;
+                            case 2:
+                                dsnxb.thongKeTheLoaiTheoTuKhoa();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
+    }
+    public void menuQuyDinh(){
+        int chon;
+        do{
+            System.out.println("-------Menu Quy Dinh-------");
+            System.out.println("1.Them quy dinh");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua quy dinh");
+            System.out.println("4.Xoa quy dinh");
+            System.out.println("5.Tim quy dinh");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+
+                    dsquydinhphat.nhap();
+                    break;
+                case 2:
+                    dsquydinhphat.xuat();
+                    break;
+                case 3:
+                    dsquydinhphat.sua();
+                    break;
+                case 4:
+                    dsquydinhphat.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim quy dinh theo ma");
+                        System.out.println("2.Tim quy dinh theo mo ta");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsquydinhphat.timKiemTheoMaQuyDinh();
+                                break;
+                            case 2:
+                                dsquydinhphat.timKiemTheoMoTa();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke so luong quy dinh");
+                        System.out.println("2.Thong ke theo so tien phat");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsquydinhphat.thongKeSoLuongQuyDinh();
+                                break;
+                            case 2:
+                                dsquydinhphat.thongKeTheoTienPhat();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
+    }
+    public void menuNhaCungCap(){
+        int chon;
+        do{
+            System.out.println("-------Menu Nha Cung Cap-------");
+            System.out.println("1.Them nha cung cap");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua nha cung cap");
+            System.out.println("4.Xoa nha cung cap");
+            System.out.println("5.Tim nha cung cap");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+                    dsncc.nhap();
+                    break;
+                case 2:
+                    dsncc.xuat();
+                    break;
+                case 3:
+                    dsncc.sua();
+                    break;
+                case 4:
+                    dsncc.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim nha cung cap theo ma");
+                        System.out.println("2.Tim nha cung cap theo ten");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsncc.timKiemTheoMaNhaCungCap();
+                                break;
+                            case 2:
+                                dsncc.timKiemTheoTen();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke so luong nha cung cap");
+                        System.out.println("2.Thong ke theo tu khoa");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsncc.thongKeSoLuongNhaCungCap();
+                                break;
+                            case 2:
+                                dsncc.thongKeTheoTuKhoa();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
     }
     public static void main(String[] args){
         QuanLyThuVien ql =new QuanLyThuVien();

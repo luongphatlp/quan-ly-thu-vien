@@ -17,7 +17,7 @@ public class QuyDinhPhat {
     }
 
     public String getMaPhat(){return maphat;}
-    public String getNoiDUng(){return noidung;}
+    public String getNoiDung(){return noidung;}
     public int getTienPhat(){return tienphat;}
     public void setMaPhat(String maphat){this.maphat=maphat;}
     public void setNoiDung(String noidung){this.noidung=noidung;}

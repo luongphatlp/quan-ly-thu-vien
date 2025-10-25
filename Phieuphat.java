@@ -8,18 +8,12 @@ public class PhieuPhat {
     private int tienphat;
 
     public PhieuPhat(){}
-    public PhieuPhat(String maphieuphat,String madocgia,String maphieumuon,String maphat, DanhSachQuyDinhPhat dsqdp){
+    public PhieuPhat(String maphieuphat,String madocgia,String maphieumuon,String maphat,int tienphat){
         this.maphieuphat=maphieuphat;
         this.madocgia=madocgia;
         this.maphieumuon=maphieumuon;
         this.maphat=maphat;
-        QuyDinhPhat qdp =dsqdp.layQuyDinhPhatTuMa(maphat);
-        if(qdp != null){
-            this.tienphat=qdp.getTienPhat();
-        }else{
-            this.tienphat=0;
-            System.err.println("Canh bao ma phat'" + maphat + "' khong hop le, tien phat dat bang 0.");
-        }
+        this.tienphat=tienphat;
     }
     public PhieuPhat(PhieuPhat pp){
         this.maphieuphat=pp.maphieuphat;

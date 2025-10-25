@@ -318,9 +318,10 @@ public class DanhSachSach {
                 ds[i].xuat();
                 kt=true;
             }
-        xuatd();
-        if(!kt)
-        System.out.println("Khong tim thay sach cua tac gia co ma: "+ma);       
+        if(kt) 
+            xuatd();
+        else
+            System.out.println("Khong tim thay sach cua tac gia co ma: "+ma);       
     }
     public void timKiemTheoMaTheLoai(){
         System.out.println("Nhap ma the loai cua sach muon tim: ");

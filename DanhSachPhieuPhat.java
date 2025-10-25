@@ -1,152 +1,197 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.Scanner;
-
+import java.util.Arrays;
 public class DanhSachPhieuPhat {
+    private PhieuPhat[] ds=new PhieuPhat[0];
+    private DanhSachQuyDinhPhat qd=new DanhSachQuyDinhPhat();
     
-    public static class PhieuPhat {
-        private String maPhieuPhat;
-        private String maDocGia;
-        private String ngayPhat;
-        private double tongTienPhat;
-        
-        public PhieuPhat() {}
-        
-        public PhieuPhat(String maPhieuPhat, String maDocGia, String ngayPhat, double tongTienPhat) {
-            this.maPhieuPhat = maPhieuPhat;
-            this.maDocGia = maDocGia;
-            this.ngayPhat = ngayPhat;
-            this.tongTienPhat = tongTienPhat;
-        }
-        
-        public PhieuPhat(PhieuPhat pp) {
-            this(pp.maPhieuPhat, pp.maDocGia, pp.ngayPhat, pp.tongTienPhat);
-        }
-        
-        public String getMaPhieuPhat() { return maPhieuPhat; }
-        public String getMaDocGia() { return maDocGia; }
-        public String getNgayPhat() { return ngayPhat; }
-        public double getTongTienPhat() { return tongTienPhat; }
-        
-        public void setMaDocGia(String maDocGia) { this.maDocGia = maDocGia; }
-        public void setNgayPhat(String ngayPhat) { this.ngayPhat = ngayPhat; }
-        public void setTongTienPhat(double tongTienPhat) { this.tongTienPhat = tongTienPhat; }
-        
-        public void nhap(Scanner sc) {
-            System.out.print("Nhap ma phieu phat: ");
-            maPhieuPhat = sc.nextLine();
-            System.out.print("Nhap ma doc gia: ");
-            maDocGia = sc.nextLine();
-            System.out.print("Nhap ngay phat: ");
-            ngayPhat = sc.nextLine();
-            System.out.print("Nhap tong tien phat: ");
-            tongTienPhat = sc.nextDouble();
-            sc.nextLine();
-        }
-        
-        public void xuat() {
-            System.out.println("Ma phieu phat: " + maPhieuPhat);
-            System.out.println("Ma doc gia: " + maDocGia);
-            System.out.println("Ngay phat: " + ngayPhat);
-            System.out.println("Tong tien phat: " + tongTienPhat);
-        }
-        
-        @Override
-        public String toString() {
-            return "PhieuPhat{" +
-                    "maPhieuPhat='" + maPhieuPhat + '\'' +
-                    ", maDocGia='" + maDocGia + '\'' +
-                    ", ngayPhat='" + ngayPhat + '\'' +
-                    ", tongTienPhat=" + tongTienPhat +
-                    '}';
-        }
+    public DanhSachPhieuPhat(){}
+    public DanhSachPhieuPhat(PhieuPhat[] ds,DanhSachQuyDinhPhat qd){
+        this.ds=Arrays.copyOf(ds,ds.length);
+        this.qd=qd;
+    }
+    public DanhSachPhieuPhat(DanhSachPhieuPhat ds){
+        this.ds=Arrays.copyOf(ds.ds,ds.ds.length);
+        this.qd=ds.qd;
     }
     
-    private List<PhieuPhat> danhSachPP;
-    
-    public DanhSachPhieuPhat() {
-        this.danhSachPP = new ArrayList<>();
-    }
-    
-    public void themPhieuPhat(PhieuPhat pp) {
-        if (!tonTai(pp.getMaPhieuPhat())) {
-            danhSachPP.add(pp);
-            System.out.println("Da them phieu phat: " + pp.getMaPhieuPhat());
-        } else {
-            System.out.println("Ma phieu phat da ton tai!");
+    Scanner sc=new Scanner(System.in);
+    public void nhap(){
+        System.out.println("Nhap so luong can them: ");
+        int k=sc.nextInt();
+        sc.nextLine();
+        int bd=ds.length;
+        ds=Arrays.copyOf(ds,ds.length+k);
+        for(int i=bd;i<ds.length;i++){
+            ds[i]=new PhieuPhat();
+            ds[i].nhap();
         }
     }
-    
-    public boolean xoaPhieuPhat(String maPhieuPhat) {
-        for (int i = 0; i < danhSachPP.size(); i++) {
-            if (danhSachPP.get(i).getMaPhieuPhat().equals(maPhieuPhat)) {
-                System.out.println("Da xoa phieu phat: " + danhSachPP.get(i).getMaPhieuPhat());
-                danhSachPP.remove(i);
-                return true;
+    public void xuat(){
+        xuatt();
+        for(PhieuPhat p:ds)
+            p.xuat();
+        xuatd();
+    }
+    private void xuatt(){
+        System.out.println("+-----------------+-----------------+-----------------+-----------------+------------+");
+        System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-10s |\n","Ma phieu phat","Ma doc gia","Ma phieu muon","Ma phat","Tien phat");
+        System.out.println("|-----------------|-----------------|-----------------|-----------------|------------|");
+    }
+    private void xuatd(){
+        System.out.println("+-----------------+-----------------+-----------------+-----------------+------------+");
+    }
+    public void them(){
+        ds=Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=new PhieuPhat();
+        System.out.println("Nhap thong tin phieu phat muon them.");
+        ds[ds.length-1].nhap();
+    }
+    public void them(NhaCungCap ncc){
+        ds=Arrays.copyOf(ds,ds.length+1);
+        ds[ds.length-1]=new PhieuPhat();
+    }
+    public void sua(){
+        System.out.println("Nhap ma nha cung cap can sua: ");
+        String ma=sc.nextLine();
+        sua(ma);
+    }
+    public void sua(String ma){
+        int c=0,sl=5;
+        boolean kt=false;
+        for(int i=0;i<ds.length;i++){
+            if(ma.equals(ds[i].getMaPhieuPhat())){
+                while(sl>0){
+                    System.out.println("Ban muon sua thong tin gi?");
+                    System.out.println("1. Sua ma doc gia");
+                    System.out.println("2. Sua ma phieu muon");
+                    System.out.println("3. Sua ma phat");
+                    System.out.println("Nhap lua chon cua ban: ");
+                    c=sc.nextInt();
+                    sc.nextLine();
+                    if(c==1){
+                        System.out.println("Nhap ma doc gia: ");
+                        ds[i].setMaDocGia(sc.nextLine());
+                        kt=true;
+                        break;
+                    }else if(c==2){
+                        System.out.println("Nhap ma phieu muon: ");
+                        ds[i].setMaPhieuMuon(sc.nextLine());
+                        kt=true;
+                    }else if(c==3){
+                        System.out.println("Nhap ma phat: ");
+                        ds[i].setMaPhat(sc.nextLine());
+                        kt=true;
+                    }
+                    else {
+                        System.out.println("Lua chon khong hop le.");
+                        sl--;
+                    }
+                }
+            }
+            if(kt){
+                System.out.println("Sua thong tin thanh cong.");
+                return ;
             }
         }
-        System.out.println("Khong tim thay phieu phat voi ma: " + maPhieuPhat);
-        return false;
+        System.out.println("Khong tim thay phieu phat can sua co ma: "+ma);
     }
-    
-    public void hienThiTatCa() {
-        if (danhSachPP.isEmpty()) {
-            System.out.println("Danh sach phieu phat trong!");
+    public void xoa(){
+        System.out.println("Nhap ma phat can xoa: ");
+        String ma=sc.nextLine();
+        xoa(ma);
+    }
+    public void xoa(String ma){
+        for(int i=0;i<ds.length;i++){
+            if(ma.equals(ds[i].getMaPhieuPhat())){
+                for(int j=i;j<ds.length-1;j++)
+                    ds[j]=ds[j+1];
+                ds=Arrays.copyOf(ds,ds.length-1);
+                System.out.println("Xoa phieu phat thanh cong.");
+                return;
+            }
+        }
+        System.out.println("hong tim thay phieu phat can xoa co ma: "+ma);
+    }
+    public void docFile(){
+        File file=new File("Phieuphat.txt");
+        if(!file.exists()){
+            System.out.println("File khong ton tai.");
             return;
         }
-        System.out.println("=== DANH SACH PHIEU PHAT ===");
-        for (PhieuPhat pp : danhSachPP) {
-            pp.xuat();
-            System.out.println();
+        try(Scanner f=new Scanner(file)){    
+            while(f.hasNextLine()){
+                String line=f.nextLine();
+                String[] parts=line.split(",");
+                if(parts.length==4){
+                    ds=Arrays.copyOf(ds,ds.length+1);
+                    QuyDinhPhat q =layQuyDinhPhatTheoMa(parts[3]);
+                    if(q!=null)
+                        ds[ds.length-1]=new PhieuPhat(parts[0],parts[1],parts[2],parts[3],q.getTienPhat());
+                    else
+                        ds[ds.length-1]=new PhieuPhat(parts[0],parts[1],parts[2],parts[3],0);
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Loi doc file.");
         }
     }
-    
-    public void timKiem(String keyword) {
-        boolean found = false;
-        System.out.println("Ket qua tim kiem cho: " + keyword);
-        for (PhieuPhat pp : danhSachPP) {
-            if (pp.getMaPhieuPhat().contains(keyword) || pp.getMaDocGia().contains(keyword)) {
+    public void ghiFile(){
+        try(PrintWriter w=new PrintWriter("Phieuphat.txt")){
+            for(PhieuPhat pp:ds)
+                w.println(pp.toString());
+            System.out.println("Ghi file thanh cong.");
+        }catch(Exception e){
+            System.out.println("Loi ghi file.");
+        }
+    }
+    private QuyDinhPhat layQuyDinhPhatTheoMa(String ma){
+        for(QuyDinhPhat q: qd.getDS()){
+            if(ma.equals(q.getMaPhat()))
+                return q;
+        }
+        return null;
+    }
+    //quan trong!! câp nhap khi quy dinh thay doi
+    public void timKiemTheoMaPhieuPhat(){
+        System.out.println("Nhap ma phieu phat muon tim: ");
+        String ma=sc.nextLine();
+        timKiemTheoMaPhieuPhat(ma);
+    }
+    public void timKiemTheoMaPhieuPhat(String keyword) {
+        for (PhieuPhat pp : ds)
+            if (keyword.equals(pp.getMaPhieuPhat())){
                 pp.xuat();
-                System.out.println();
-                found = true;
+                return;
             }
-        }
-        if (!found) {
-            System.out.println("Khong tim thay phieu phat nao!");
-        }
+        System.out.println("Khong tim thay phieu phat nao!");
     }
-    
-    private boolean tonTai(String maPhieuPhat) {
-        for (PhieuPhat pp : danhSachPP) {
-            if (pp.getMaPhieuPhat().equals(maPhieuPhat)) {
-                return true;
+    public void timKiemTheoMaDocGia(){
+        System.out.println("Nhap ma doc gia cua phieu phat muon tim: ");
+        String ma=sc.nextLine();
+        timKiemTheoMaDocGia(ma);
+    }
+    public void timKiemTheoMaDocGia(String ma){
+        boolean kt=false;
+        for (PhieuPhat pp : ds)
+            if (ma.equals(pp.getMaPhieuPhat())){
+                if(!kt) xuatt();
+                pp.xuat();
+                kt=true;
             }
-        }
-        return false;
+        if(kt) xuatd();
+        else System.out.println("Khong tim thay phieu phat nao!");
     }
-    
+    public void thongKeTheoTienPhat(){
+        
+    }
+    public void thongKeTheoDocGia(){
+
+    }
     public int getSoLuong() {
-        return danhSachPP.size();
+        return ds.length;
     }
     
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        DanhSachPhieuPhat ds = new DanhSachPhieuPhat();
-        
-        PhieuPhat pp1 = new PhieuPhat("PP001", "DG001", "2023-10-01", 50000);
-        PhieuPhat pp2 = new PhieuPhat("PP002", "DG002", "2023-10-02", 75000);
-        ds.themPhieuPhat(pp1);
-        ds.themPhieuPhat(pp2);
-        
-        ds.hienThiTatCa();
-        
-        ds.timKiem("DG001");
-        
-        ds.xoaPhieuPhat("PP001");
-        
-        ds.hienThiTatCa();
-        
-        sc.close();
-    }
 }
 

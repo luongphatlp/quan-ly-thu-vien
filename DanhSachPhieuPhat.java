@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 public class DanhSachPhieuPhat {
     private PhieuPhat[] ds=new PhieuPhat[0];
     private DanhSachQuyDinhPhat qd=new DanhSachQuyDinhPhat();
     
-    public DanhSachPhieuPhat(){}
+    public DanhSachPhieuPhat(DanhSachQuyDinhPhat qd){
+        this.qd=qd;
+    }
     public DanhSachPhieuPhat(PhieuPhat[] ds,DanhSachQuyDinhPhat qd){
         this.ds=Arrays.copyOf(ds,ds.length);
         this.qd=qd;
@@ -15,7 +16,7 @@ public class DanhSachPhieuPhat {
         this.ds=Arrays.copyOf(ds.ds,ds.ds.length);
         this.qd=ds.qd;
     }
-    
+    public PhieuPhat[] getDS(){return ds;}
     Scanner sc=new Scanner(System.in);
     public void nhap(){
         System.out.println("Nhap so luong can them: ");
@@ -26,6 +27,9 @@ public class DanhSachPhieuPhat {
         for(int i=bd;i<ds.length;i++){
             ds[i]=new PhieuPhat();
             ds[i].nhap();
+            QuyDinhPhat q=layQuyDinhPhatTheoMa(ds[i].getMaphat());
+            if(q!=null)
+                ds[i].setTienPhat(q.getTienPhat());
         }
     }
     public void xuat(){
@@ -146,12 +150,15 @@ public class DanhSachPhieuPhat {
             System.out.println("Loi ghi file.");
         }
     }
-    private QuyDinhPhat layQuyDinhPhatTheoMa(String ma){
+    public QuyDinhPhat layQuyDinhPhatTheoMa(String ma){
         for(QuyDinhPhat q: qd.getDS()){
             if(ma.equals(q.getMaPhat()))
                 return q;
         }
         return null;
+    }
+    public QuyDinhPhat layQuyDinhPhatTheoChiSo(int i){
+        return qd.getDS()[i];
     }
     //quan trong!! câp nhap khi quy dinh thay doi
     public void timKiemTheoMaPhieuPhat(){
@@ -184,10 +191,18 @@ public class DanhSachPhieuPhat {
         else System.out.println("Khong tim thay phieu phat nao!");
     }
     public void thongKeTheoTienPhat(){
-        
+        Map<Integer,Integer> count=new HashMap<>();
+        for(PhieuPhat pp:ds)
+            count.put(pp.getTienPhat(),count.getOrDefault(pp.getTienPhat(),0)+1);
+        for(Map.Entry<Integer,Integer> entry :count.entrySet())
+            System.out.println("So luong phieu phat co tien phat "+entry.getKey()+": "+entry.getValue());
     }
     public void thongKeTheoDocGia(){
-
+        Map<String,Integer> count=new HashMap<>();
+        for(PhieuPhat pp:ds)
+            count.put(pp.getMaDoGia(),count.getOrDefault(pp.getMaDoGia(),0)+1);
+        for(Map.Entry<String,Integer> entry :count.entrySet())
+            System.out.println("So luong phieu phat cua doc gia co ma "+entry.getKey()+": "+entry.getValue());
     }
     public int getSoLuong() {
         return ds.length;

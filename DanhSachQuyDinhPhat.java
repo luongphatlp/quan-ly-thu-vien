@@ -36,12 +36,12 @@ public class DanhSachQuyDinhPhat {
         ds[ds.length-1]=new QuyDinhPhat(qd);
         System.out.println("Them thanh cong.");
     }
-    public void sua(){
+    public int sua(){
         System.out.println("Nhap ma quy dinh phat can sua: ");
         String ma=sc.nextLine();
-        sua(ma);
+        return sua(ma);
     }
-    public void sua(String ma){
+    public int sua(String ma){
         int c=0,sl=5;
         boolean kt=false;
         for(int i=0;i<ds.length;i++){
@@ -64,16 +64,14 @@ public class DanhSachQuyDinhPhat {
                         sl--;
                     }
                     if(kt){
-                        System.out.println("Sua thong tin thanh cong.");return;
+                        System.out.println("Sua thong tin thanh cong.");return i;
                     }
                 }
             }
         }
         if(!kt)
             System.out.println("Khong tim thay quy dinh phat co ma: "+ma);
-        else
-            System.out.println("Sua thanh cong.");
-
+        return -1;
     }
     public int timkiem(String ma){
         for(int i=0;i<ds.length;i++){

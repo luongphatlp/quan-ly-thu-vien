@@ -1,9 +1,11 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 import java.io.PrintWriter;
 public class DanhSachPhieuMuon {
-    PhieuMuon[] ds=new PhieuMuon[0];
+    private PhieuMuon[] ds=new PhieuMuon[0];
     Scanner sc=new Scanner(System.in);
     public DanhSachPhieuMuon(){}
     public DanhSachPhieuMuon(PhieuMuon[] ds2){
@@ -157,6 +159,49 @@ public class DanhSachPhieuMuon {
         }catch(Exception e){
             System.out.println("Loi ghi file: "+e);
         }
+    }
+    public void timKiemTheoMaPhieuMuon(){
+        System.out.println("Nhap ma phieu muon muon tim: ");
+        String ma=sc.nextLine();
+        timKiemTheoMaPhieuMuon(ma);
+    }
+    public void timKiemTheoMaPhieuMuon(String keyword) {
+        for (PhieuMuon pm : ds)
+            if (keyword.equals(pm.getMaPhieuMuon())){
+                pm.xuat();
+                return;
+            }
+        System.out.println("Khong tim thay phieu muon nao!");
+    }
+    public void timKiemTheoNgayLapPhieu(){
+        System.out.println("Nhap ngay lap phieu cua phieu muon muon tim(yyyy-mm-dd): ");
+        String ma=sc.nextLine();
+        timKiemTheoMaDocGia(ma);
+    }
+    public void timKiemTheoMaDocGia(String ma){
+        boolean kt=false;
+        for (PhieuMuon pm : ds)
+            if (ma.equals(pm.getNgayLapPhieu())){
+                if(!kt) xuatt();
+                pm.xuat();
+                kt=true;
+            }
+        if(kt) xuatd();
+        else System.out.println("Khong tim thay phieu muon nao!");
+    }
+    public void thongKeTheoDocGia(){
+        Map<String,Integer> count=new HashMap<>();
+        for(PhieuMuon pm:ds)
+            count.put(pm.getMaDocGia(),count.getOrDefault(pm.getMaDocGia(),0)+1);
+        for(Map.Entry<String,Integer> entry :count.entrySet())
+            System.out.println("So luong phieu muon cua doc gia co ma "+entry.getKey()+": "+entry.getValue());
+    }
+    public void thongKeTheoMaNhanVien(){
+        Map<String,Integer> count=new HashMap<>();
+        for(PhieuMuon pm:ds)
+            count.put(pm.getMaNhanVien(),count.getOrDefault(pm.getMaNhanVien(),0)+1);
+        for(Map.Entry<String,Integer> entry :count.entrySet())
+            System.out.println("So luong phieu muon duoc tao boi nhan vien co ma "+entry.getKey()+": "+entry.getValue());
     }
     public static void main(String[] args){
         DanhSachPhieuMuon ds=new DanhSachPhieuMuon();

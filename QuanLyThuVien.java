@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 public class QuanLyThuVien {
@@ -6,13 +7,13 @@ public class QuanLyThuVien {
     private DanhSachTheLoai dstl=new DanhSachTheLoai();
     private DanhSachChiTietPhieuNhapSach dsctpns=new DanhSachChiTietPhieuNhapSach();
     private DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach(dsctpns);
-    private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon();
     private DanhSachChiTietPhieuMuon dschitietphieumuon=new DanhSachChiTietPhieuMuon();
     private DanhSachDocGia dsdg=new DanhSachDocGia();
     private DanhSachNhanVien dsnv=new DanhSachNhanVien();
     private DanhSachNhaCungCap dsncc=new DanhSachNhaCungCap();
     private DanhSachQuyDinhPhat dsquydinhphat=new DanhSachQuyDinhPhat();
     private DanhSachPhieuPhat dsphieuphat=new DanhSachPhieuPhat(dsquydinhphat);
+    private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon(dsphieuphat);
     private DanhSachNhaXuatBan dsnxb=new DanhSachNhaXuatBan();
     Scanner sc=new Scanner(System.in);
     public QuanLyThuVien() {}

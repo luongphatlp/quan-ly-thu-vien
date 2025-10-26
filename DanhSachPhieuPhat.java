@@ -5,6 +5,7 @@ public class DanhSachPhieuPhat {
     private PhieuPhat[] ds=new PhieuPhat[0];
     private DanhSachQuyDinhPhat qd=new DanhSachQuyDinhPhat();
     
+    public DanhSachPhieuPhat(){}
     public DanhSachPhieuPhat(DanhSachQuyDinhPhat qd){
         this.qd=qd;
     }
@@ -52,9 +53,9 @@ public class DanhSachPhieuPhat {
         System.out.println("Nhap thong tin phieu phat muon them.");
         ds[ds.length-1].nhap();
     }
-    public void them(NhaCungCap ncc){
+    public void them(PhieuPhat pp){
         ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuPhat();
+        ds[ds.length-1]=new PhieuPhat(pp);
     }
     public void sua(){
         System.out.println("Nhap ma nha cung cap can sua: ");

@@ -4,16 +4,23 @@ import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 public class DanhSachPhieuMuon {
     private PhieuMuon[] ds=new PhieuMuon[0];
+    private DanhSachPhieuPhat dspp=new DanhSachPhieuPhat();
+
     Scanner sc=new Scanner(System.in);
     public DanhSachPhieuMuon(){}
+    public DanhSachPhieuMuon(DanhSachPhieuPhat dspp){
+        this.dspp=dspp;
+    }
     public DanhSachPhieuMuon(PhieuMuon[] ds2){
         this.ds=Arrays.copyOf(ds2,ds2.length);
     }
     public DanhSachPhieuMuon(DanhSachPhieuMuon other){
         this.ds=Arrays.copyOf(other.ds,other.ds.length);
     }
+    public PhieuMuon[] getDS(){return ds;}
     public void nhap(){
         System.out.println("Nhap so luong phieu muon can nhap: ");
         int k=sc.nextInt();
@@ -99,6 +106,7 @@ public class DanhSachPhieuMuon {
                     }else if(c==6){
                         System.out.println("Nhap ngay tra thuc te moi: ");
                         ds[i].setNgayTraThucTe(sc.nextLine());
+                        capNhatPhieuPhatTheoPhieuMuon(ds[i]);
                         kt=true;
                         break;
                     }else{
@@ -203,15 +211,31 @@ public class DanhSachPhieuMuon {
         for(Map.Entry<String,Integer> entry :count.entrySet())
             System.out.println("So luong phieu muon duoc tao boi nhan vien co ma "+entry.getKey()+": "+entry.getValue());
     }
+    private boolean kiemTraNgayTraThucTe(PhieuMuon pm){
+        LocalDate ngayTra = LocalDate.parse(pm.getNgayTra());
+        LocalDate ngayTraThucTe = LocalDate.parse(pm.getNgayTraThucTe());
+        return !ngayTra.isBefore(ngayTraThucTe); // true nếu không trả trễ
+    }
+    private void capNhatPhieuPhatTheoPhieuMuon(PhieuMuon pm){
+        if(!kiemTraNgayTraThucTe(pm)){
+            String maphieuphatmoi;
+            if(dspp.getDS().length==0 )
+                maphieuphatmoi="1";
+            else{
+                int parts1 =Integer.parseInt(dspp.getDS()[dspp.getSoLuong()-1].getMaPhieuPhat())+1;
+                maphieuphatmoi=Integer.toString(parts1);
+            }
+            PhieuPhat pp =new PhieuPhat(maphieuphatmoi,pm.getMaDocGia(),pm.getMaPhieuMuon(),"1",100);//chua thong nhat ma phat va tien phat nen de so 1 va 100
+            dspp.them(pp);
+            System.out.println("Doc gia "+pm.getMaDocGia()+" bi phat do tra qua thoi han");
+            return;
+        }
+    }
     public static void main(String[] args){
         DanhSachPhieuMuon ds=new DanhSachPhieuMuon();
         ds.docFile();
         ds.xuat();
-        ds.nhap();
-        ds.them();
         ds.sua();
-        ds.xoa();
-        ds.ghifile();
     }
 }
 

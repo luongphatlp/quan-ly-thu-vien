@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 public class DanhSachNhaXuatBan {
@@ -85,6 +87,34 @@ public class DanhSachNhaXuatBan {
         for(int i=k;i<ds.length-1;i++)
             ds[i]=ds[i+1];
         ds=Arrays.copyOf(ds,ds.length-1);
+    }
+    public void docFile(){
+        File file=new File("Nhaxuatban.txt");
+        if(!file.exists()){
+            System.out.println("File khong ton tai.");
+            return;
+        }
+        try(Scanner f=new Scanner(file)){    
+            while(f.hasNextLine()){
+                String line=f.nextLine();
+                String[] parts=line.split(",");
+                if(parts.length==2){
+                    ds=Arrays.copyOf(ds,ds.length+1);
+                    ds[ds.length-1]=new NhaXuatBan(parts[0],parts[1]);
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Loi doc file.");
+        }
+    }
+    public void ghiFile(){
+        try(PrintWriter w=new PrintWriter("Nhaxuatban.txt")){
+            for(NhaXuatBan nxb:ds)
+                w.println(nxb.toString());
+            System.out.println("Ghi file thanh cong.");
+        }catch(Exception e){
+            System.out.println("Loi ghi file.");
+        }
     }
     public void timKiemTheoMaNhaXuatBan(){
         System.out.println("Nhap ma tac gia muon tim: ");

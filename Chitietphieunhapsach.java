@@ -54,6 +54,6 @@ public class ChiTietPhieuNhapSach {
     }
 
     public void xuat() {
-        System.out.printf("| %-15s | %-15s | %-15d | %-15.2f | %-15.2f |\n", maphieunhapsach, masach, soluong, dongia, thanhtien);
+        System.out.printf("| %-18s | %-15s | %-15d | %-15.2f | %-15.2f |\n", maphieunhapsach, masach, soluong, dongia, thanhtien);
     }
 }

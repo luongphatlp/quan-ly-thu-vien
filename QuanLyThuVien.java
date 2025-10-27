@@ -1,5 +1,4 @@
-import java.time.LocalDate;
-import java.util.Arrays;
+
 import java.util.Scanner;
 public class QuanLyThuVien {
     private DanhSachSach dss=new DanhSachSach();
@@ -86,9 +85,9 @@ public class QuanLyThuVien {
         //dsdg.docFile();
         dsnv.docFile();
         dsncc.docFile();
-        //dsphieuphat.docFile();
+        dsphieuphat.docFile();
         dsquydinhphat.docFile();
-        //dsnxb.docFile();
+        dsnxb.docFile();
     }
     public void menu(){
         int chon;
@@ -141,10 +140,10 @@ public class QuanLyThuVien {
                     menuQuyDinh();
                     break;
                 case 11:
-                    //menuPhieuNhapSach();
+                    menuPhieuNhapSach();
                     break;
                 case 12:
-                    //menuChiTietPhieuNhapSach();
+                    menuChiTietPhieuNhapSach();
                     break;
                 case 13:
                     menuNhaCungCap();
@@ -1038,6 +1037,166 @@ public class QuanLyThuVien {
                                 break;
                             case 2:
                                 dsphieumuon.thongKeTheoMaNhanVien();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
+    }
+    public void menuPhieuNhapSach(){
+        int chon;
+        do{
+            System.out.println("-------Menu Phieu Nhap Sach-------");
+            System.out.println("1.Them phieu nhap sach");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua phieu nhap sach");
+            System.out.println("4.Xoa phieu nhap sach");
+            System.out.println("5.Tim phieu nhap sach");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+                    dspns.nhap();
+                    break;
+                case 2:
+                    dspns.xuat();
+                    break;
+                case 3:
+                    dspns.sua();
+                    break;
+                case 4:
+                    dspns.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim phieu nhap sach theo ma phieu nhap sach");
+                        System.out.println("2.Tim phieu nhap sach theo ngay nhap sach");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dspns.timKiemTheoMaPhieuNhapSach();
+                                break;
+                            case 2:
+                                dspns.timKiemTheoNgayNhapSach();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke theo ma nhan vien");
+                        System.out.println("2.Thong ke theo ma nha cung cap");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dspns.thongKeTheoMaNhanVien();
+                                break;
+                            case 2:
+                                dspns.thongKeTheoNhaCungCap();
+                                break;
+                            case 3:
+                                System.out.println("Thoat thong ke");
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 7:
+                    System.out.println("Quay lai menu chinh");
+                    break;
+                default:
+                    System.out.println("Nhap sai vui long nhap lai");
+            }
+        }while(chon!=7);
+    }
+    public void menuChiTietPhieuNhapSach(){
+        int chon;
+        do{
+            System.out.println("-------Menu Chi Tiet Phieu Nhap Sach-------");
+            System.out.println("1.Them chi tiet phieu nhap sach");
+            System.out.println("2.Xuat danh sach");
+            System.out.println("3.Sua chi tiet phieu nhap sach");
+            System.out.println("4.Xoa chi tiet phieu nhap sach");
+            System.out.println("5.Tim chi tiet phieu nhap sach");
+            System.out.println("6.Thong ke"); 
+            System.out.println("7.Quay lai menu chinh");
+            System.out.print("Ban chon: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            switch(chon){
+                case 1:
+                    dsctpns.nhap();
+                    break;
+                case 2:
+                    dsctpns.xuat();
+                    break;
+                case 3:
+                    dsctpns.sua();
+                    break;
+                case 4:
+                    dsctpns.xoa();
+                    break;
+                case 5:
+                    do{
+                        System.out.println("-------Menu Tim Kiem-------");
+                        System.out.println("1.Tim chi tiet phieu nhap sach theo ma phieu nhap sach");
+                        System.out.println("2.Tim chi tiet phieu nhap sach theo ma phieu nhap sach va ma sach");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsctpns.timKiemTheoMaPhieuNhapSach();
+                                break;
+                            case 2:
+                                dsctpns.timKiemTheoMaPhieuNhapSachVaMaSach();
+                                break;
+                            case 3:
+                                System.out.println("Thoat tim kiem");
+                                break;
+                            default:
+                                System.out.println("Nhap sai vui long nhap lai");
+                        }
+                    }while(chon!=3);
+                case 6:
+                    do{
+                        System.out.println("-------Menu Thong Ke-------");
+                        System.out.println("1.Thong ke theo ma sach");
+                        System.out.println("2.Thong ke so luong");
+                        System.out.println("3.Quay lai");
+                        System.out.print("Ban chon: ");
+                        chon=sc.nextInt();
+                        sc.nextLine();
+                        switch(chon){
+                            case 1:
+                                dsctpns.thongKeTheoMaSach();
+                                break;
+                            case 2:
+                                dsctpns.thongKeSoLuong();
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");

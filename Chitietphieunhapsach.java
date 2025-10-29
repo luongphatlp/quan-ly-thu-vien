@@ -40,9 +40,8 @@ public class ChiTietPhieuNhapSach {
 
     Scanner sc = new Scanner(System.in);
 
-    public void nhap() {
-        System.out.print("Nhap ma phieu nhap sach: ");
-        maphieunhapsach = sc.nextLine();
+    public void nhap(String ma) {
+        maphieunhapsach = ma;
         System.out.print("Nhap ma sach: ");
         masach = sc.nextLine();
         System.out.print("Nhap so luong: ");
@@ -55,5 +54,9 @@ public class ChiTietPhieuNhapSach {
 
     public void xuat() {
         System.out.printf("| %-18s | %-15s | %-15d | %-15.2f | %-15.2f |\n", maphieunhapsach, masach, soluong, dongia, thanhtien);
+    }
+
+    @Override public String toString(){
+        return maphieunhapsach+","+masach+","+soluong+","+dongia;
     }
 }

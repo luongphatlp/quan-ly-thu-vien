@@ -1,29 +1,26 @@
 
 import java.util.Scanner;
+import java.time.LocalDate;
 public class QuanLyThuVien {
     private DanhSachSach dss=new DanhSachSach();
     private DanhSachTacGia dstg=new DanhSachTacGia();
     private DanhSachTheLoai dstl=new DanhSachTheLoai();
-    private DanhSachChiTietPhieuNhapSach dsctpns=new DanhSachChiTietPhieuNhapSach();
-    private DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach(dsctpns);
-    private DanhSachChiTietPhieuMuon dschitietphieumuon=new DanhSachChiTietPhieuMuon();
+    private DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach();
     private DanhSachDocGia dsdg=new DanhSachDocGia();
     private DanhSachNhanVien dsnv=new DanhSachNhanVien();
     private DanhSachNhaCungCap dsncc=new DanhSachNhaCungCap();
     private DanhSachQuyDinhPhat dsquydinhphat=new DanhSachQuyDinhPhat();
     private DanhSachPhieuPhat dsphieuphat=new DanhSachPhieuPhat(dsquydinhphat);
-    private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon(dsphieuphat);
+    private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon();
     private DanhSachNhaXuatBan dsnxb=new DanhSachNhaXuatBan();
     Scanner sc=new Scanner(System.in);
     public QuanLyThuVien() {}
-    public QuanLyThuVien(DanhSachSach dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachPhieuNhapSach dspns, DanhSachChiTietPhieuNhapSach dsctpns, DanhSachPhieuMuon dsphieumuon, DanhSachChiTietPhieuMuon dschitietphieumuon, DanhSachDocGia dsdg, DanhSachNhanVien dsnv, DanhSachNhaCungCap dsncc, DanhSachPhieuPhat dsphieuphat, DanhSachQuyDinhPhat dsquydinhphat, DanhSachNhaXuatBan dsnxb) {
+    public QuanLyThuVien(DanhSachSach dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachPhieuNhapSach dspns, DanhSachPhieuMuon dsphieumuon, DanhSachDocGia dsdg, DanhSachNhanVien dsnv, DanhSachNhaCungCap dsncc, DanhSachPhieuPhat dsphieuphat, DanhSachQuyDinhPhat dsquydinhphat, DanhSachNhaXuatBan dsnxb) {
         this.dss = dss;
         this.dstg = dstg;
         this.dstl = dstl;
         this.dspns = dspns;
-        this.dsctpns = dsctpns;
         this.dsphieumuon = dsphieumuon;
-        this.dschitietphieumuon = dschitietphieumuon;
         this.dsdg = dsdg;
         this.dsnv = dsnv;
         this.dsncc = dsncc;
@@ -36,9 +33,7 @@ public class QuanLyThuVien {
         this.dstg = qltv.dstg;
         this.dstl = qltv.dstl;
         this.dspns = qltv.dspns;
-        this.dsctpns = qltv.dsctpns;
         this.dsphieumuon = qltv.dsphieumuon;
-        this.dschitietphieumuon = qltv.dschitietphieumuon;
         this.dsdg = qltv.dsdg;
         this.dsnv = qltv.dsnv;
         this.dsncc = qltv.dsncc;
@@ -50,9 +45,7 @@ public class QuanLyThuVien {
     public DanhSachTacGia getDstg() {return dstg;}
     public DanhSachTheLoai getDstl() {return dstl;}
     public DanhSachPhieuNhapSach getDspns() {return dspns;}
-    public DanhSachChiTietPhieuNhapSach getDsctpns() {return dsctpns;}
     public DanhSachPhieuMuon getDsphieumuon() {return dsphieumuon;}
-    public DanhSachChiTietPhieuMuon getDschitietphieumuon() {return dschitietphieumuon;}
     public DanhSachDocGia getDsdg() {return dsdg;}
     public DanhSachNhanVien getDsnv() {return dsnv;}
     public DanhSachNhaCungCap getDsncc() {return dsncc;}
@@ -64,9 +57,7 @@ public class QuanLyThuVien {
     public void setDstg(DanhSachTacGia dstg) {this.dstg = dstg;}
     public void setDstl(DanhSachTheLoai dstl) {this.dstl = dstl;}
     public void setDspns(DanhSachPhieuNhapSach dspns) {this.dspns = dspns;}
-    public void setDsctpns(DanhSachChiTietPhieuNhapSach dsctpns) {this.dsctpns = dsctpns;}
     public void setDsphieumuon(DanhSachPhieuMuon dsphieumuon) {this.dsphieumuon = dsphieumuon;}
-    public void setDschitietphieumuon(DanhSachChiTietPhieuMuon dschitietphieumuon) {this.dschitietphieumuon = dschitietphieumuon;}
     public void setDsdg(DanhSachDocGia dsdg) {this.dsdg = dsdg;}
     public void setDsnv(DanhSachNhanVien dsnv) {this.dsnv = dsnv;}
     public void setDsncc(DanhSachNhaCungCap dsncc) {this.dsncc = dsncc;}
@@ -79,9 +70,7 @@ public class QuanLyThuVien {
         dstg.docFile();
         dstl.docFile();
         dspns.docFile();
-        dsctpns.docFile();
         dsphieumuon.docFile();
-        dschitietphieumuon.docFile();
         //dsdg.docFile();
         dsnv.docFile();
         dsncc.docFile();
@@ -98,14 +87,12 @@ public class QuanLyThuVien {
             System.out.println("4.Quan ly doc gia");
             System.out.println("5.Quan ly the loai");
             System.out.println("6.Quan ly phieu muon");
-            System.out.println("7.Quan ly chi tiet phieu muon");
-            System.out.println("8.Quan ly nha xuat ban");
-            System.out.println("9.Quan ly phieu phat");
-            System.out.println("10.Quan ly quy dinh");
-            System.out.println("11.Quan ly phieu nhap sach");
-            System.out.println("12.Quan ly chi tiet phieu nhap sach");
-            System.out.println("13.Quan ly nha cung cap");
-            System.out.println("14.Thoat");
+            System.out.println("7.Quan ly nha xuat ban");
+            System.out.println("8.Quan ly phieu phat");
+            System.out.println("9.Quan ly quy dinh");
+            System.out.println("10.Quan ly phieu nhap sach");
+            System.out.println("11.Quan ly nha cung cap");
+            System.out.println("12.Thoat");
             System.out.print("Ban chon: ");
             chon=sc.nextInt();
             switch(chon){
@@ -128,33 +115,27 @@ public class QuanLyThuVien {
                     menuPhieuMuon();
                     break;
                 case 7:
-                    menuChiTietPhieuMuon();
-                    break;
-                case 8:
                     menuNhaXuatBan();
                     break;
-                case 9:
+                case 8:
                     menuPhieuPhat();
                     break;
-                case 10:
+                case 9:
                     menuQuyDinh();
                     break;
-                case 11:
+                case 10:
                     menuPhieuNhapSach();
                     break;
-                case 12:
-                    menuChiTietPhieuNhapSach();
-                    break;
-                case 13:
+                case 11:
                     menuNhaCungCap();
                     break;
-                case 14:
+                case 12:
                     System.out.println("Cam on ban da su dung chuong trinh!");
                     break;
                 default:
                     System.out.println("Nhap sai!Vui long nhap lai!");
             }
-        }while(chon!=14);
+        }while(chon!=12);
     }
     public void menuSach(){
         int chon;
@@ -228,6 +209,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -892,7 +874,7 @@ public class QuanLyThuVien {
             }
         }while(chon!=7);
     }
-    public void menuChiTietPhieuMuon(){
+    public void menuChiTietPhieuMuon(PhieuMuon p){
         int chon;
         do{
             System.out.println("-------Menu Chi Tiet Phieu Muon-------");
@@ -908,32 +890,32 @@ public class QuanLyThuVien {
             sc.nextLine();
             switch(chon){
                 case 1:
-                    dschitietphieumuon.nhap();
+                    p.getDS().nhap(p.getMaPhieuMuon());
                     break;
                 case 2:
-                    dschitietphieumuon.xuat();
+                    p.getDS().xuat();
                     break;
                 case 3:
-                    dschitietphieumuon.sua();
+                    p.getDS().sua();
                     break;
                 case 4:
-                    dschitietphieumuon.xoa();
+                    p.getDS().xoa();
                     break;
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim chi tiet phieu muon theo ma phieu muon");
-                        System.out.println("2.Tim chi tiet phieu muon theo ma phieu muon va ma sach");
+                        System.out.println("1.Tim chi tiet phieu muon theo ma sach");
+                        System.out.println("2.Tim chi tiet phieu muon theo so luong sach");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dschitietphieumuon.timKiemTheoMaPhieuMuon();
+                                p.getDS().timKiemTheoMaSach();
                                 break;
                             case 2:
-                                dschitietphieumuon.timKiemTheoMaPhieuMuonVaMaSach();
+                                p.getDS().timKiemTheoSoLuong();
                                 break;
                             case 3:
                                 System.out.println("Thoat tim kiem");
@@ -953,10 +935,10 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dschitietphieumuon.thongKeTheoMaSach();
+                                p.getDS().thongKeTheoMaSach();
                                 break;
                             case 2:
-                                dschitietphieumuon.thongKeTheoSoLuong();
+                                p.getDS().thongKeTheoSoLuong();
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
@@ -972,6 +954,26 @@ public class QuanLyThuVien {
             }
         }while(chon!=7);
     }
+    private boolean kiemTraNgayTraThucTe(PhieuMuon pm){
+        LocalDate ngayTra = LocalDate.parse(pm.getNgayTra());
+        LocalDate ngayTraThucTe = LocalDate.parse(pm.getNgayTraThucTe());
+        return ngayTra.isBefore(ngayTraThucTe);
+    }
+    private void capNhatPhieuPhatTheoPhieuMuon(PhieuMuon pm){
+        String maphieuphatmoi;
+        if(kiemTraNgayTraThucTe(pm)){
+            if(dsphieuphat.getDS().length==0 )
+                maphieuphatmoi="1";
+            else{
+                int parts1 =Integer.parseInt(dsphieuphat.getDS()[dsphieuphat.getSoLuong()-1].getMaPhieuPhat())+1;
+                maphieuphatmoi=Integer.toString(parts1);
+            }
+            PhieuPhat pp =new PhieuPhat(maphieuphatmoi,pm.getMaDocGia(),pm.getMaPhieuMuon(),"1",100);//chua thong nhat ma phat va tien phat nen de so 1 va 100
+            dsphieuphat.them(pp);
+            System.out.println("Doc gia "+pm.getMaDocGia()+" bi phat do tra qua thoi han");
+            return;
+        }
+    }
     public void menuPhieuMuon(){
         int chon;
         do{
@@ -982,7 +984,8 @@ public class QuanLyThuVien {
             System.out.println("4.Xoa phieu muon");
             System.out.println("5.Tim phieu muon");
             System.out.println("6.Thong ke"); 
-            System.out.println("7.Quay lai menu chinh");
+            System.out.println("7.Quan ly chi tiet phieu muon");
+            System.out.println("8.Quay lai menu chinh");
             System.out.print("Ban chon: ");
             chon=sc.nextInt();
             sc.nextLine();
@@ -994,7 +997,8 @@ public class QuanLyThuVien {
                     dsphieumuon.xuat();
                     break;
                 case 3:
-                    dsphieumuon.sua();
+                    PhieuMuon p=dsphieumuon.sua();
+                    if(p!=null) capNhatPhieuPhatTheoPhieuMuon(p);
                     break;
                 case 4:
                     dsphieumuon.xoa();
@@ -1022,6 +1026,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -1044,13 +1049,20 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
+                    System.out.println("Nhap ma phieu muon can quan ly chi tiet: ");
+                    String maPM = sc.nextLine();
+                    PhieuMuon pm = dsphieumuon.getPhieuByMa(maPM);
+                    if(pm!=null) menuChiTietPhieuMuon(pm);;
+                    break;
+                case 8:
                     System.out.println("Quay lai menu chinh");
                     break;
                 default:
                     System.out.println("Nhap sai vui long nhap lai");
             }
-        }while(chon!=7);
+        }while(chon!=8);
     }
     public void menuPhieuNhapSach(){
         int chon;
@@ -1062,7 +1074,8 @@ public class QuanLyThuVien {
             System.out.println("4.Xoa phieu nhap sach");
             System.out.println("5.Tim phieu nhap sach");
             System.out.println("6.Thong ke"); 
-            System.out.println("7.Quay lai menu chinh");
+            System.out.println("7.Quan ly chi tiet phieu nhap sach");
+            System.out.println("8.Quay lai menu chinh");
             System.out.print("Ban chon: ");
             chon=sc.nextInt();
             sc.nextLine();
@@ -1120,19 +1133,26 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
                 case 7:
+                    System.out.println("Nhap ma phieu nhap sach muon quan ly chi tiet: ");
+                    String maPNS = sc.nextLine();
+                    PhieuNhapSach p = dspns.getPhieuByMa(maPNS);
+                    if(p!=null) menuChiTietPhieuNhapSach(p);
+                    break;
+                case 8:
                     System.out.println("Quay lai menu chinh");
                     break;
                 default:
                     System.out.println("Nhap sai vui long nhap lai");
             }
-        }while(chon!=7);
+        }while(chon!=8);
     }
-    public void menuChiTietPhieuNhapSach(){
+    public void menuChiTietPhieuNhapSach(PhieuNhapSach p){
         int chon;
         do{
             System.out.println("-------Menu Chi Tiet Phieu Nhap Sach-------");
@@ -1142,38 +1162,41 @@ public class QuanLyThuVien {
             System.out.println("4.Xoa chi tiet phieu nhap sach");
             System.out.println("5.Tim chi tiet phieu nhap sach");
             System.out.println("6.Thong ke"); 
-            System.out.println("7.Quay lai menu chinh");
+            System.out.println("7.Quay lai menu phieu nhap sach");
             System.out.print("Ban chon: ");
             chon=sc.nextInt();
             sc.nextLine();
             switch(chon){
                 case 1:
-                    dsctpns.nhap();
+                    p.getDSCTPNS().nhap(p.getMaPhieuNhapSach());
+                    p.tinhTongTien();
                     break;
                 case 2:
-                    dsctpns.xuat();
+                    p.getDSCTPNS().xuat();
                     break;
                 case 3:
-                    dsctpns.sua();
+                    p.getDSCTPNS().sua();
+                    p.tinhTongTien();
                     break;
                 case 4:
-                    dsctpns.xoa();
+                    p.getDSCTPNS().xoa();
+                    p.tinhTongTien();
                     break;
                 case 5:
                     do{
                         System.out.println("-------Menu Tim Kiem-------");
-                        System.out.println("1.Tim chi tiet phieu nhap sach theo ma phieu nhap sach");
-                        System.out.println("2.Tim chi tiet phieu nhap sach theo ma phieu nhap sach va ma sach");
+                        System.out.println("1.Tim chi tiet phieu nhap sach theo ma sach");
+                        System.out.println("2.Tim chi tiet phieu nhap sach theo so luong");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dsctpns.timKiemTheoMaPhieuNhapSach();
+                                p.getDSCTPNS().timKiemTheoMaSach();
                                 break;
                             case 2:
-                                dsctpns.timKiemTheoMaPhieuNhapSachVaMaSach();
+                                p.getDSCTPNS().timKiemTheoSoLuong();
                                 break;
                             case 3:
                                 System.out.println("Thoat tim kiem");
@@ -1193,10 +1216,10 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dsctpns.thongKeTheoMaSach();
+                                p.getDSCTPNS().thongKeTheoMaSach();
                                 break;
                             case 2:
-                                dsctpns.thongKeSoLuong();
+                                p.getDSCTPNS().thongKeSoLuong();
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");

@@ -7,19 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 public class DanhSachPhieuNhapSach {
     private PhieuNhapSach[] ds=new PhieuNhapSach[0];
-    private DanhSachChiTietPhieuNhapSach dsctpns;
 
     public DanhSachPhieuNhapSach(){}
-    public DanhSachPhieuNhapSach(DanhSachChiTietPhieuNhapSach dsctpns){
-        this.dsctpns=dsctpns;
-    }
-    public DanhSachPhieuNhapSach(PhieuNhapSach[] ds,DanhSachChiTietPhieuNhapSach dsctpns){
-        this.ds=Arrays.copyOf(ds,ds.length);
-        this.dsctpns=dsctpns;
+
+    public DanhSachPhieuNhapSach(PhieuNhapSach[] ds2){
+        this.ds=Arrays.copyOf(ds2,ds2.length);
     }
     public DanhSachPhieuNhapSach(DanhSachPhieuNhapSach other){
         this.ds = Arrays.copyOf(other.ds, other.ds.length);
-        this.dsctpns=other.dsctpns;
     }
     Scanner sc=new Scanner(System.in);
 
@@ -33,14 +28,6 @@ public class DanhSachPhieuNhapSach {
         System.out.println("Nhap thong tin phieu nhap sach muon them.");
         ds[ds.length-1].nhap();
     }
-    private double tinhTongTien(String ma){
-        double tongtien=0.0;
-        for(ChiTietPhieuNhapSach ct:dsctpns.getDS()){
-            if(ma.equals(ct.getMaPhieuNhapSach()))
-            tongtien+=ct.getThanhTien();
-        }
-        return tongtien;
-    }
     public void nhap(){
         System.out.println("Nhap so luong phieu nhap sach can them: ");
         int k=sc.nextInt();
@@ -50,7 +37,6 @@ public class DanhSachPhieuNhapSach {
         for(int i=bd;i<ds.length;i++){
             ds[i]=new PhieuNhapSach();
             ds[i].nhap();
-            ds[i].setTongTien(tinhTongTien(ds[i].getMaPhieuNhapSach()));
         }
     }
     private void xuatt(){
@@ -79,18 +65,21 @@ public class DanhSachPhieuNhapSach {
                 String line=f.nextLine();
                 String[] parts=line.split(",");
                 if(parts.length==4){
-                    ds=Arrays.copyOf(ds,ds.length+1);
-                    ds[ds.length-1]=new PhieuNhapSach(parts[0],parts[1],parts[2],parts[3],tinhTongTien(parts[0]));
+                    PhieuNhapSach phieu=new PhieuNhapSach(parts[0],parts[1],parts[2],parts[3]);
+                    phieu.getDSCTPNS().docFile(parts[0]);
+                    phieu.setTongTien(phieu.tinhTongTien());
+                    them(phieu);
                 }
             }
         }catch(FileNotFoundException e){
             System.out.println("Loi doc file.");
         }
     }
-    public void ghifile(){
+    public void ghiFile(){
         try(PrintWriter pw=new PrintWriter("Phieunhapsach.txt")){
             for(PhieuNhapSach p:ds){
                 pw.println(p.toString());
+                p.getDSCTPNS().ghiFile();
             }
         }catch(FileNotFoundException e){
             System.out.println("Loi ghi file.");
@@ -190,6 +179,7 @@ public class DanhSachPhieuNhapSach {
             count.put(pns.getMaNhanVien(),count.getOrDefault(pns.getMaNhanVien(),0)+1);
         for(Map.Entry<String,Integer> entry :count.entrySet())
             System.out.println("So luong phieu nhap sach cua nhan vien co ma "+entry.getKey()+": "+entry.getValue());
+        
     }
     public void thongKeTheoNhaCungCap(){
         Map<String,Integer> count=new HashMap<>();
@@ -198,15 +188,15 @@ public class DanhSachPhieuNhapSach {
         for(Map.Entry<String,Integer> entry :count.entrySet())
             System.out.println("So luong phieu nhap sach cua nha cung cap co ma "+entry.getKey()+": "+entry.getValue());
     }
+    public PhieuNhapSach getPhieuByMa(String ma){
+        for(PhieuNhapSach p:ds)
+            if(ma.equals(p.getMaPhieuNhapSach()))
+                return p;
+        return null;
+    }
     public static void main(String[] args) {
-        DanhSachChiTietPhieuNhapSach dsctpns=new DanhSachChiTietPhieuNhapSach();
-        dsctpns.docFile();
-        DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach(dsctpns);
-        dspns.docFile();
-        dspns.sua();
-        dspns.them();
-        dspns.sua();
-        dspns.ghifile();   
-        dspns.xuat();
+        DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach();
+        dspns.nhap();
+        dspns.ghiFile();
     }
 }

@@ -1,19 +1,27 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DanhSachChiTietPhieuNhapSach {
-    private ChiTietPhieuNhapSach[] ds = new ChiTietPhieuNhapSach[0];
+    private ChiTietPhieuNhapSach[] ds;
 
-    public DanhSachChiTietPhieuNhapSach() {}
-    public DanhSachChiTietPhieuNhapSach(ChiTietPhieuNhapSach[] ds) {
-        this.ds = ds;
+    public DanhSachChiTietPhieuNhapSach() {
+        ds = new ChiTietPhieuNhapSach[0];
+    }
+    public DanhSachChiTietPhieuNhapSach(ChiTietPhieuNhapSach[] ds2) {
+        this.ds = Arrays.copyOf(ds2,ds2.length);
     }
     public DanhSachChiTietPhieuNhapSach(DanhSachChiTietPhieuNhapSach other) {
+         if (other != null && other.ds != null)
         this.ds = Arrays.copyOf(other.ds, other.ds.length);
+    else
+        this.ds = new ChiTietPhieuNhapSach[0];
     }
 
     public ChiTietPhieuNhapSach[] getDS() { return ds; }
@@ -28,7 +36,7 @@ public class DanhSachChiTietPhieuNhapSach {
         return kq;
     }
     Scanner sc=new Scanner(System.in);
-    public void nhap(){
+    public void nhap(String ma){
         System.out.println("Nhap so luong chi tiet phieu nhap sach can them: ");
         int k=sc.nextInt();
         sc.nextLine();
@@ -36,31 +44,29 @@ public class DanhSachChiTietPhieuNhapSach {
         ds=Arrays.copyOf(ds,ds.length+k);
         for(int i=bd;i<ds.length;i++){
             ds[i]=new ChiTietPhieuNhapSach();
-            ds[i].nhap();
+            ds[i].nhap(ma);
         }
     }
     public void them(ChiTietPhieuNhapSach p){
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=new ChiTietPhieuNhapSach(p);
     }
-    public void them(){
+    public void them(String ma){
         ds=Arrays.copyOf(ds,ds.length+1);
         ds[ds.length-1]=new ChiTietPhieuNhapSach();
         System.out.println("Nhap thong tin chi tiet phieu nhap sach muon them.");
-        ds[ds.length-1].nhap();
+        ds[ds.length-1].nhap(ma);
     }
     public void sua(){
-        System.out.println("Nhap ma phieu nhap sach can sua: ");
-        String maph=sc.nextLine();
         System.out.println("Nhap ma sach cua chi tiet phieu nhap sach can sua: ");
         String mas=sc.nextLine();
-        sua(maph,mas);
+        sua(mas);
     }
-    public void sua(String maph,String mas){
+    public void sua(String mas){
         int c=0,sl=5;
         boolean kt=false;
         for(ChiTietPhieuNhapSach p:ds){
-            if(maph.equals(p.getMaPhieuNhapSach()) && mas.equals(p.getMaSach())){
+            if( mas.equals(p.getMaSach())){
                 kt=true;
                 while(sl>0){
                     System.out.println("Ban muon sua thong tin gi?");
@@ -93,18 +99,16 @@ public class DanhSachChiTietPhieuNhapSach {
                 }       
             }
         }
-        System.out.println("Khong tim thay chi tiet phieu nhap sach co ma phieu nhap sach: "+maph+" - ma sach: "+mas);        
+        System.out.println("Khong tim thay chi tiet phieu nhap sach ma sach: "+mas);        
     }
     public void xoa(){
-        System.out.println("Nhap ma phieu nhap sach cua chi tiet phieu nhap sach can xoa: ");
-        String maph=sc.nextLine();
         System.out.println("Nhap ma sach cua chi tiet phieu nhap sach can xoa: ");
         String mas=sc.nextLine();
-        xoa(maph,mas);
+        xoa(mas);
     }
-    public void xoa(String maph,String mas){
+    public void xoa(String mas){
         for(int i=0;i<ds.length;i++){
-            if(maph.equals(ds[i].getMaPhieuNhapSach()) && mas.equals(ds[i].getMaSach())){
+            if(mas.equals(ds[i].getMaSach())){
                 for(int j=i;j<ds.length-1;j++)
                     ds[j]=ds[j+1];
                 ds=Arrays.copyOf(ds,ds.length-1);
@@ -112,9 +116,9 @@ public class DanhSachChiTietPhieuNhapSach {
                 return;
             }
         }
-        System.out.println("Khong tim thay ma chi tiet phieu nhap sach can xoa co ma phieu: "+maph+" va ma sach: "+mas);
+        System.out.println("Khong tim thay ma chi tiet phieu nhap sach co ma sach: "+mas);
     }
-    public void docFile() {
+    public void docFile(String ma) {
         File file = new File("Chitietphieunhapsach.txt");
         if (!file.exists()) {
             System.out.println("File doc khong ton tai.");
@@ -124,13 +128,21 @@ public class DanhSachChiTietPhieuNhapSach {
             while (f.hasNextLine()) {
                 String line = f.nextLine();
                 String[] parts = line.split(",");
-                if (parts.length == 4) {
+                if (parts.length == 4 && ma.equals(parts[0])) {
                     ds = Arrays.copyOf(ds, ds.length + 1);
                     ds[ds.length - 1] = new ChiTietPhieuNhapSach(parts[0], parts[1],Integer.parseInt(parts[2]),Double.parseDouble(parts[3]));
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Loi doc file.");
+        }
+    }
+    public void ghiFile(){
+        try(PrintWriter pw =new PrintWriter(new FileWriter("Chitietphieunhapsach.txt",true))){
+            for(ChiTietPhieuNhapSach ctpns:ds)
+                pw.println(ctpns.toString());
+        }catch(IOException e){
+            System.out.println("Loi ghi file");
         }
     }
 
@@ -149,33 +161,33 @@ public class DanhSachChiTietPhieuNhapSach {
         }
         xuatd();
     }
-    public void timKiemTheoMaPhieuNhapSach(){
-        System.out.println("Nhap ma phieu nhap sach muon tim: ");
+    public void timKiemTheoMaSach(){
+        System.out.println("Nhap ma sach cua chi tiet phieu nhap sach muon tim: ");
         String ma=sc.nextLine();
         boolean kt=false;
         for(ChiTietPhieuNhapSach pns:ds)
-            if(ma.equals(pns.getMaPhieuNhapSach())){
+            if(ma.equals(pns.getMaSach())){
                 if(!kt) xuatt();
                 pns.xuat();
                 kt =true;
                 return;
             }
         if(kt) xuatd();
-        else System.out.println("Khong tim thay chi tiet phieu nhap co ma phieu nhap: "+ma); 
+        else System.out.println("Khong tim thay chi tiet phieu nhap co ma sach: "+ma); 
     }
-    public void timKiemTheoMaPhieuNhapSachVaMaSach(){
-        System.out.println("Nhap ma phieu nhap sach cua chi tiet phieu nhap sach muon tim: ");
-        String maph=sc.nextLine();
-        System.out.println("Nhap ma sach cua chi tiet phieu nhap sach muon tim: ");
-        String mas=sc.nextLine();
+    public void timKiemTheoSoLuong(){
+        System.out.println("Nhap so luong sach cua chi tiet phieu nhap sach muon tim: ");
+        int sl=sc.nextInt();
+        sc.nextLine();
+        boolean kt=false;
         for(ChiTietPhieuNhapSach pns:ds)
-            if(maph.equals(pns.getMaPhieuNhapSach()) && mas.equals(pns.getMaSach())){
-                xuatt();
+            if(sl==pns.getSoLuong()){
+                if(!kt)xuatt();
                 pns.xuat();
-                xuatd();
-                return;
+                kt= true;
             }
-        System.out.println("Khong tim thay chi tiet phieu nhap co ma phieu nhap: "+maph+" va ma sach: "+mas);
+        if(kt)    xuatd();
+        else System.out.println("Khong tim thay chi tiet phieu nhap co so luong: "+sl);
     }
     public void thongKeTheoMaSach(){
         Map<String,Integer> count=new HashMap<>();

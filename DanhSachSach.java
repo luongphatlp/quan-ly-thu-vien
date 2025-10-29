@@ -10,69 +10,84 @@ public class DanhSachSach {
     
     Scanner sc=new Scanner(System.in);
     public int getLength(){return ds.length;}
+    public boolean kiemTraMaDocNhat(String ma){
+        for(Sach s:ds)
+            if(ma.equals(s.getMaSach()))
+                return false; 
+        return true;
+    }
     public void them(){
-        int c=0,sl=5;
+        int k=5;
+        Sach s=null;
         boolean kt=false;
-        ds=Arrays.copyOf(ds,ds.length+1);
-        while(sl>0){
-            System.out.println("nhap lua chon (1.sach giao khoa 2.sach tham khao)");
-            c=sc.nextInt();
+        while(k>0 && !kt){
+            System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
+            int c=sc.nextInt();
             sc.nextLine();
             if(c==1){
-                ds[ds.length-1]=new SachGiaoKhoa();ds[ds.length-1].nhap();
-                kt=true;
-                break;
+                s=new SachGiaoKhoa();
             }else if(c==2){
-                ds[ds.length-1]=new SachThamKhao();ds[ds.length-1].nhap();
-                kt=true;
-                break;
+                s=new SachThamKhao();
             }else{
                 System.out.println("Lua chon khong dung.Vui long chon lai.");
-                sl--;
+                k--;
+                continue;
             }
-        }
-        if(!kt)
-            System.out.println("Them thanh cong.");
-        else
-            System.out.println("Them khong thanh cong.");
-    }
-    public void them(Sach s){
-        if(s instanceof SachGiaoKhoa){
-            ds[ds.length-1]=new SachGiaoKhoa((SachGiaoKhoa)s);
-        }else{
-            ds[ds.length-1]=new SachThamKhao((SachThamKhao)s);
-        }
-    }
-    public void nhap(){
-        System.out.println("Nhap so luong sach muon them: ");
-        int bd=ds.length;
-        int sl=sc.nextInt();
-        ds=Arrays.copyOf(ds,ds.length+sl);
-        int c=0,k=5;
-        boolean kt=false;
-        for(int i=bd;i<ds.length;i++){
-            System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
-            while(k>0){
-                c=sc.nextInt();
-                sc.nextLine();
-                if(c==1){
-                    ds[i]=new SachGiaoKhoa();ds[i].nhap();
-                    kt=true;
-                    break;
-                }else if(c==2){
-                    ds[i]=new SachThamKhao();ds[i].nhap();
-                    kt=true;
-                    break;
-                }else{
-                    System.out.println("Lua chon khong dung.Vui long chon lai.");
-                    k--;
-                }
-            }
+            s.nhap();
+            if(them(s))
+                kt=true;
+            else{
+                System.out.println("Ma sach da ton tai vui long nhap lai.");
+                k--;
+            } 
         }
         if(kt)
             System.out.println("Them thanh cong.");
         else 
             System.out.println("Them khong thanh cong.");
+    }
+    public boolean them(Sach s){
+        if(kiemTraMaDocNhat(s.getMaSach())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            if(s instanceof SachGiaoKhoa){
+                ds[ds.length-1]=new SachGiaoKhoa((SachGiaoKhoa)s);
+            }else{
+                ds[ds.length-1]=new SachThamKhao((SachThamKhao)s);
+            }
+            return true;
+        }
+        return false;
+    }
+    public void nhap(){
+        System.out.println("Nhap so luong sach muon them: ");
+        int sl=sc.nextInt();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            Sach s=null;
+            boolean kt=false;
+            while(k>0 && !kt){
+                System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
+                int c=sc.nextInt();
+                sc.nextLine();
+                if(c==1){
+                    s=new SachGiaoKhoa();
+                }else if(c==2){
+                    s=new SachThamKhao();
+                }else{
+                    System.out.println("Lua chon khong dung.Vui long chon lai.");
+                    k--;
+                    continue;
+                }
+                s.nhap();
+                if(them(s))
+                    kt=true;
+                else k--;
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
+        }
     }
     public void xuat(){
         System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+");
@@ -264,17 +279,14 @@ public class DanhSachSach {
     public void timKiemTheoMaSach(){
         System.out.println("Nhap ma sach muon tim: ");
         String ma=sc.nextLine();
-        boolean kt=false;
         for(int i=0;i<ds.length;i++)
             if(ma.equals(ds[i].getMaSach())){
-                if(!kt) xuatt();
+                xuatt();
                 ds[i].xuat();
-                kt=true;
+                xuatd();
+                return;
             }
-        if(!kt){
-            System.out.println("Khong tim thay sach co ma: "+ma);
-        }    
-        xuatd();           
+        System.out.println("Khong tim thay sach co ma: "+ma);
     }
     public void timKiemTheoTen(){
         System.out.println("Nhap ten sach muon tim: ");
@@ -288,9 +300,8 @@ public class DanhSachSach {
             }
         if(!kt){
             System.out.println("Khong tim thay sach co ten: "+ten);
-            return;
-        }    
-        xuatd();                  
+        }else
+            xuatd();                  
     }
     public void timKiemTheoNamXuaBban(){
         System.out.println("Nhap nam xuat ban sach muon tim: ");
@@ -448,7 +459,7 @@ public class DanhSachSach {
         return sgk+" "+stk;
     }
     public void thongKeTheoNXB(){
-        Map<String,Integer> thongke= new HashMap();
+        Map<String,Integer> thongke= new HashMap<>();
         for(Sach s:ds){
             String nxb=s.getMaNXB();
             thongke.put(nxb, thongke.getOrDefault(nxb, 0)+1);

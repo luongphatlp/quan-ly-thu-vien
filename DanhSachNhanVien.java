@@ -16,18 +16,61 @@ public class DanhSachNhanVien {
         }
         public DanhSachNhanVien(DanhSachNhanVien ds ){
                 this.ds=ds.ds;
+        }
+        public boolean kiemTraMaDuyNhat(String ma){
+                for(NhanVien nv:ds)
+                        if(ma.equals(nv.getMnv()))
+                                return false;
+                return true;
+        }
+        public void them(){
+                int k=5;
+                boolean kt=false;
+                while(k>0 && !kt){
+                        NhanVien nv=new NhanVien();
+                        nv.nhap();
+                        if(them(nv))
+                                kt=true;
+                        else{
+                                System.out.println("Ma nhan vien da ton tai vui long nhap lai.");
+                                k--;
+                        }        
                 }
-
+                if(!kt){
+                        System.out.println("Nhap qua so lan quy dinh.");
+                        return;
+                }
+        }
+        public boolean them(NhanVien nv){
+                if(kiemTraMaDuyNhat(nv.getMnv())){
+                        ds=Arrays.copyOf(ds,ds.length-1);
+                        ds[ds.length-1]=new NhanVien(nv);
+                        return true;
+                }
+               return false;
+        }
         public void nhap() {
                 System.out.print("Nhap so luong nhan vien: ");
                 n=sc.nextInt();
                 sc.nextLine();
-                ds=Arrays.copyOf(ds,n);
                 for(int i=0;i<n;i++){
-                        System.out.println("Nhap thong tin nhan vien thu "+(i+1)+":");
-                        NhanVien nv=new NhanVien();
-                        nv.nhap();
-                        ds[i]=nv;
+                        int k=5;
+                        boolean kt=false;
+                        while(k>0 && !kt){
+                                System.out.println("Nhap thong tin nhan vien thu "+(i+1)+":");
+                                NhanVien nv=new NhanVien();
+                                nv.nhap();
+                                if(them(nv)){
+                                        kt=true;
+                                }else{
+                                        System.out.println("Ma nhan vien da ton tai vui long nhap lai.");
+                                        k--;
+                                }        
+                        }
+                        if(!kt){
+                                System.out.println("Nhap qua so lan quy dinh.");
+                                return;
+                        }
                 } 
         } 
 
@@ -172,20 +215,6 @@ public class DanhSachNhanVien {
                 System.out.println("So luong tac gia tren 30 tuoi: "+tren30);
                 System.out.println("So luong tac gia 30 tuoi: "+ngay30);
                 System.out.println("So luong tac gia duoi 30 tuoi: "+duoi30);
-        }
-        public void them(){
-                while(true){
-                        NhanVien nv=new NhanVien();
-                        System.out.println("\tNhap thong tin nhan vien moi");
-                        nv.nhap();
-                        ds=Arrays.copyOf(ds,n+1);
-                        ds[n]=nv;
-                        n++;
-                        System.out.println("Co muon them tiep k (y/n): ");
-                        String tiep=sc.nextLine();
-                        if(tiep.compareToIgnoreCase("y")==0) continue;
-                        else break;
-                }
         }
 
         public void xoa() {

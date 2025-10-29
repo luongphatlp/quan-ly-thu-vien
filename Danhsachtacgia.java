@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -19,37 +18,55 @@ public class DanhSachTacGia {
     public int getLength(){return ds.length;}
     public void nhap(){
         System.out.println("Nhap so luong sinh vien can nhap them: ");
-        int k=sc.nextInt();
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds = Arrays.copyOf(ds,ds.length+k);
-        int tt=1;
-        for(int i=bd;i<ds.length;i++){
-            System.out.println("Nhap thong tin tac gia thu "+tt+" :");tt++;
-            ds[i]=new TacGia();
-            ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            while(k>0 && !kt){
+                TacGia tg=new TacGia();
+                tg.nhap();
+                if(them(tg))
+                    kt=true;
+                else{
+                    System.out.println("Ma tac gia da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
         }
     }
     private boolean kiemTraMaTacGiaDuyNhat(String ma){
-        int i=0;
         for(TacGia tg:ds)
             if(ma.equals(tg.getMaTacGia()))
-                i++;
-        if(i>1) return false;
+                return false;
         return true;
     }
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new TacGia();
+        int k=5;
+        boolean kt=false;
         System.out.println("Nhap thong tin tac gia can them");
-        ds[ds.length-1].nhap();
+        while(k>0 && !kt){
+          TacGia tg=new TacGia();
+            tg.nhap();
+            if(them(tg))
+                kt=true;      
+            else{
+                System.out.println("Ma tac gia da ton tai vui long nhap lai");
+                k--;
+            }
+        }
     }
-    public void them(TacGia tg){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        if(kiemTraMaTacGiaDuyNhat(tg.getMaTacGia()))
-            System.out.println("Trung ma tac gia.");
-        else    
-        ds[ds.length-1]=new TacGia(tg);
+    public boolean them(TacGia tg){
+        if(kiemTraMaTacGiaDuyNhat(tg.getMaTacGia())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new TacGia(tg);
+            return true;
+        }
+        return false;
     }
     public void sua(){
         System.out.println("Nhap ma tac gia can sua: ");
@@ -60,8 +77,7 @@ public class DanhSachTacGia {
         int c=0,sl=5;
         boolean kt=false;
         for(int i=0;i<ds.length;i++){
-            if(ma.equals(ds[i].getMaTacGia())){
-                
+            if(ma.equals(ds[i].getMaTacGia())){        
                 while(sl>0){
                     System.out.println("Nhap lua chon sua 1.ho ten 2.gioi tinh 3.ngay sinh");
                     c=sc.nextInt();
@@ -85,9 +101,10 @@ public class DanhSachTacGia {
                         sl--;
                     }
                     if(kt){
-                        System.out.println("Sua thong tin thanh cong.");return;
+                        System.out.println("Sua thong tin thanh cong.");
+                        return;
                     }
-                }   
+                }
             }
         }
         if(!kt)

@@ -23,9 +23,8 @@ public class ChiTietPhieuMuon {
     public void setSoLuong(int soluong){this.soluong=soluong;}
 
     Scanner sc= new Scanner(System.in);
-    public void nhap(){
-        System.out.println("Nhap ma phieu muon: ");
-        maphieumuon=sc.nextLine();
+    public void nhap(String ma){
+        maphieumuon=ma;
         System.out.println("Nhap ma sach: ");
         masach=sc.nextLine();
         System.out.println("Nhap so luong: ");

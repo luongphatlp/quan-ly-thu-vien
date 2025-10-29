@@ -1,3 +1,10 @@
-1,muon qua han 1 ngay,1000
-2,lam mat sach,100000
-3,lam do sach,50000
+01,Trả sách trễ hạn 1-7 ngày,10000
+02,Trả sách trễ hạn 8-14 ngày,20000
+03,Trả sách trễ hạn trên 14 ngày,50000
+04,Hư hỏng sách nhẹ (cong bìa, viết bút chì),15000
+05,Hư hỏng sách nặng (rách trang, ướt sách),100000
+06,Hư hỏng tài sản thư viện (bàn, ghế, máy tính),200000
+07,Sử dụng thẻ thư viện của người khác,30000
+08,Gây mất trật tự trong thư viện,20000
+09,Mang thức ăn có mùi vào khu vực đọc sách,15000
+10,Làm mất thẻ thư viện (phí làm lại),25000

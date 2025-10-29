@@ -52,5 +52,12 @@ public class PhieuPhat {
     @Override public String toString(){
         return maphieuphat+","+madocgia+","+maphieumuon+","+maphat;
     }
-
+    public void capNhatTienPhat(DanhSachQuyDinhPhat dsqdp){
+        for(QuyDinhPhat qd:dsqdp.getDS())
+            if(maphat.equals(qd.getMaPhat())){
+                tienphat=qd.getTienPhat();
+                return;
+            }
+        tienphat=0;
+    }
 }    

@@ -36,6 +36,12 @@ public class DanhSachChiTietPhieuNhapSach {
         return kq;
     }
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(ChiTietPhieuNhapSach ctpns:ds)
+            if(ma.equals(ctpns.getMaSach()))
+                return false;
+        return true;
+    }
     public void nhap(String ma){
         System.out.println("Nhap so luong chi tiet phieu nhap sach can them: ");
         int k=sc.nextInt();

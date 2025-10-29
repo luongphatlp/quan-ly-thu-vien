@@ -14,16 +14,36 @@ public class DanhSachChiTietPhieuMuon {
     public DanhSachChiTietPhieuMuon(DanhSachChiTietPhieuMuon ds2){
         ds=Arrays.copyOf(ds2.ds,ds2.ds.length);
     }
+    public ChiTietPhieuMuon[] getDS(){return ds;}
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(ChiTietPhieuMuon ctpm:ds)
+            if(ma.equals(ctpm.getMaSach()))
+                return false;
+        return true;
+    }
     public void nhap(String ma){
-        System.out.println("Nhap so luong chi tiet phieu muon: ");
-        int bd=ds.length;
-        int k=sc.nextInt();
-        ds=Arrays.copyOf(ds,ds.length+k);
+        System.out.println("Nhap so luong chi tiet phieu muon can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new ChiTietPhieuMuon();
-            ds[i].nhap(ma);
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin cua chi tiet phieu muon thu "+(i+1)+":");
+            while(k>0 && !kt){
+                ChiTietPhieuMuon ctpm=new ChiTietPhieuMuon();
+                ctpm.nhap(ma);
+                if(them(ctpm))
+                    kt=true;
+                else{
+                    System.out.println("Ma sach da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
         }
     }
     public void xuatt(){
@@ -40,15 +60,31 @@ public class DanhSachChiTietPhieuMuon {
             ctpm.xuat();
         xuatd();
     }
-    public void them(ChiTietPhieuMuon ctpm){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1] = new ChiTietPhieuMuon(ctpm);
+    public boolean them(ChiTietPhieuMuon ctpm){
+        if(kiemTraMaDuyNhat(ctpm.getMaSach())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]= new ChiTietPhieuMuon(ctpm);
+            return true;
+        }
+        return false;
     }
     public void them(String ma){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1] = new ChiTietPhieuMuon();
-        System.out.println("Nhap thong tin chi tiet phieu muon them: ");
-        ds[ds.length-1].nhap(ma);
+        int k=5;
+            boolean kt=false;
+            while(k>0 && !kt){
+                ChiTietPhieuMuon ctpm=new ChiTietPhieuMuon();
+                ctpm.nhap(ma);
+                if(them(ctpm))
+                    kt=true;
+                else{
+                    System.out.println("Ma sach da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
     }
     public void sua(){
         System.out.println("Nhap ma sach muon sua: ");

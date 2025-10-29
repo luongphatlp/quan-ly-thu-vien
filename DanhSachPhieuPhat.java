@@ -19,18 +19,35 @@ public class DanhSachPhieuPhat {
     }
     public PhieuPhat[] getDS(){return ds;}
     Scanner sc=new Scanner(System.in);
-    public void nhap(){
-        System.out.println("Nhap so luong can them: ");
-        int k=sc.nextInt();
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(PhieuPhat pp:ds)
+            if(ma.equals(pp.getMaPhieuPhat()))
+                return false;
+        return true;
+    }
+    public void nhap(DanhSachQuyDinhPhat dsqdp){
+        System.out.println("Nhap so luong phieu phat can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds=Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new PhieuPhat();
-            ds[i].nhap();
-            QuyDinhPhat q=layQuyDinhPhatTheoMa(ds[i].getMaphat());
-            if(q!=null)
-                ds[i].setTienPhat(q.getTienPhat());
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin phieu phat thu "+(i+1)+":");
+            while(k>0 && !kt){
+                PhieuPhat pp=new PhieuPhat();
+                pp.nhap();
+                pp.capNhatTienPhat(dsqdp);
+                if(them(pp))
+                    kt=true;
+                else{
+                    System.out.println("Ma phieu phat da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
         }
     }
     public void xuat(){
@@ -47,15 +64,32 @@ public class DanhSachPhieuPhat {
     private void xuatd(){
         System.out.println("+-----------------+-----------------+-----------------+-----------------+------------+");
     }
-    public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuPhat();
-        System.out.println("Nhap thong tin phieu phat muon them.");
-        ds[ds.length-1].nhap();
+    public void them(DanhSachQuyDinhPhat dsqdp){
+        int k=5;
+        boolean kt=false;
+        while(k>0 && !kt){
+            PhieuPhat pp=new PhieuPhat();
+            pp.nhap();
+            pp.capNhatTienPhat(dsqdp);
+            if(them(pp))
+                kt=true;
+            else{
+                System.out.println("Ma phieu phat da ton tai vui long nhap lai");
+                k--;
+            } 
+        }
+        if(!kt){
+            System.out.println("Nhap qua so lan quy dinh");
+            return;
+        } 
     }
-    public void them(PhieuPhat pp){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuPhat(pp);
+    public boolean them(PhieuPhat pp){
+        if(kiemTraMaDuyNhat(pp.getMaPhieuPhat())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new PhieuPhat(pp);
+            return true;
+        }
+        return false;
     }
     public void sua(){
         System.out.println("Nhap ma nha cung cap can sua: ");
@@ -88,17 +122,17 @@ public class DanhSachPhieuPhat {
                         System.out.println("Nhap ma phat: ");
                         ds[i].setMaPhat(sc.nextLine());
                         kt=true;
-                    }
-                    else {
+                    }else {
                         System.out.println("Lua chon khong hop le.");
                         sl--;
                     }
+                    if(kt){
+                        System.out.println("Sua thong tin thanh cong.");
+                        return ;
+                    }
                 }
             }
-            if(kt){
-                System.out.println("Sua thong tin thanh cong.");
-                return ;
-            }
+            
         }
         System.out.println("Khong tim thay phieu phat can sua co ma: "+ma);
     }

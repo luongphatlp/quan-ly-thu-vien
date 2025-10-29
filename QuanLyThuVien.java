@@ -516,6 +516,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -534,10 +535,12 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -596,6 +599,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -618,6 +622,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -684,6 +689,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -706,6 +712,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -764,6 +771,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -786,6 +794,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -810,7 +819,7 @@ public class QuanLyThuVien {
             sc.nextLine();
             switch(chon){
                 case 1:
-                    dsphieuphat.nhap();
+                    dsphieuphat.nhap(dsquydinhphat);
                     break;
                 case 2:
                     dsphieuphat.xuat();
@@ -844,6 +853,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -866,6 +876,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -924,6 +935,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -946,6 +958,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -1115,6 +1128,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -1138,6 +1152,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Nhap ma phieu nhap sach muon quan ly chi tiet: ");
                     String maPNS = sc.nextLine();
@@ -1205,6 +1220,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -1227,6 +1243,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 7:
                     System.out.println("Quay lai menu chinh");
                     break;

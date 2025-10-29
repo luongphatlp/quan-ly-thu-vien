@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -14,41 +13,75 @@ public class DanhSachTheLoai {
         this.ds=ds.ds;
     }
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(TheLoai tl:ds)
+            if(ma.equals(tl.getMaTheLoai()))
+                return false;
+        return true;
+    }
     public void nhap(){
-        System.out.println("Nhap so luong sinh vien can nhap them: ");
-        int k=sc.nextInt();
+        System.out.println("Nhap so luong the loai can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds = Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new TheLoai();
-            ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin cua the loai thu "+(i+1)+":");
+            while(k>0 && !kt){
+                TheLoai tl=new TheLoai();
+                tl.nhap();
+                if(them(tl))
+                    kt=true;
+                else{
+                    System.out.println("Ma the loai da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
         }
     }
     public void xuat(){
-        System.out.println("+-------------+--------------+----------------------------------------------------+");
-        System.out.printf("| %-11s | %-12s | %-50s |\n","Ma the loai","Ten the loai","mo ta");
-        for(int i=0;i<ds.length;i++){        
+        xuatt();
+        for(int i=0;i<ds.length;i++)
             System.out.printf("| %-11s | %-12s | %-50s |\n",ds[i].getMaTheLoai(),ds[i].getTenTheLoai(),ds[i].getMoTa());
-            System.out.println("+-------------+--------------+----------------------------------------------------+");
-        }    
+        xuatd();
     }
     private void xuatt(){
         System.out.println("+-------------+--------------+----------------------------------------------------+");
         System.out.printf("| %-11s | %-12s | %-50s |\n","Ma the loai","Ten the loai","mo ta");
+        System.out.println("|-------------|--------------|----------------------------------------------------|");
     }
     private void xuatd(){
         System.out.println("+-------------|--------------|----------------------------------------------------|");
     }
-    public void them(TheLoai tl){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new TheLoai(tl);
+    public boolean them(TheLoai tl){
+        if(kiemTraMaDuyNhat(tl.getMaTheLoai())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]= new TheLoai(tl);
+            return true;
+        }
+        return false;
     }
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new TheLoai();
-        System.out.println("Nhap thong tin the loai muon them.");
-        ds[ds.length-1].nhap();
+        int k=5;
+            boolean kt=false;
+            while(k>0 && !kt){
+                TheLoai tl=new TheLoai();
+                tl.nhap();
+                if(them(tl))
+                    kt=true;
+                else{
+                    System.out.println("Ma the loai da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
     }
     public void sua(){
         System.out.println("Nhap ma the loai can sua: ");

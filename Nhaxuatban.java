@@ -26,7 +26,7 @@ public class NhaXuatBan {
         tennxb=sc.nextLine();
     }
     public void xuat(){
-        System.out.printf("| %-15s | %-20s |",manxb,tennxb);
+        System.out.printf("| %-15s | %-16s |\n",manxb,tennxb);
     }
 
     @Override public String toString(){

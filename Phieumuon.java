@@ -64,6 +64,12 @@ public class PhieuMuon {
     public void xuat(){
         System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-16s |\n",maphieumuon,madocgia,manhanvien,ngaylapphieu,ngaytra,ngaytrathucte);
     }
+    public void xuatchitiet(){
+        dsctpm.xuat();
+    }
+    public void nhapchitiet(){
+        dsctpm.nhap(maphieumuon);
+    }
     public String toString(){
         return maphieumuon+","+madocgia+","+manhanvien+","+ngaylapphieu+","+ngaytra+","+ngaytrathucte; 
     }

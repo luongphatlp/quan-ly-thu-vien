@@ -17,12 +17,13 @@ public class DanhSachTacGia {
     }
     public int getLength(){return ds.length;}
     public void nhap(){
-        System.out.println("Nhap so luong sinh vien can nhap them: ");
+        System.out.println("Nhap so luong tac gia can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
         for(int i=0;i<sl;i++){
             int k=5;
             boolean kt=false;
+            System.out.println("Nhap thong tin tac gia thu "+(i+1)+":");
             while(k>0 && !kt){
                 TacGia tg=new TacGia();
                 tg.nhap();

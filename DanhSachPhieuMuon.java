@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 public class DanhSachPhieuMuon {
     private PhieuMuon[] ds=new PhieuMuon[0];
 
@@ -17,15 +16,34 @@ public class DanhSachPhieuMuon {
         this.ds=Arrays.copyOf(other.ds,other.ds.length);
     }
     public PhieuMuon[] getDS(){return ds;}
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(PhieuMuon pm:ds)
+            if(ma.equals(pm.getMaPhieuMuon()))
+                return false;
+        return true;
+    }
     public void nhap(){
-        System.out.println("Nhap so luong phieu muon can nhap: ");
-        int k=sc.nextInt();
+        System.out.println("Nhap so luong phieu muon can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds=Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new PhieuMuon();
-            ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin cua phieu muon thu "+(i+1)+":");
+            while(k>0 && !kt){
+                PhieuMuon pm=new PhieuMuon();
+                pm.nhap();
+                if(them(pm))
+                    kt=true;
+                else{
+                    System.out.println("Ma phieu muon da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
         }
     }
     private void xuatt(){
@@ -43,15 +61,31 @@ public class DanhSachPhieuMuon {
         }
         xuatd();
     }
-    public void them(PhieuMuon pm){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuMuon(pm);
+    public boolean them(PhieuMuon pm){
+        if(kiemTraMaDuyNhat(pm.getMaPhieuMuon())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]= new PhieuMuon(pm);
+            return true;
+        }
+        return false;
     }
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuMuon();
-        System.out.println("Nhap thong tin phieu muon can them.");
-        ds[ds.length-1].nhap();
+        int k=5;
+            boolean kt=false;
+            while(k>0 && !kt){
+                PhieuMuon pm=new PhieuMuon();
+                pm.nhap();
+                if(them(pm))
+                    kt=true;
+                else{
+                    System.out.println("Ma phieu muon da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
     }
     public PhieuMuon sua(){
         System.out.println("Nhap ma phieu muon can sua: ");
@@ -177,7 +211,9 @@ public class DanhSachPhieuMuon {
     public void timKiemTheoMaPhieuMuon(String keyword) {
         for (PhieuMuon pm : ds)
             if (keyword.equals(pm.getMaPhieuMuon())){
+                xuatt();
                 pm.xuat();
+                xuatd();
                 return;
             }
         System.out.println("Khong tim thay phieu muon nao!");

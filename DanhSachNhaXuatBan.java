@@ -14,15 +14,34 @@ public class DanhSachNhaXuatBan {
     }
 
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(NhaXuatBan nxb:ds)
+            if(ma.equals(nxb.getMaNXB()))
+                return false;
+        return true;
+    }
     public void nhap(){
-        int bd=ds.length;
-        System.out.println("Nhap so luong can nhap: ");
-        int k=sc.nextInt();
+        System.out.println("Nhap so luong nha xuat ban can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        ds=Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new NhaXuatBan();
-            ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin nha xuat ban thu "+(i+1)+":");
+            while(k>0 && !kt){
+                NhaXuatBan nxb=new NhaXuatBan();
+                nxb.nhap();
+                if(them(nxb))
+                    kt=true;
+                else{
+                    System.out.println("Ma nha xuat ban da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
         }
     }
     public void xuat(){
@@ -33,22 +52,37 @@ public class DanhSachNhaXuatBan {
     }
     private void xuatt(){
         System.out.println("+-----------------+------------------+");
-        System.out.printf("| %-15s | %-16s |","Ma nha xuat ban","Ten nha xuat ban");
+        System.out.printf("| %-15s | %-16s |\n","Ma nha xuat ban","Ten nha xuat ban");
         System.out.println("|-----------------|------------------|");
     }
     private void xuatd(){
         System.out.println("+-----------------+------------------+");
     }
     public void them(){
-        System.out.println("Nhap thong tin nha xuat ban can them.");
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new NhaXuatBan();
-        ds[ds.length-1].nhap();
+        int k=5;
+            boolean kt=false;
+            while(k>0 && !kt){
+                NhaXuatBan nxb=new NhaXuatBan();
+                nxb.nhap();
+                if(them(nxb))
+                    kt=true;
+                else{
+                    System.out.println("Ma nha xuat ban da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            }
     }
-    public void them(NhaXuatBan nxb){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new NhaXuatBan();
-        ds[ds.length-1]=nxb;
+    public boolean them(NhaXuatBan nxb){
+        if(kiemTraMaDuyNhat(nxb.getMaNXB())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new NhaXuatBan(nxb);
+            return true;
+        }
+        return false;
     }
     public void sua(){
         String ma;
@@ -72,7 +106,7 @@ public class DanhSachNhaXuatBan {
     }
     public int timkiem(String ma){
         for(int i=0;i<ds.length;i++){
-            if(ma.equals(ds[i].getTenNXB())){
+            if(ma.equals(ds[i].getMaNXB())){
                 return i;
             }
         }

@@ -11,11 +11,18 @@ public class DanhSachNhanVien {
         
         public DanhSachNhanVien() {}
         public DanhSachNhanVien(NhanVien[] ds,int n){
-              this.ds=ds;
-              this.n=n;  
+              this.n=n;
+                this.ds=new NhanVien[this.n];
+                for(int i=0;i<this.n;i++){
+                        ds[i]=new NhanVien(ds[i]);
+                }
         }
         public DanhSachNhanVien(DanhSachNhanVien ds ){
-                this.ds=ds.ds;
+                this.n=other.n;
+                this.ds=new NhanVien[this.n];
+                for(int i=0;i<this.n;i++){
+                        ds[i]=new NhanVien(other.ds[i]);
+                }
         }
         public boolean kiemTraMaDuyNhat(String ma){
                 for(NhanVien nv:ds)
@@ -95,83 +102,86 @@ public class DanhSachNhanVien {
                  System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n"); 
         }
 
-        public void sua(){
+        public void sua() {
                 System.out.print("Nhap ma nhan vien can sua: ");
-                String ma=sc.nextLine();
-                int index=-1;
-                for(int i=0;i<n;i++){
-                        if(ds[i].getMnv().compareTo(ma)==0){
-                                index=i;
-                                break;
-                        }      
-                }
-                if(index==-1){
-                        System.out.println("Khong tim thay sinh vien co ma "+ma);
-                        return;
-                }
-                while(true){
-                        System.out.println("Thong tin sinh vien: ");
-                        xuatd();
-                        ds[index].xuat();
-                        System.out.println("1.Sua ho");
-                        System.out.println("2.Sua ten");
-                        System.out.println("3.Sua gioi tinh");
-                        System.out.println("4.Sua ngay sinh");
-                        System.out.println("5.Sua sdt");
-                        System.out.println("6.Thoat");
-                        System.out.print("Chon: ");
-                        int chon=sc.nextInt();
-                        sc.nextLine();
-                        switch(chon){
-                                case 1:
-                                System.out.print("Nhap ho moi: ");
-                                String homoi=sc.nextLine();
-                                ds[index].setHo(homoi);
-                                break;
-                                case 2: 
-                                System.out.print("Nhap ten moi: ");
-                                String tenmoi=sc.nextLine();
-                                ds[index].setTen(tenmoi);
-                                break;
-                                case 3:
-                                System.out.print("Nhap gioi tinh moi: ");
-                                String gtmoi=sc.nextLine();
-                                ds[index].setGioitinh(gtmoi);
-                                break;
-                                case 4:
-                                System.out.print("Nhap ngay sinh moi: ");
-                                String nsmoi=sc.nextLine();
-                                ds[index].setNgaysinh(nsmoi);
-                                break;
-                                case 5:
-                                System.out.print("Nhap sdt moi: ");
-                                String sdtmoi=sc.nextLine();
-                                ds[index].setSdt(sdtmoi);
-                                break;
-                                case 6: 
-                                return;
-                                default:
-                                System.out.println("Lua chon k hop le");
+                String ma = sc.nextLine();
+                boolean found = false;
+                for (int i = 0; i < n; i++) {
+                        if (ds[i].getManhanvien().equalsIgnoreCase(ma)) {
+                                System.out.println("Thong tin sinh vien: ");
+                                xuatd();
+                                ds[i].xuat();
+                                found = true;
+                                while (true) {
+                                        System.out.println("1.Sua ho");
+                                        System.out.println("2.Sua ten");
+                                        System.out.println("3.Sua gioi tinh");
+                                        System.out.println("4.Sua ngay sinh");
+                                        System.out.println("5.Sua sdt");
+                                        System.out.println("6.Thoat");
+                                        System.out.print("Chon: ");
+                                        int chon = sc.nextInt();
+                                        sc.nextLine();
+                                        switch (chon) {
+                                                case 1:
+                                                        System.out.print("Nhap ho moi: ");
+                                                        String homoi = sc.nextLine();
+                                                        ds[i].setHo(homoi);
+                                                        break;
+                                                case 2:
+                                                        System.out.print("Nhap ten moi: ");
+                                                        String tenmoi = sc.nextLine();
+                                                        ds[i].setTen(tenmoi);
+                                                        break;
+                                                case 3:
+                                                        System.out.print("Nhap gioi tinh moi: ");
+                                                        String gtmoi = sc.nextLine();
+                                                        ds[i].setGioitinh(gtmoi);
+                                                        break;
+                                                case 4:
+                                                        System.out.print("Nhap ngay sinh moi: ");
+                                                        String nsmoi = sc.nextLine();
+                                                        ds[i].setNgaysinh(nsmoi);
+                                                        break;
+                                                case 5:
+                                                        System.out.print("Nhap sdt moi: ");
+                                                        String sdtmoi = sc.nextLine();
+                                                        ds[i].setSdt(sdtmoi);
+                                                        break;
+                                                case 6:
+                                                        System.out.println("\tThong tin sau cap nhat");
+                                                        xuatd();
+                                                        ds[i].xuat();
+                                                        xuatc();
+                                                        return;
+                                                default:
+                                                        System.out.println("Lua chon k hop le");
+                                        }
+                                }
                         }
+                }
+                if (!found) {
+                        System.out.println("Khong tim thay ma");
                 }
         }
 
         public void timKiemTheoMaNhanVien() {
                 System.out.print("Nhap ma nhan vien can tim: ");
-                String ma=sc.nextLine();
-                int index=-1;
-                for (int i=0;i<n;i++) {
-                        if (ds[i].getMnv().compareTo(ma)==0) {
-                                index=i;
+                String ma = sc.nextLine();
+                boolean found = false;
+                for (int i = 0; i < n; i++) {
+                        if (ds[i].getManhanvien().equalsIgnoreCase(ma)) {
+                                xuatd();
+                                ds[i].xuat();
+                                xuatc();
+                                found = true;
                                 break;
                         }
-                } if(index==-1){
-                        System.out.println("Khong tim thay nhan vien co ma: "+ma);
-                        return;
                 }
-                xuatd();
-                ds[index].xuat();
-                xuatc();
+                if (!found) {
+                        System.out.println("Khong tim thay ma nhan vien");
+                }
+        
         }
         public void timKiemTheoTen(){
                 System.out.println("Nhap ten nhan vien can tim: ");
@@ -188,58 +198,54 @@ public class DanhSachNhanVien {
                 if(!kt)    
                 System.out.println("Khong tim thay tac gia co ten: "+ten);
         }
-        public void thongKeTheoGioiTinh(){
-                int nam=0,nu=0;
-                for(NhanVien tg:ds){
-                if("Nam".equalsIgnoreCase(tg.getGioiTinh()))
-                        nam++;
-                else 
-                        nu++;
+        public int[] thongketheogioitinh() {
+                int demnam = 0, demnu = 0;
+                for (int i = 0; i < n; i++) {
+                        if (ds[i].getGioitinh().equalsIgnoreCase("nam"))
+                                demnam++;
+                        else if (ds[i].getGioitinh().equalsIgnoreCase("nu"))
+                                demnu++;
                 }
-                System.out.println("So luong tac gia co gioi tinh nam: "+nam);
-                System.out.println("So luong tac gia co gioi tinh nu: "+nu);
+                System.out.println("So luong nhan vien nam: " + demnam);
+                System.out.println("So luong nhan vien nu: " + demnu);
+                return new int[] { demnam, demnu };
         }
-        private int tinhTuoi( NhanVien tg){
-                LocalDate date1=LocalDate.parse(tg.getNgaySinh());
-                LocalDate date2=LocalDate.now();
-                Period tuoi=Period.between(date1,date2);
-                return tuoi.getYears();
-        }
-        public void thongKeTheoTuoi(){
-                int duoi30=0,ngay30=0,tren30=0;
-                for(NhanVien tg:ds){
-                if(tinhTuoi(tg) < 30) duoi30++;
-                else if(tinhTuoi(tg)>30) tren30++;
-                else ngay30++;
+        public void thongketheotuoi() {
+                int dem1 = 0, dem2 = 0, dem3 = 0;
+                for (int i = 0; i < n; i++) {
+                        int tuoi = ds[i].tinhtuoi();
+                        if (tuoi >= 18 && tuoi <= 23)
+                                dem1++;
+                        else if (tuoi >= 24 && tuoi < 28)
+                                dem2++;
+                        else if (tuoi >= 28)
+                                dem3++;
                 }
-                System.out.println("So luong tac gia tren 30 tuoi: "+tren30);
-                System.out.println("So luong tac gia 30 tuoi: "+ngay30);
-                System.out.println("So luong tac gia duoi 30 tuoi: "+duoi30);
+                System.out.println("So luong tuoi tu 18-23: " + dem1);
+                System.out.println("So luong tuoi tu 24-27: " + dem2);
+                System.out.println("So luong tuoi tu 28 tro len: " + dem3);
         }
 
-        public void xoa() {
+       public void xoa() {
                 System.out.print("Nhap ma nhan vien can xoa: ");
-                String ma=sc.nextLine();
-                int index=-1;
+                String ma = sc.nextLine();
+                boolean found = false;
                 for (int i = 0; i < n; i++) {
-                        if (ds[i].getMnv().compareTo(ma)==0) {
-                                index=1;
+                        if (ds[i].getMnv().equalsIgnoreCase(ma)) {
+                                for (int j = i; j < n - 1; j++) {
+                                        ds[j] = ds[j + 1];
+                                }
+                                n--;
+                                ds = Arrays.copyOf(ds, n);
+                                found = true;
                                 break;
                         }
                 }
-                if(index==-1){
-                        System.out.println("Khong tim sinh vien co ma "+ma);
-                        return;
+                if (!found) {
+                        System.out.println("Khong tim thay ma nhan vien");
                 }
-                for(int i=index;i<n-1;i++){
-                        ds[i]=ds[i+1];
-                }
-                n--;
-                ds=Arrays.copyOf(ds,n);
         }
                 
-                
-
         public void ghiFile(){
                 File file=new File("Nhanvien.txt");
                 try(PrintWriter pw=new PrintWriter(file)){
@@ -248,7 +254,7 @@ public class DanhSachNhanVien {
                         }
                 System.out.println("Da ghi vao file Nhanvien.txt");
                 } catch(FileNotFoundException e){
-                        System.out.println("Loi ghi file!"+e.getMessage());
+                        System.out.println("Loi ghi file!");
 
                 }
 
@@ -275,7 +281,7 @@ public class DanhSachNhanVien {
                         }
                         System.out.println("Da doc file Nhanvien.txt");
                 }catch(FileNotFoundException e){
-                        System.out.println("Loi doc file!"+e.getMessage());
+                        System.out.println("Loi doc file!");
                 }
         }
 
@@ -292,13 +298,14 @@ public class DanhSachNhanVien {
                 // ds.them();
                 // ds.sua();
                 // ds.xoa();
-                // ds.timkiem();
+                // ds.timKiemTheoMaNhanVien();
+                //ds.timKiemTheoTen();
                 //ds.sapxepten();
                 //ds.sapxepma();
                 //ds.ghiFile();
                 ds.xuat();
-                ds.thongKeTheoGioiTinh();
-                ds.thongKeTheoTuoi();
+                ds.thongketheogioitinh();
+                ds.thongketheotuoi();
                 }
 
 }

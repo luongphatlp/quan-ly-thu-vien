@@ -18,25 +18,60 @@ public class DanhSachPhieuNhapSach {
     }
     Scanner sc=new Scanner(System.in);
 
-    public void them(PhieuNhapSach p){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuNhapSach(p);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(PhieuNhapSach pns:ds)
+            if(ma.equals(pns.getMaPhieuNhapSach()))
+                return false;
+        return true;
+    }
+    public boolean them(PhieuNhapSach p){
+        if(kiemTraMaDuyNhat(p.getMaPhieuNhapSach())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new PhieuNhapSach(p);
+            return true;
+        }
+        return false;
     }
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new PhieuNhapSach();
-        System.out.println("Nhap thong tin phieu nhap sach muon them.");
-        ds[ds.length-1].nhap();
+        int k=5;
+        boolean kt=false;
+        while(k>0 && !kt){
+            PhieuNhapSach pns=new PhieuNhapSach();
+            pns.nhap();
+            if(them(pns))
+                kt=true;
+            else{
+                System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                k--;
+            }
+        }
+        if(!kt){
+            System.out.println("Da nhap qua so lan quy dinh");
+            return;
+        }
     }
     public void nhap(){
-        System.out.println("Nhap so luong phieu nhap sach can them: ");
-        int k=sc.nextInt();
+        System.out.println("Nhap so luong phieu nhap sach can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds=Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new PhieuNhapSach();
-            ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin cua phieu nhap sach thu "+(i+1)+":");
+            while(k>0 && !kt){
+                PhieuNhapSach pns=new PhieuNhapSach();
+                pns.nhap();
+                if(them(pns))
+                    kt=true;
+                else{
+                    System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
         }
     }
     private void xuatt(){

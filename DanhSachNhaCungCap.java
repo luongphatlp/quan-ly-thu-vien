@@ -10,14 +10,34 @@ public class DanhSachNhaCungCap {
     public DanhSachNhaCungCap(DanhSachNhaCungCap ds){this.ds=Arrays.copyOf(ds.ds,ds.ds.length);}
 
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(NhaCungCap ncc:ds)
+            if(ma.equals(ncc.getMaNCC()))
+                return false;
+        return true;
+    }
     public void nhap(){
-        System.out.println("Nhap so luong nha cung cap can nhap: ");
-        int bd=ds.length;
+        System.out.println("Nhap so luong nha cung cap can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
-        ds=Arrays.copyOf(ds,ds.length+sl);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new NhaCungCap(); ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin nha cung cap thu "+(i+1)+":");
+            while(k>0 && !kt){
+                NhaCungCap ncc=new NhaCungCap();
+                ncc.nhap();
+                if(them(ncc))
+                    kt=true;
+                else{
+                    System.out.println("Ma nha cung cap da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
         }
     }
     public void xuatt(){
@@ -35,14 +55,30 @@ public class DanhSachNhaCungCap {
         xuatd();
     }
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new NhaCungCap();
-        System.out.println("Nhap thong tin nha cung cap muon them.");
-        ds[ds.length-1].nhap();
+        int k=5;
+        boolean kt=false;
+        while(k>0 && !kt){
+            NhaCungCap ncc=new NhaCungCap();
+            ncc.nhap();
+            if(them(ncc))
+                kt=true;
+            else{
+                System.out.println("Ma nha cung cap da ton tai vui long nhap lai");
+                k--;
+            } 
+        }
+        if(!kt){
+            System.out.println("Nhap qua so lan quy dinh");
+            return;
+        }
     }
-    public void them(NhaCungCap ncc){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new NhaCungCap(ncc);
+    public boolean them(NhaCungCap ncc){
+        if(kiemTraMaDuyNhat(ncc.getMaNCC())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new NhaCungCap(ncc);
+            return true;
+        }
+        return false;
     }
     public void sua(){
         System.out.println("Nhap ma nha cung cap can sua: ");
@@ -60,7 +96,7 @@ public class DanhSachNhaCungCap {
                     System.out.println("Nhap lua chon cua ban: ");
                     c=sc.nextInt();
                     sc.nextLine();
-                    if(c==2){
+                    if(c==1){
                         System.out.println("Nhap ten nha cung cap moi: ");
                         ds[i].setTenNCC(sc.nextLine());
                         kt=true;
@@ -161,7 +197,7 @@ public class DanhSachNhaCungCap {
         String ten=sc.nextLine();
         int i=0;
         for(NhaCungCap ncc:ds)
-            if(ten.contains(ncc.getTenNCC()))
+            if(ncc.getTenNCC().equals(ten))
                 i++;
         System.out.println("So luong nha cung cap co tu khoa "+ten+": "+i);
         return i;

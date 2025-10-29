@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -12,29 +10,65 @@ public class DanhSachQuyDinhPhat {
 
     public QuyDinhPhat[] getDS(){return ds;}
     Scanner sc=new Scanner(System.in);
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(QuyDinhPhat qd:ds)
+            if(ma.equals(qd.getMaPhat()))
+                return false;
+        return true;
+    }
     public void nhap(){
-        System.out.println("Nhap so luong quy dinh can nhap: ");
-        int bd=ds.length;
+        System.out.println("Nhap so luong quy dinh can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
-        ds=Arrays.copyOf(ds,ds.length+sl);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new QuyDinhPhat(); ds[i].nhap();
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin quy dinh thu "+(i+1)+":");
+            while(k>0 && !kt){
+                QuyDinhPhat qd=new QuyDinhPhat();
+                qd.nhap();
+                if(them(qd))
+                    kt=true;
+                else{
+                    System.out.println("Ma quy dinh da ton tai vui long nhap lai");
+                    k--;
+                } 
+            }
+            if(!kt){
+                System.out.println("Nhap qua so lan quy dinh");
+                return;
+            } 
         }
     }
     public int getLength(){
         return ds.length;
     }
+
     public void them(){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new QuyDinhPhat();
-        ds[ds.length-1].nhap();
-        System.out.println("Them thanh cong.");
+        int k=5;
+        boolean kt=false;
+        while(k>0 && !kt){
+            QuyDinhPhat qd=new QuyDinhPhat();
+            qd.nhap();
+            if(them(qd))
+                kt=true;
+            else{
+                System.out.println("Ma quy dinh da ton tai vui long nhap lai");
+                k--;
+            } 
+        }
+        if(!kt){
+            System.out.println("Nhap qua so lan quy dinh");
+            return;
+        } 
     }
-    public void them(QuyDinhPhat qd){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new QuyDinhPhat(qd);
-        System.out.println("Them thanh cong.");
+    public boolean them(QuyDinhPhat qd){
+        if(kiemTraMaDuyNhat(qd.getMaPhat())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new QuyDinhPhat(qd);
+            return true;
+        }
+        return false;
     }
     public int sua(){
         System.out.println("Nhap ma quy dinh phat can sua: ");
@@ -176,7 +210,7 @@ public class DanhSachQuyDinhPhat {
         String ten=sc.nextLine();
         Boolean kt=false;
         for(QuyDinhPhat p:ds)
-            if(ten.contains(p.getNoiDung())){
+            if(p.getNoiDung().contains(ten)){
                 if(!kt)xuatt();
                 p.xuat();
                 kt=true;

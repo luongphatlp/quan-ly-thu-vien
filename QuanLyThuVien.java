@@ -106,7 +106,7 @@ public class QuanLyThuVien {
                     menuNhanVien();
                     break;
                 case 4:
-                    //menudocgia();
+                    menuDocGia();
                     break;
                 case 5:
                     menuTheLoai();
@@ -219,7 +219,6 @@ public class QuanLyThuVien {
         }while(chon!=7);
         
     }
-    /*
      public void menuDocGia(){
         int chon;
         do{
@@ -284,7 +283,7 @@ public class QuanLyThuVien {
                                 dsdg.thongKeTheoGioiTinh();
                                 break;
                             case 2:
-                                dsdg.thongKeTheoTuoi();
+                                dsdg.thongKeTheoDoTuoi();
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
@@ -301,7 +300,6 @@ public class QuanLyThuVien {
         }while(chon!=7);
         
     } 
-    */
     
     public void menuTacGia(){
         int chon;

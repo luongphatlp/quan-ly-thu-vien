@@ -81,9 +81,12 @@ public class DocGia {
     }
 
     public void xuat() {
-        System.out.printf("| %-10s | %-10s | %-12s | %-9s | %-12s | %-10s |\n", madocgia, ho, ten, gioitinh, sdt,ngaysinh);
+        System.out.printf("| %-10s | %-20s | %-10s | %-9s | %-13s | %-10s |\n", madocgia, ho, ten, gioitinh, sdt,ngaysinh);
     }
 
+    @Override public String toString(){
+        return madocgia+","+ho+","+ten+","+gioitinh+","+sdt+","+ngaysinh;
+    } 
     public int tinhtuoi() {
         if (ngaysinh == null || ngaysinh.length() < 10)
         return -1;

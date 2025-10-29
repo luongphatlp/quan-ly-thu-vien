@@ -25,6 +25,12 @@ public class DanhSachChiTietPhieuNhapSach {
     }
 
     public ChiTietPhieuNhapSach[] getDS() { return ds; }
+    public boolean kiemTraMaDuyNhat(String ma){
+        for(ChiTietPhieuNhapSach ctpns:ds)
+            if(ma.equals(ctpns.getMaSach()))
+                return false;
+        return true;
+    }
     public DanhSachChiTietPhieuNhapSach traVeDanhSachChiTietPhieuNhapSachTheoMa(String ma){
         DanhSachChiTietPhieuNhapSach kq=new DanhSachChiTietPhieuNhapSach();
         for(int i=0;i<ds.length;i++){
@@ -36,32 +42,55 @@ public class DanhSachChiTietPhieuNhapSach {
         return kq;
     }
     Scanner sc=new Scanner(System.in);
-    public boolean kiemTraMaDuyNhat(String ma){
-        for(ChiTietPhieuNhapSach ctpns:ds)
-            if(ma.equals(ctpns.getMaSach()))
-                return false;
-        return true;
-    }
     public void nhap(String ma){
-        System.out.println("Nhap so luong chi tiet phieu nhap sach can them: ");
-        int k=sc.nextInt();
+        System.out.println("Nhap so luong chi tiet phieu nhap sach can nhap them: ");
+        int sl=sc.nextInt();
         sc.nextLine();
-        int bd=ds.length;
-        ds=Arrays.copyOf(ds,ds.length+k);
-        for(int i=bd;i<ds.length;i++){
-            ds[i]=new ChiTietPhieuNhapSach();
-            ds[i].nhap(ma);
+        for(int i=0;i<sl;i++){
+            int k=5;
+            boolean kt=false;
+            System.out.println("Nhap thong tin cua chi tiet phieu nhap sach thu "+(i+1)+":");
+            while(k>0 && !kt){
+                ChiTietPhieuNhapSach pns=new ChiTietPhieuNhapSach();
+                pns.nhap(ma);
+                if(them(pns))
+                    kt=true;
+                else{
+                    System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                    k--;
+                }
+            }
+            if(!kt){
+                System.out.println("Da nhap qua so lan quy dinh");
+                return;
+            }
         }
     }
-    public void them(ChiTietPhieuNhapSach p){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new ChiTietPhieuNhapSach(p);
+    public boolean them(ChiTietPhieuNhapSach p){
+        if(kiemTraMaDuyNhat(p.getMaSach())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new ChiTietPhieuNhapSach(p);
+            return true;
+        }
+        return false;
     }
     public void them(String ma){
-        ds=Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1]=new ChiTietPhieuNhapSach();
-        System.out.println("Nhap thong tin chi tiet phieu nhap sach muon them.");
-        ds[ds.length-1].nhap(ma);
+        int k=5;
+        boolean kt=false;
+        while(k>0 && !kt){
+            ChiTietPhieuNhapSach pns=new ChiTietPhieuNhapSach();
+            pns.nhap(ma);
+            if(them(pns))
+                kt=true;
+            else{
+                System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                k--;
+            }
+        }
+        if(!kt){
+            System.out.println("Da nhap qua so lan quy dinh");
+            return;
+        }
     }
     public void sua(){
         System.out.println("Nhap ma sach cua chi tiet phieu nhap sach can sua: ");

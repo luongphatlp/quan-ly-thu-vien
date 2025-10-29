@@ -64,6 +64,12 @@ public class PhieuNhapSach {
     public void xuat(){
         System.out.printf("| %-18s | %-15s | %-15s | %-15s | %-15.2f |\n",maphieunhapsach,manhanvien,manhacungcap,ngaynhap,tongtien);
     }
+    public void xuatChiTiet(){
+        dsctpns.xuat();
+    }
+    public void nhapChiTiet(){
+        dsctpns.nhap(maphieunhapsach);
+    }
     @Override public String toString(){
         return maphieunhapsach+","+manhanvien+","+manhacungcap+","+ngaynhap;
     }

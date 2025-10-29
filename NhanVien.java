@@ -63,4 +63,10 @@ public class NhanVien {
     public void xuat(){
         System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n",mnv,ho,ten,gioitinh,ngaysinh,sdt);
     }
+    public int tinhtuoi(){
+        if(ngaysinh==null || ngaysinh.length()<10) return -1;
+        int namsinh=Integer.parseInt(ngaysinh.substring(6,10));
+        int namht=LocalDate.now().getYear();
+        return namht-namsinh;
+    }
 }

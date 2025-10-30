@@ -304,8 +304,8 @@ public class DanhSachNhanVien {
                 //ds.sapxepma();
                 //ds.ghiFile();
                 ds.xuat();
-                ds.thongketheogioitinh();
-                ds.thongketheotuoi();
+                ds.thongKeTheoGioiTinh();
+                ds.thongKeTheoTuoi();
                 }
 
 }

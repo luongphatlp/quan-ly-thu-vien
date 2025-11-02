@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class PhieuMuon {
     private String maphieumuon;
-    
     private String madocgia;
     private String manhanvien;
     private String ngaylapphieu;

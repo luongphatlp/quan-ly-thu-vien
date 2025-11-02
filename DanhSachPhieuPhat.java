@@ -180,15 +180,16 @@ public class DanhSachPhieuPhat {
         try(PrintWriter w=new PrintWriter("Phieuphat.txt")){
             for(PhieuPhat pp:ds)
                 w.println(pp.toString());
-            System.out.println("Ghi file thanh cong.");
         }catch(Exception e){
             System.out.println("Loi ghi file.");
         }
     }
     public QuyDinhPhat layQuyDinhPhatTheoMa(String ma){
         for(QuyDinhPhat q: qd.getDS()){
-            if(ma.equals(q.getMaPhat()))
+            if(ma.equals(q.getMaPhat())){
                 return q;
+            }
+                
         }
         return null;
     }
@@ -242,6 +243,13 @@ public class DanhSachPhieuPhat {
     public int getSoLuong() {
         return ds.length;
     }
-    
+    public static void main(String[] argv){
+        
+        DanhSachQuyDinhPhat dspd=new DanhSachQuyDinhPhat();
+        DanhSachPhieuPhat ds=new DanhSachPhieuPhat(dspd);
+        dspd.docFile();
+        ds.docFile();
+        ds.xuat();
+    }
 }
 

@@ -187,7 +187,6 @@ public class DanhSachTacGia {
         try(PrintWriter pw = new PrintWriter(file)){
             for(TacGia tg:ds)
                 pw.println(tg.toString());
-            System.out.println("Ghi file thành công!");
         } catch (FileNotFoundException e){
             System.out.println("Không tạo được file!");
         }             

@@ -217,6 +217,13 @@ public class DanhSachChiTietPhieuMuon {
             System.out.println("So luong phieu muon duoc tao boi nhan vien co ma "+entry.getKey()+": "+entry.getValue());
         return count;
     }
+    public int soLuongSachDocGiaMuon(String ma){
+        int sl=0;
+        for(ChiTietPhieuMuon p:ds)
+            if(ma.equals(p.getMaPhieuMuon()))
+                sl+=p.getSolLuong();
+        return sl;
+    }
     public static void main(String[] args){
         DanhSachChiTietPhieuMuon ds=new DanhSachChiTietPhieuMuon();
         ds.xuat();

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class NhanVien {
@@ -27,10 +28,10 @@ public class NhanVien {
         this.sdt = nv.sdt;
     }
 
-    public String getMnv() {return mnv;}
+    public String getManhanvien() {return mnv;}
     public String getHo() {return ho;}
     public String getTen() {return ten;}
-    public String getGioiTinh() {return gioitinh;}
+    public String getGioitinh() {return gioitinh;}
     public String getNgaySinh() {return ngaysinh;}
     public String getSdt() {return sdt;}
 
@@ -66,7 +67,7 @@ public class NhanVien {
     public int tinhtuoi(){
         if(ngaysinh==null || ngaysinh.length()<10) return -1;
         int namsinh=Integer.parseInt(ngaysinh.substring(6,10));
-        int namht=LocalDate.now().getYear();
+        int namht= LocalDate.now().getYear();
         return namht-namsinh;
     }
 }

@@ -1,3 +1,10 @@
-001,001,10
-002,002,10
-003,003,12
+NCC001,Minh Long Book
+NCC002,Alpha Books
+NCC003,MCBooks
+NCC004,Nha Nam
+NCC005,Tri Viet
+NCC006,Dong A
+NCC007,Kim Dong
+NCC008,First News
+NCC009,VH Tre
+NCC010,Phuong Nam

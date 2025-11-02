@@ -17,7 +17,7 @@ public class DanhSachNhanVien {
                         ds[i]=new NhanVien(ds[i]);
                 }
         }
-        public DanhSachNhanVien(DanhSachNhanVien ds ){
+        public DanhSachNhanVien(DanhSachNhanVien other ){
                 this.n=other.n;
                 this.ds=new NhanVien[this.n];
                 for(int i=0;i<this.n;i++){
@@ -26,7 +26,7 @@ public class DanhSachNhanVien {
         }
         public boolean kiemTraMaDuyNhat(String ma){
                 for(NhanVien nv:ds)
-                        if(ma.equals(nv.getMnv()))
+                        if(ma.equals(nv.getManhanvien()))
                                 return false;
                 return true;
         }
@@ -49,7 +49,7 @@ public class DanhSachNhanVien {
                 }
         }
         public boolean them(NhanVien nv){
-                if(kiemTraMaDuyNhat(nv.getMnv())){
+                if(kiemTraMaDuyNhat(nv.getManhanvien())){
                         ds=Arrays.copyOf(ds,ds.length-1);
                         ds[ds.length-1]=new NhanVien(nv);
                         return true;
@@ -198,7 +198,7 @@ public class DanhSachNhanVien {
                 if(!kt)    
                 System.out.println("Khong tim thay tac gia co ten: "+ten);
         }
-        public int[] thongketheogioitinh() {
+        public int[] thongKeTheoGioiTinh() {
                 int demnam = 0, demnu = 0;
                 for (int i = 0; i < n; i++) {
                         if (ds[i].getGioitinh().equalsIgnoreCase("nam"))
@@ -210,7 +210,7 @@ public class DanhSachNhanVien {
                 System.out.println("So luong nhan vien nu: " + demnu);
                 return new int[] { demnam, demnu };
         }
-        public void thongketheotuoi() {
+        public void thongKeTheoTuoi() {
                 int dem1 = 0, dem2 = 0, dem3 = 0;
                 for (int i = 0; i < n; i++) {
                         int tuoi = ds[i].tinhtuoi();
@@ -231,7 +231,7 @@ public class DanhSachNhanVien {
                 String ma = sc.nextLine();
                 boolean found = false;
                 for (int i = 0; i < n; i++) {
-                        if (ds[i].getMnv().equalsIgnoreCase(ma)) {
+                        if (ds[i].getManhanvien().equalsIgnoreCase(ma)) {
                                 for (int j = i; j < n - 1; j++) {
                                         ds[j] = ds[j + 1];
                                 }
@@ -252,7 +252,6 @@ public class DanhSachNhanVien {
                         for(NhanVien nv:ds){
                                 pw.println(nv.toString());
                         }
-                System.out.println("Da ghi vao file Nhanvien.txt");
                 } catch(FileNotFoundException e){
                         System.out.println("Loi ghi file!");
 
@@ -279,17 +278,15 @@ public class DanhSachNhanVien {
                                         n++;
                                 }
                         }
-                        System.out.println("Da doc file Nhanvien.txt");
                 }catch(FileNotFoundException e){
                         System.out.println("Loi doc file!");
                 }
         }
-
-        public void sapxepma(){
-                Arrays.sort(ds,0,n,Comparator.comparing(NhanVien::getMnv));
-        }
-        public void sapxepten(){
-                Arrays.sort(ds,0,n,Comparator.comparing(NhanVien::getTen));
+        public NhanVien traVeNhanVienTheoMa(String ma){
+                for(NhanVien nv:ds)
+                        if(ma.equals(nv.getManhanvien()))
+                                return nv;
+                return null;
         }
         public static void main(String[] args) {
                 DanhSachNhanVien ds=new DanhSachNhanVien();
@@ -303,9 +300,6 @@ public class DanhSachNhanVien {
                 //ds.sapxepten();
                 //ds.sapxepma();
                 //ds.ghiFile();
-                ds.xuat();
-                ds.thongketheogioitinh();
-                ds.thongketheotuoi();
                 }
 
 }

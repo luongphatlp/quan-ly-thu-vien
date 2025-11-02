@@ -178,7 +178,6 @@ public class DanhSachDocGia {
         try(PrintWriter w=new PrintWriter("Docgia.txt")){
             for(DocGia dg:ds)
                 w.println(dg.toString());
-            System.out.println("Ghi file thanh cong.");
         }catch(Exception e){
             System.out.println("Loi ghi file.");
         }
@@ -240,5 +239,11 @@ public class DanhSachDocGia {
         System.out.println("So luong doc gia ngay 20 tuoi: "+ngay20);
         System.out.println("So luong doc gia duoi 20 tuoi: "+duoi20);
         return new int[]{tren20,ngay20,duoi20};
+    }
+    public DocGia traVeDocGiaTheoMa(String ma){
+        for(DocGia dg:ds)
+            if(ma.equals(dg.getMaDocGia()))
+                return dg;
+        return null;
     }
 }

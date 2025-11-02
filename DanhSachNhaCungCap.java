@@ -154,7 +154,6 @@ public class DanhSachNhaCungCap {
         try(PrintWriter w=new PrintWriter("Nhacungcap.txt")){
             for(NhaCungCap ncc:ds)
                 w.println(ncc.toString());
-            System.out.println("Ghi file thanh cong.");
         }catch(Exception e){
             System.out.println("Loi ghi file.");
         }

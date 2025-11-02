@@ -145,7 +145,6 @@ public class DanhSachNhaXuatBan {
         try(PrintWriter w=new PrintWriter("Nhaxuatban.txt")){
             for(NhaXuatBan nxb:ds)
                 w.println(nxb.toString());
-            System.out.println("Ghi file thanh cong.");
         }catch(Exception e){
             System.out.println("Loi ghi file.");
         }

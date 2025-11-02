@@ -102,7 +102,7 @@ public class DanhSachPhieuNhapSach {
                 if(parts.length==4){
                     PhieuNhapSach phieu=new PhieuNhapSach(parts[0],parts[1],parts[2],parts[3]);
                     phieu.getDSCTPNS().docFile(parts[0]);
-                    phieu.setTongTien(phieu.tinhTongTien());
+                    phieu.tinhTongTien();
                     them(phieu);
                 }
             }
@@ -208,14 +208,6 @@ public class DanhSachPhieuNhapSach {
         else   
             System.out.println("Khong tim thay tac gia co ten: "+ten);
     }
-    public void thongKeTheoMaNhanVien(){
-        Map<String,Integer> count=new HashMap<>();
-        for(PhieuNhapSach pns:ds)
-            count.put(pns.getMaNhanVien(),count.getOrDefault(pns.getMaNhanVien(),0)+1);
-        for(Map.Entry<String,Integer> entry :count.entrySet())
-            System.out.println("So luong phieu nhap sach cua nhan vien co ma "+entry.getKey()+": "+entry.getValue());
-        
-    }
     public void thongKeTheoNhaCungCap(){
         Map<String,Integer> count=new HashMap<>();
         for(PhieuNhapSach pns:ds)
@@ -229,9 +221,10 @@ public class DanhSachPhieuNhapSach {
                 return p;
         return null;
     }
+    public PhieuNhapSach[] getDS(){return ds;}
     public static void main(String[] args) {
         DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach();
-        dspns.nhap();
-        dspns.ghiFile();
+        dspns.docFile();
+        dspns.xuat();
     }
 }

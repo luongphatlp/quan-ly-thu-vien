@@ -193,7 +193,7 @@ public class DanhSachPhieuMuon {
             System.out.println("Loi doc file: ");
         }
     }
-    public void ghifile(){
+    public void ghiFile(){
         try(PrintWriter pw=new PrintWriter("Phieumuon.txt")){
             for(PhieuMuon pm:ds){
                 pw.println(pm.toString());
@@ -234,12 +234,13 @@ public class DanhSachPhieuMuon {
         if(kt) xuatd();
         else System.out.println("Khong tim thay phieu muon nao!");
     }
-    public void thongKeTheoDocGia(){
+    public Map<String,Integer> thongKeTheoDocGia(){
         Map<String,Integer> count=new HashMap<>();
-        for(PhieuMuon pm:ds)
-            count.put(pm.getMaDocGia(),count.getOrDefault(pm.getMaDocGia(),0)+1);
-        for(Map.Entry<String,Integer> entry :count.entrySet())
-            System.out.println("So luong phieu muon cua doc gia co ma "+entry.getKey()+": "+entry.getValue());
+        for(PhieuMuon p:ds){
+            int sl=p.getDS().soLuongSachDocGiaMuon(p.getMaPhieuMuon());
+            count.put(p.getMaDocGia(),count.getOrDefault(p.getMaDocGia(),0)+sl);
+        }
+        return count;
     }
     public void thongKeTheoMaNhanVien(){
         Map<String,Integer> count=new HashMap<>();

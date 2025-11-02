@@ -1,5 +1,10 @@
-GK,100,Ngu van 10 tap 1,10,12,13,2020,Ngu van,10
-GK,101,Ngu van 10 tap 2,10,12,13,2020,Ngu van,10
-TK,200,Triet hoc Mac-Lenin,20,20,13,2018,khoa hoc xa hoi,khong chuyen
-TK,201,OOP,20,20,13,2019,khoa hoc tu nhien,chuyen
-TK,333,Cau truc roi rac,104,13,12,2022,khoa hoc tu nhien,chuyen
+GK,G001,Toan 10,A01,DG001,NXB001,2021,Toan,10
+GK,G002,Ly 10,A02,DG002,NXB002,2020,Ly,10
+GK,G003,Hoa 10,A03,DG003,NXB003,2021,Hoa,10
+GK,G004,Sinh 10,A04,DG004,NXB004,2019,Sinh,10
+GK,G005,Van 10,A05,DG005,NXB005,2022,Van,10
+TK,S001,Lich Su Co Dai,B01,DG006,NXB006,2020,Lich Su,Hoc Sinh
+TK,S002,Dia Ly Viet Nam,B02,DG007,NXB007,2019,Dia Ly,Sinh Vien
+TK,S003,Vat Ly Ung Dung,B03,DG008,NXB008,2021,Vat Ly,Hoc Sinh
+TK,S004,Hoa Huu Co,B03,DG009,NXB009,2022,Hoa,Giao Vien
+TK,S005,Sinh Hoc Ung Dung,B04,DG010,NXB010,2020,Sinh,Giang Vien

@@ -137,7 +137,7 @@ public class DanhSachTheLoai {
             while(f.hasNextLine()){
                 String line=f.nextLine();
                 String[] parts=line.split(",");
-                if(parts.length==5){
+                if(parts.length==3){
                     ds=Arrays.copyOf(ds,ds.length+1);
                     ds[ds.length-1]=new TheLoai(parts[0],parts[1],parts[2]);
                 }    

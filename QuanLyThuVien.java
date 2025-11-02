@@ -1,6 +1,6 @@
 
-import java.util.Scanner;
 import java.time.LocalDate;
+import java.util.*;
 public class QuanLyThuVien {
     private DanhSachSach dss=new DanhSachSach();
     private DanhSachTacGia dstg=new DanhSachTacGia();
@@ -69,14 +69,27 @@ public class QuanLyThuVien {
         dss.docFile();
         dstg.docFile();
         dstl.docFile();
-        dspns.docFile();
-        dsphieumuon.docFile();
-        //dsdg.docFile();
+        dsdg.docFile();
         dsnv.docFile();
         dsncc.docFile();
-        dsphieuphat.docFile();
         dsquydinhphat.docFile();
+        dspns.docFile();
+        dsphieuphat.docFile();
+        dsphieumuon.docFile();
         dsnxb.docFile();
+    }
+    public void ghiTatCaFile(){
+        dss.ghiFile();
+        dstg.ghiFile();
+        dstl.ghiFile();
+        dspns.ghiFile();
+        dsphieumuon.ghiFile();
+        dsdg.ghiFile();
+        dsnv.ghiFile();
+        dsncc.ghiFile();
+        dsphieuphat.ghiFile();
+        dsquydinhphat.ghiFile();
+        dsnxb.ghiFile();
     }
     public void menu(){
         int chon;
@@ -976,8 +989,10 @@ public class QuanLyThuVien {
             if(dsphieuphat.getDS().length==0 )
                 maphieuphatmoi="1";
             else{
-                int parts1 =Integer.parseInt(dsphieuphat.getDS()[dsphieuphat.getSoLuong()-1].getMaPhieuPhat())+1;
-                maphieuphatmoi=Integer.toString(parts1);
+                String last =dsphieuphat.getDS()[dsphieuphat.getSoLuong()-1].getMaPhieuPhat();
+                String ma=last.substring(2);
+                int so= Integer.parseInt(ma) + 1;
+                maphieuphatmoi="PP" + Integer.toString(so);
             }
             PhieuPhat pp =new PhieuPhat(maphieuphatmoi,pm.getMaDocGia(),pm.getMaPhieuMuon(),"1",100);//chua thong nhat ma phat va tien phat nen de so 1 va 100
             dsphieuphat.them(pp);
@@ -1049,7 +1064,7 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dsphieumuon.thongKeTheoDocGia();
+                                thongKeSoLuongSachDocGiaMuon();
                                 break;
                             case 2:
                                 dsphieumuon.thongKeTheoMaNhanVien();
@@ -1065,7 +1080,8 @@ public class QuanLyThuVien {
                     System.out.println("Nhap ma phieu muon can quan ly chi tiet: ");
                     String maPM = sc.nextLine();
                     PhieuMuon pm = dsphieumuon.getPhieuByMa(maPM);
-                    if(pm!=null) menuChiTietPhieuMuon(pm);;
+                    if(pm!=null) menuChiTietPhieuMuon(pm);
+                    else System.out.println("Khong tim thay phieu muon co ma: "+maPM);
                     break;
                 case 8:
                     System.out.println("Quay lai menu chinh");
@@ -1138,7 +1154,7 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                dspns.thongKeTheoMaNhanVien();
+                                thongKeTheoMaNhanVien();
                                 break;
                             case 2:
                                 dspns.thongKeTheoNhaCungCap();
@@ -1231,6 +1247,7 @@ public class QuanLyThuVien {
                         switch(chon){
                             case 1:
                                 p.getDSCTPNS().thongKeTheoMaSach();
+                                
                                 break;
                             case 2:
                                 p.getDSCTPNS().thongKeSoLuong();
@@ -1250,9 +1267,43 @@ public class QuanLyThuVien {
             }
         }while(chon!=7);
     }
+    public void thongKeSoLuongSachDocGiaMuon(){
+        Map<String,Integer> count=new HashMap<>();
+        count=dsphieumuon.thongKeTheoDocGia();
+        boolean kt=false;
+        for(Map.Entry<String,Integer> t: count.entrySet()){
+            DocGia dg=dsdg.traVeDocGiaTheoMa(t.getKey());
+            if(dg==null) continue;
+            if(!kt){
+                System.out.println("+------------+----------------------+------------+-----------------------+");
+                System.out.printf("| %-10s | %-20s | %-10s | %-21s |\n","Ma doc gia","Ho","Ten","So luong sach da muon");
+                System.out.println("|------------|----------------------|------------|-----------------------|");
+                kt=true;
+            } 
+            System.out.printf("| %-10s | %-20s | %-10s | %-21s |\n",t.getKey(),dg.getHo(),dg.getTen(),t.getValue());
+        }
+        if(kt) System.out.println("+------------+----------------------+------------+-----------------------+");
+    }
+    public void thongKeTheoMaNhanVien(){
+        Map<String,Double> count=new HashMap<>();
+        for(PhieuNhapSach pns:dspns.getDS())
+            count.put(pns.getMaNhanVien(),count.getOrDefault(pns.getMaNhanVien(),0.0)+pns.getTongTien());
+            boolean kt=false;
+        for(Map.Entry<String,Double> entry :count.entrySet()){
+            NhanVien nv=dsnv.traVeNhanVienTheoMa(entry.getKey());
+            if(!kt){
+                System.out.println("+---------------+----------------------+------------+-----------+");
+                System.out.printf("| %-13s | %-20s | %-10s | %-9s |\n","Ma nhan vien","Ho","Ten","Tong tien");
+                System.out.println("|---------------|----------------------|------------|-----------|");
+            }
+            kt=true;
+            System.out.printf("| %-13s | %-20s | %-10s | %-9s |",nv.getManhanvien(),nv.getHo(),nv.getTen(),entry.getValue());
+        }
+    }
     public static void main(String[] args){
         QuanLyThuVien ql =new QuanLyThuVien();
         ql.docTatCaFile();
         ql.menu();
+        ql.ghiTatCaFile();
     }
 }

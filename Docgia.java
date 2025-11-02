@@ -29,7 +29,7 @@ public class DocGia {
         this.ngaysinh = dg.ngaysinh;
         this.sdt = dg.sdt;
     }
-    public String getMaDocGia() {
+    public String getMadocgia() {
         return madocgia;
     }
     public String getHo() {
@@ -38,16 +38,16 @@ public class DocGia {
     public String getTen() {
         return ten;
     }
-    public String getGioiTinh() {
+    public String getGioitinh() {
         return gioitinh;
     }
-    public String getNgaySinh() {
+    public String getNgaysinh() {
         return ngaysinh;
     }
-    public String getSDT() {
+    public String getSdt() {
         return sdt;
     }
-    public void setMaDocGia(String madocgia) {
+    public void setMadocgia(String madocgia) {
         this.madocgia = madocgia;
     }
     public void setHo(String ho) {
@@ -56,32 +56,32 @@ public class DocGia {
     public void setTen(String ten) {
         this.ten = ten;
     }
-    public void setGioiTinh(String gioitinh) {
+    public void setGioitinh(String gioitinh) {
         this.gioitinh = gioitinh;
     }
-    public void setSDT(String sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    public void setNgaySinh(String ngaysinh) {
+    public void setNgaysinh(String ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
     public void nhap() {
-        System.out.println("Nhap ma doc gia: ");
+        System.out.print("Nhap ma doc gia: ");
         madocgia = sc.nextLine();
-        System.out.println("Nhap ho: ");
+        System.out.print("Nhap ho: ");
         ho = sc.nextLine();
-        System.out.println("Nhap ten: ");
+        System.out.print("Nhap ten: ");
         ten = sc.nextLine();
-        System.out.println("Nhap gioi tinh: ");
+        System.out.print("Nhap gioi tinh: ");
         gioitinh = sc.nextLine();
-        System.out.println("Nhap sdt: ");
+        System.out.print("Nhap sdt: ");
         sdt = sc.nextLine();
-        System.out.println("Nhap ngay sinh: ");
+        System.out.print("Nhap ngay sinh: ");
         ngaysinh = sc.nextLine();
     }
 
     public void xuat() {
-        System.out.printf("| %-10s | %-20s | %-10s | %-9s | %-13s | %-10s |\n", madocgia, ho, ten, gioitinh, sdt,ngaysinh);
+        System.out.printf("| %-10s | %-10s | %-20s | %-10s | %-13s | %-12s |\n", madocgia, ho, ten, gioitinh, sdt,ngaysinh);
     }
 
     @Override public String toString(){

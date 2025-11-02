@@ -971,7 +971,7 @@ public class QuanLyThuVien {
                     }while(chon!=3);
                     break;
                 case 7:
-                    System.out.println("Quay lai menu chinh");
+                    System.out.println("Quay lai menu Phieu Muon");
                     break;
                 default:
                     System.out.println("Nhap sai vui long nhap lai");
@@ -1260,7 +1260,7 @@ public class QuanLyThuVien {
                     }while(chon!=3);
                     break;
                 case 7:
-                    System.out.println("Quay lai menu chinh");
+                    System.out.println("Quay lai menu Phieu Nhap Sach");
                     break;
                 default:
                     System.out.println("Nhap sai vui long nhap lai");
@@ -1297,13 +1297,13 @@ public class QuanLyThuVien {
                 System.out.println("|---------------|----------------------|------------|-----------|");
             }
             kt=true;
-            System.out.printf("| %-13s | %-20s | %-10s | %-9s |",nv.getManhanvien(),nv.getHo(),nv.getTen(),entry.getValue());
+            System.out.printf("| %-13s | %-20s | %-10s | %-9s |\n",nv.getManhanvien(),nv.getHo(),nv.getTen(),entry.getValue());
         }
     }
     public static void main(String[] args){
         QuanLyThuVien ql =new QuanLyThuVien();
         ql.docTatCaFile();
         ql.menu();
-        ql.ghiTatCaFile();
+        //ql.ghiTatCaFile();
     }
 }

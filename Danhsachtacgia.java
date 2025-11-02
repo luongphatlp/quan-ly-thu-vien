@@ -80,7 +80,11 @@ public class DanhSachTacGia {
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getMaTacGia())){        
                 while(sl>0){
-                    System.out.println("Nhap lua chon sua 1.ho ten 2.gioi tinh 3.ngay sinh");
+                    System.out.println("Ban muon chon loai sach gi?");
+                    System.out.println("1. ho ten");
+                    System.out.println("2. gioi tinh");
+                    System.out.println("3. ngay sinh");
+                    System.out.println("Nhap lua chon cua ban: ");
                     c=sc.nextInt();
                     sc.nextLine();
                     if(c==1){

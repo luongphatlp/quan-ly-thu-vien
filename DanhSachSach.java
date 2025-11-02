@@ -21,7 +21,10 @@ public class DanhSachSach {
         Sach s=null;
         boolean kt=false;
         while(k>0 && !kt){
-            System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
+            System.out.println("Ban muon chon loai sach gi?");
+            System.out.println("1. Sach giao khoa");
+            System.out.println("2. Sach tham khao");
+            System.out.println("Nhap lua chon cua ban: ");
             int c=sc.nextInt();
             sc.nextLine();
             if(c==1){
@@ -163,7 +166,16 @@ public class DanhSachSach {
     }
     private void suaGiaoKhoa(SachGiaoKhoa s){
         int c=0,sl=5;
-        System.out.println("Nhap lua chon muon sua (1.ten sach 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.mon 7.lop): ");
+        System.out.println("Ban muon chon loai sach gi?");
+        System.out.println("1. ten sach");
+        System.out.println("2. ma the loai");
+        System.out.println("2. ma the loai");
+        System.out.println("3. ma tac gia");
+        System.out.println("4. ma nha xuat ban");
+        System.out.println("5. nam xuat ban");
+        System.out.println("6. mon");
+        System.out.println("7. lop");
+        System.out.println("Nhap lua chon cua ban: ");
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();
@@ -203,7 +215,16 @@ public class DanhSachSach {
     }
     private void suaThamKhao(SachThamKhao s){
         int c=0,sl=5;
-        System.out.println("Nhap lua chon muon sua (1.ten sach 2.ma the loai 3.ma tac gia 4.ma nha xuat ban 5.nam xuat ban 6.linh vuc 7.loai doc gia): ");
+        System.out.println("Ban muon chon loai sach gi?");
+        System.out.println("1. ten sach");
+        System.out.println("2. ma the loai");
+        System.out.println("2. ma the loai");
+        System.out.println("3. ma tac gia");
+        System.out.println("4. ma nha xuat ban");
+        System.out.println("5. nam xuat ban");
+        System.out.println("6. linh vuc");
+        System.out.println("7. loai doc gia");
+        System.out.println("Nhap lua chon cua ban: ");
         while(sl>=0){
             c=sc.nextInt();
             sc.nextLine();

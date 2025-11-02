@@ -80,7 +80,10 @@ public class DanhSachQuyDinhPhat {
         boolean kt=false;
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getMaPhat())){
-                System.out.println("Nhap lua chon(1.Noi dung 2.Tien phat): ");
+                System.out.println("Ban muon sua thong tin gi?");
+                System.out.println("1. Noi dung");
+                System.out.println("2. Tien phat");
+                System.out.println("Nhap lua chon cua ban: ");
                 while(sl>0){
                     c=sc.nextInt();
                     sc.nextLine();

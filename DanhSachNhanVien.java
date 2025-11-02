@@ -1,9 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Comparator;
 import java.io.*;
-import java.time.LocalDate;
-import java.time.Period;
 public class DanhSachNhanVien {
         private int n;
         NhanVien[] ds=new NhanVien[0];
@@ -113,6 +110,7 @@ public class DanhSachNhanVien {
                                 ds[i].xuat();
                                 found = true;
                                 while (true) {
+                                        System.out.println("Ban muon sua thong tin gi?");
                                         System.out.println("1.Sua ho");
                                         System.out.println("2.Sua ten");
                                         System.out.println("3.Sua gioi tinh");

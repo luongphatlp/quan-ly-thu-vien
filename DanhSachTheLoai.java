@@ -93,7 +93,10 @@ public class DanhSachTheLoai {
         boolean kt=false;
         for(int i=0;i<ds.length;i++){
             if(ma.equals(ds[i].getMaTheLoai())){
-                System.out.println("Nhap lua chon muon sua(1.ten the loai 2.mo ta)");
+                System.out.println("Ban muon chon loai sach gi?");
+                    System.out.println("1. ten the loai");
+                    System.out.println("2. mo ta");
+                    System.out.println("Nhap lua chon cua ban: ");
                 while(sl>0){
                     c=sc.nextInt();
                     sc.nextLine();

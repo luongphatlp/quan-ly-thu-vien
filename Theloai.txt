@@ -1,10 +1,10 @@
 TL001,Toan Hoc Co Ban,Chuong trinh toan hoc tu co ban den nang cao
-TL002,Ly Hoc,Chuong trinh ly hoc tu co ban den nang cao
-TL003,Hoa Hoc,Chuong trinh hoa hoc tu co ban den nang cao
-TL004,Sinh Hoc,Chuong trinh sinh hoc tu co ban den nang cao
-TL005,Dia Ly,Chuong trinh dia ly tu co ban den nang cao
-TL006,Lich Su,Chuong trinh lich su tu co ban den nang cao
-TL007,Van Hoc,Chuong trinh van hoc tu co ban den nang cao
-TL008,Nghe Thuat,Chuong trinh nghe thuat tu co ban den nang cao
-TL009,CNTT,Chuong trinh cong nghe thong tin tu co ban den nang cao
-TL010,Tieng Anh,Chuong trinh tieng anh tu co ban den nang cao
+TL002,Ly Hoc Co Ban,Chuong trinh ly hoc tu co ban den nang cao
+TL003,Hoa Hoc Nang Cao,Chuong trinh hoa hoc tu co ban den nang cao
+TL004,Sinh Hoc Ung Dung,Chuong trinh sinh hoc tu co ban den nang cao
+TL005,Dia Ly Tu Nhien,Chuong trinh dia ly tu co ban den nang cao
+TL006,Lich Su The Gioi,Chuong trinh lich su tu co ban den nang cao
+TL007,Van Hoc Viet Nam,Chuong trinh van hoc tu co ban den nang cao
+TL008,Nghe Thuat Tong Hop,Chuong trinh nghe thuat tu co ban den nang cao
+TL009,Cong Nghe Thong Tin,Chuong trinh cong nghe thong tin tu co ban den nang cao
+TL010,Tieng Anh Co Ban,Chuong trinh tieng anh tu co ban den nang cao

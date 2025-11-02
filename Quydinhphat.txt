@@ -1,7 +1,7 @@
-QD01,Tra sach tre han 1-7 ngay,10000
-QD02,Tra sach tre han 8-14 ngay,20000
-QD03,Tra sach tre han tren 14 ngay,50000
-QD04,Su dung the thu vien cua nguoi khac,30000
-QD05,Gay mat trat tu trong thu vien,20000
-QD06,Mang thuc an co mui vao khu vuc doc sach,15000
-QD07,Lam mat the thu vien (phi lam lai),25000
+QD001,Tra sach tre han 1-7 ngay,10000
+QD002,Tra sach tre han 8-14 ngay,20000
+QD003,Tra sach tre han tren 14 ngay,50000
+QD004,Su dung the thu vien cua nguoi khac,30000
+QD005,Gay mat trat tu trong thu vien,20000
+QD006,Mang thuc an co mui vao khu vuc doc sach,15000
+QD007,Lam mat the thu vien (phi lam lai),25000

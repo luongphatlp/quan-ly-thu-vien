@@ -196,7 +196,7 @@ public class DanhSachPhieuPhat {
     public QuyDinhPhat layQuyDinhPhatTheoChiSo(int i){
         return qd.getDS()[i];
     }
-    //quan trong!! câp nhap khi quy dinh thay doi
+    
     public void timKiemTheoMaPhieuPhat(){
         System.out.println("Nhap ma phieu phat muon tim: ");
         String ma=sc.nextLine();

@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Scanner;
 
-public class TacGia implements tuoi {
+public class TacGia implements Nguoi {
     private String matacgia;
     private String ho;
     private String ten;
@@ -42,7 +42,7 @@ public class TacGia implements tuoi {
     public void setNgaySinh(String ngaysinh){this.ngaysinh=ngaysinh;}
 
     Scanner sc= new Scanner(System.in);
-    public void nhap(){
+    @Override public void nhap(){
         System.out.println("Nhap ma tac gia: ");
         matacgia=sc.nextLine();
         System.out.println("Nhap ho: ");
@@ -57,7 +57,7 @@ public class TacGia implements tuoi {
     @Override public String toString(){
         return matacgia+","+ho+","+ten+","+gioitinh+","+ngaysinh;
     }
-    public void xuat(){
+    @Override public void xuat(){
         System.out.printf("| %-10s | %-15s | %-10s | %-9s | %-12s |\n",matacgia, ho, ten, gioitinh, ngaysinh);
     }
 }

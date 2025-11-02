@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class TheLoai{
+public class TheLoai extends DanhMuc{
     private String matheloai;
     private String tentheloai;
     private String mota;
@@ -22,7 +22,7 @@ public class TheLoai{
     public void setTenTheLoai(String t){this.tentheloai=t;}
     public void setMota(String mt){this.mota=mt;}
     Scanner sc=new Scanner(System.in);
-    public void nhap(){
+    @Override public void nhap(){
         System.out.println("Nhap ma the loai: ");
         matheloai=sc.nextLine();
         System.out.println("Nhap ten the loai: ");
@@ -33,7 +33,7 @@ public class TheLoai{
     @Override public String toString() {
         return matheloai+","+tentheloai+","+mota;
     }
-    public void xuat(){
+    @Override public void xuat(){
         System.out.printf("| %-12s | %-25s | %-50 |",matheloai,tentheloai,mota);
     }
 }

@@ -40,12 +40,12 @@ public class DanhSachDocGia {
         }
     }
     public void xuatt(){
-        System.out.println("+------------+----------------------+------------+-----------+---------------+------------+");
-        System.out.printf("| %-10s | %-20s | %-10s | %-9s | %-13s | %-10s |\n","Ma doc gia","Ho","Ten","Gioi tinh","So dien thoai","Ngay sinh");
-        System.out.println("|------------|----------------------|------------|-----------|---------------|------------|");
+        System.out.println("+------------+----------------------+------------+-----------+------------+------------+");
+        System.out.printf("| %-10s | %-20s | %-10s | %-9s | %-10s | %-10s |\n","Ma doc gia","Ho","Ten","Gioi tinh","Ngay sinh","SDT");
+        System.out.println("|------------|----------------------|------------|-----------|------------|------------|");
     }
     public void xuatd(){
-        System.out.println("+------------+----------------------+------------+-----------+---------------+------------+");
+        System.out.println("+------------+----------------------+------------+-----------+------------+------------+");
     }
     public void xuat(){
         xuatt();
@@ -203,13 +203,14 @@ public class DanhSachDocGia {
         timKiemTheoTen(ma);
     }
     public void timKiemTheoTen(String ten){
+        boolean kt=false;
         for(DocGia dg:ds)
             if(dg.getTen().contains(ten)){
-                xuatt();
+                if(!kt)xuatt();
                 dg.xuat();
-                xuatd();
-                return;
+                kt=true;
             }
+        if(kt) xuatd();
         System.out.println("Khong tim thay doc gia co ten: "+ten);
     }
     public int[] thongKeTheoGioiTinh(){
@@ -223,7 +224,7 @@ public class DanhSachDocGia {
         return new int[]{nam,nu};
     }
     public int tinhTuoi(DocGia dg){
-        LocalDate date1=LocalDate.parse(dg.getGioiTinh());
+        LocalDate date1=LocalDate.parse(dg.getNgaySinh());
         LocalDate date2=LocalDate.now();
         Period tuoi=Period.between(date1, date2);
         return tuoi.getYears();
@@ -245,5 +246,11 @@ public class DanhSachDocGia {
             if(ma.equals(dg.getMaDocGia()))
                 return dg;
         return null;
+    }
+    public static void main(String[] arg){
+        DanhSachDocGia ds=new DanhSachDocGia();
+        ds.docFile();
+        ds.xuat();
+        ds.thongKeTheoDoTuoi();
     }
 }

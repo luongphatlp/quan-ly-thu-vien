@@ -159,21 +159,21 @@ public class DanhSachNhaXuatBan {
                 xuatd();
                 return;
             }
-        System.out.println("Khong tim thay tac gia co ma: "+ma);       
+        System.out.println("Khong tim thay nha xuat ban co ma: "+ma);       
     }
     public void timKiemTheoTen(){
         System.out.println("Nhap ten nha xuat ban muon tim: ");
         String ten=sc.nextLine();
         Boolean kt=false;
         for(NhaXuatBan nxb:ds)
-            if(ten.contains(nxb.getTenNXB())){
+            if(nxb.getTenNXB().contains(ten)){
                 if(!kt)xuatt();
                 nxb.xuat();
                 kt=true;
             }
         if(kt)xuatd();
         if(!kt)    
-            System.out.println("Khong tim thay tac gia co ten: "+ten);
+            System.out.println("Khong tim thay nha xuat ban co ten: "+ten);
     }
     public int thongKeTongSoNhaXuatBan(){
         System.out.println("Tong so nha xuat ban hien co: "+ds.length);
@@ -184,9 +184,15 @@ public class DanhSachNhaXuatBan {
         String ten=sc.nextLine();
         int i=0;
         for(NhaXuatBan tl:ds)
-            if(ten.contains(tl.getTenNXB()))
+            if(tl.getTenNXB().contains(ten))
                 i++;
         System.out.println("So nha xuat ban co tu khoa "+ten+": "+i);
         return i;
+    }
+    public static void main(String[] args) {
+        DanhSachNhaXuatBan ds=new DanhSachNhaXuatBan();
+        ds.docFile();
+        ds.xuat();
+        ds.nhap();
     }
 }

@@ -84,7 +84,10 @@ public class DanhSachSach {
                 s.nhap();
                 if(them(s))
                     kt=true;
-                else k--;
+                else{
+                    k--;
+                    System.out.println("Ma sach da ton tai vui long nhap lai");
+                } 
             }
             if(!kt){
                 System.out.println("Nhap qua so lan quy dinh");
@@ -314,7 +317,7 @@ public class DanhSachSach {
         String ten=sc.nextLine();
         boolean kt=false;
         for(int i=0;i<ds.length;i++)
-            if(ten.equals(ds[i].getTenSach())){
+            if(ds[i].getTenSach().contains(ten)){
                 if(!kt) xuatt();
                 ds[i].xuat();
                 kt=true;

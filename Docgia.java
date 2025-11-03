@@ -29,7 +29,7 @@ public class DocGia {
         this.ngaysinh = dg.ngaysinh;
         this.sdt = dg.sdt;
     }
-    public String getMadocgia() {
+    public String getMaDocGia() {
         return madocgia;
     }
     public String getHo() {
@@ -38,16 +38,16 @@ public class DocGia {
     public String getTen() {
         return ten;
     }
-    public String getGioitinh() {
+    public String getGioiTinh() {
         return gioitinh;
     }
-    public String getNgaysinh() {
+    public String getNgaySinh() {
         return ngaysinh;
     }
-    public String getSdt() {
+    public String getSDT() {
         return sdt;
     }
-    public void setMadocgia(String madocgia) {
+    public void setMaDocGia(String madocgia) {
         this.madocgia = madocgia;
     }
     public void setHo(String ho) {
@@ -56,13 +56,13 @@ public class DocGia {
     public void setTen(String ten) {
         this.ten = ten;
     }
-    public void setGioitinh(String gioitinh) {
+    public void setGioiTinh(String gioitinh) {
         this.gioitinh = gioitinh;
     }
-    public void setSdt(String sdt) {
+    public void setSDT(String sdt) {
         this.sdt = sdt;
     }
-    public void setNgaysinh(String ngaysinh) {
+    public void setNgaySinh(String ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
     public void nhap() {
@@ -81,16 +81,16 @@ public class DocGia {
     }
 
     public void xuat() {
-        System.out.printf("| %-10s | %-10s | %-20s | %-10s | %-13s | %-12s |\n", madocgia, ho, ten, gioitinh, sdt,ngaysinh);
+        System.out.printf("| %-10s | %-20s | %-10s | %-9s | %-10s | %-10s |\n", madocgia, ho, ten, gioitinh, ngaysinh,sdt);
     }
 
     @Override public String toString(){
-        return madocgia+","+ho+","+ten+","+gioitinh+","+sdt+","+ngaysinh;
+        return madocgia+","+ho+","+ten+","+gioitinh+","+ngaysinh+","+sdt;
     } 
     public int tinhtuoi() {
         if (ngaysinh == null || ngaysinh.length() < 10)
         return -1;
-        int namsinh = Integer.parseInt(ngaysinh.substring(6, 10));
+        int namsinh = Integer.parseInt(ngaysinh.substring(0, 4));
         int namht = LocalDate.now().getYear();
         return namht-namsinh;
     }

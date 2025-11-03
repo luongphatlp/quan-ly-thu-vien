@@ -224,12 +224,9 @@ public class DanhSachChiTietPhieuNhapSach {
         if(kt)    xuatd();
         else System.out.println("Khong tim thay chi tiet phieu nhap co so luong: "+sl);
     }
-    public void thongKeTheoMaSach(){
-        Map<String,Integer> count=new HashMap<>();
-        for(ChiTietPhieuNhapSach pns:ds)
-            count.put(pns.getMaSach(),count.getOrDefault(pns.getMaSach(),0)+1);
-        for(Map.Entry<String,Integer> entry :count.entrySet())
-            System.out.println("So luong chi tiet phieu nhap sach cua sach co ma "+entry.getKey()+": "+entry.getValue());
+    public int thongKeSoPhieu(){
+        System.out.println("Tong so phieu chi tiet: "+ds.length);
+        return ds.length;
     }
     public int thongKeSoLuong(){
         System.out.println("So luong chi tiet phieu nhap: "+ds.length);

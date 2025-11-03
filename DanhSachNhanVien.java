@@ -33,7 +33,7 @@ public class DanhSachNhanVien {
                 while(k>0 && !kt){
                         NhanVien nv=new NhanVien();
                         nv.nhap();
-                        if(them(nv))
+                        if(them(nv))    
                                 kt=true;
                         else{
                                 System.out.println("Ma nhan vien da ton tai vui long nhap lai.");
@@ -47,7 +47,7 @@ public class DanhSachNhanVien {
         }
         public boolean them(NhanVien nv){
                 if(kiemTraMaDuyNhat(nv.getManhanvien())){
-                        ds=Arrays.copyOf(ds,ds.length-1);
+                        ds=Arrays.copyOf(ds,ds.length+1);
                         ds[ds.length-1]=new NhanVien(nv);
                         return true;
                 }
@@ -92,7 +92,7 @@ public class DanhSachNhanVien {
         public void xuatd(){
                  System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
                  System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n","Ma Nv", "Ho", "Ten", "Gioi tinh", "Ngay sinh", "SDT");
-                 System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
+                 System.out.printf("|------------|------------|-----------------|-----------|--------------|-----------------|\n");
         }
 
         public void xuatc(){
@@ -104,10 +104,7 @@ public class DanhSachNhanVien {
                 String ma = sc.nextLine();
                 boolean found = false;
                 for (int i = 0; i < n; i++) {
-                        if (ds[i].getManhanvien().equalsIgnoreCase(ma)) {
-                                System.out.println("Thong tin sinh vien: ");
-                                xuatd();
-                                ds[i].xuat();
+                        if (ds[i].getManhanvien().equals(ma)) {
                                 found = true;
                                 while (true) {
                                         System.out.println("Ban muon sua thong tin gi?");
@@ -186,10 +183,9 @@ public class DanhSachNhanVien {
                 String ten=sc.nextLine();
                 Boolean kt=false;
                 for(NhanVien nv:ds)
-                if(ten.contains(nv.getTen())){
+                if(nv.getTen().contains(ten)){
                         if(!kt) xuatd();
                         nv.xuat();
-                        xuatc();
                         kt=true;
                 }
                 if(kt)xuatc();

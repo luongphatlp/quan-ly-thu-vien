@@ -46,16 +46,16 @@ public class DanhSachTheLoai {
     public void xuat(){
         xuatt();
         for(int i=0;i<ds.length;i++)
-            System.out.printf("| %-11s | %-12s | %-50s |\n",ds[i].getMaTheLoai(),ds[i].getTenTheLoai(),ds[i].getMoTa());
+            ds[i].xuat();
         xuatd();
     }
     private void xuatt(){
-        System.out.println("+-------------+--------------+----------------------------------------------------+");
-        System.out.printf("| %-11s | %-12s | %-50s |\n","Ma the loai","Ten the loai","mo ta");
-        System.out.println("|-------------|--------------|----------------------------------------------------|");
+        System.out.println("+-------------+---------------------------+----------------------------------------------------+");
+        System.out.printf("| %-10s | %-25s | %-50s |\n","Ma the loai","Ten the loai","mo ta");
+        System.out.println("|-------------|---------------------------|----------------------------------------------------|");
     }
     private void xuatd(){
-        System.out.println("+-------------|--------------|----------------------------------------------------|");
+        System.out.println("+-------------+---------------------------+----------------------------------------------------+");
     }
     public boolean them(TheLoai tl){
         if(kiemTraMaDuyNhat(tl.getMaTheLoai())){
@@ -163,29 +163,26 @@ public class DanhSachTheLoai {
     public void timKiemTheoMaTheLoai(){
         System.out.println("Nhap ma the loai muon tim: ");
         String ma=sc.nextLine();
-        boolean kt=false;
         for(int i=0;i<ds.length;i++)
             if(ma.equals(ds[i].getMaTheLoai())){
-                if(!kt) xuatt();
+                xuatt();
                 ds[i].xuat();
-                kt=true;
+                xuatd();
+                return;
             }
-        if(kt) 
-            xuatd();
-        else
-            System.out.println("Khong tim thay sach cua tac gia co ma: "+ma);  
+        System.out.println("Khong tim thay sach cua tac gia co ma: "+ma);  
     }
     public void timKiemTheoTen(){
         System.out.println("Nhap ten the loai muon tim: ");
         String ten=sc.nextLine();
         Boolean kt=false;
         for(TheLoai tl:ds)
-            if(ten.contains(tl.getTenTheLoai())){
+            if(tl.getTenTheLoai().contains(ten)){
                 if(!kt)xuatt();
                 tl.xuat();
                 kt=true;
             }
-        if(kt)xuatd();
+        if(kt) xuatd();
         if(!kt)    
             System.out.println("Khong tim thay the loai co ten: "+ten);
     }
@@ -198,7 +195,7 @@ public class DanhSachTheLoai {
         String ten=sc.nextLine();
         int i=0;
         for(TheLoai tl:ds)
-            if(ten.contains(tl.getTenTheLoai()))
+            if(tl.getTenTheLoai().contains(ten))
                 i++;
         System.out.println("So luong the loai co tu khoa "+ten+": "+i);
         return i;
@@ -206,10 +203,12 @@ public class DanhSachTheLoai {
 
     public static void main(String[] args){
         DanhSachTheLoai ds=new DanhSachTheLoai();
-        ds.nhap();
+        //ds.nhap();
+        ds.docFile();
+        ds.xuat();
         //ds.them();
         //ds.sua();
         //ds.xoa();
-        ds.ghiFile();
+        //ds.ghiFile();
     }
 }

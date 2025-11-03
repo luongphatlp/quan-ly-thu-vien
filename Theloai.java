@@ -34,6 +34,6 @@ public class TheLoai extends DanhMuc{
         return matheloai+","+tentheloai+","+mota;
     }
     @Override public void xuat(){
-        System.out.printf("| %-12s | %-25s | %-50 |",matheloai,tentheloai,mota);
+        System.out.printf("| %-11s | %-25s | %-50s |\n",matheloai,tentheloai,mota);
     }
 }

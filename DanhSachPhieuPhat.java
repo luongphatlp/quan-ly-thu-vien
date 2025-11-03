@@ -205,7 +205,9 @@ public class DanhSachPhieuPhat {
     public void timKiemTheoMaPhieuPhat(String keyword) {
         for (PhieuPhat pp : ds)
             if (keyword.equals(pp.getMaPhieuPhat())){
+                xuatt();
                 pp.xuat();
+                xuatd();
                 return;
             }
         System.out.println("Khong tim thay phieu phat nao!");
@@ -218,7 +220,7 @@ public class DanhSachPhieuPhat {
     public void timKiemTheoMaDocGia(String ma){
         boolean kt=false;
         for (PhieuPhat pp : ds)
-            if (ma.equals(pp.getMaPhieuPhat())){
+            if (ma.equals(pp.getMaDoGia())){
                 if(!kt) xuatt();
                 pp.xuat();
                 kt=true;

@@ -66,7 +66,7 @@ public class NhanVien {
     }
     public int tinhtuoi(){
         if(ngaysinh==null || ngaysinh.length()<10) return -1;
-        int namsinh=Integer.parseInt(ngaysinh.substring(6,10));
+        int namsinh=Integer.parseInt(ngaysinh.substring(0,4));
         int namht= LocalDate.now().getYear();
         return namht-namsinh;
     }

@@ -6,5 +6,5 @@ TL005,Dia Ly Tu Nhien,Chuong trinh dia ly tu co ban den nang cao
 TL006,Lich Su The Gioi,Chuong trinh lich su tu co ban den nang cao
 TL007,Van Hoc Viet Nam,Chuong trinh van hoc tu co ban den nang cao
 TL008,Nghe Thuat Tong Hop,Chuong trinh nghe thuat tu co ban den nang cao
-TL009,Cong Nghe Thong Tin,Chuong trinh cong nghe thong tin tu co ban den nang cao
+TL009,Cong Nghe Thong Tin,Chuong trinh cong nghe thong tin co ban
 TL010,Tieng Anh Co Ban,Chuong trinh tieng anh tu co ban den nang cao

@@ -161,24 +161,21 @@ public class DanhSachNhaCungCap {
     public void timKiemTheoMaNhaCungCap(){
         System.out.println("Nhap ma nha cung cap muon tim: ");
         String ma=sc.nextLine();
-        boolean kt=false;
         for(int i=0;i<ds.length;i++)
             if(ma.equals(ds[i].getMaNCC())){
-                if(!kt) xuatt();
+                xuatt();
                 ds[i].xuat();
-                kt=true;
+                xuatd();
+                return;
             }
-        if(kt) 
-            xuatd();
-        else
-            System.out.println("Khong tim thay nha cung cap co ma: "+ma);  
+        System.out.println("Khong tim thay nha cung cap co ma: "+ma);  
     }
     public void timKiemTheoTen(){
         System.out.println("Nhap ten nha cung cap muon tim: ");
         String ten=sc.nextLine();
         Boolean kt=false;
         for(NhaCungCap p:ds)
-            if(ten.contains(p.getTenNCC())){
+            if(p.getTenNCC().contains(ten)){
                 if(!kt)xuatt();
                 p.xuat();
                 kt=true;
@@ -196,7 +193,7 @@ public class DanhSachNhaCungCap {
         String ten=sc.nextLine();
         int i=0;
         for(NhaCungCap ncc:ds)
-            if(ncc.getTenNCC().equals(ten))
+            if(ncc.getTenNCC().contains(ten))
                 i++;
         System.out.println("So luong nha cung cap co tu khoa "+ten+": "+i);
         return i;

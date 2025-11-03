@@ -55,9 +55,7 @@ public class PhieuMuon {
         ngaylapphieu=sc.nextLine();
         System.out.println("Nhap ngay tra (dd/MM/yyyy): ");
         ngaytra=sc.nextLine();
-        System.out.println("Nhap ngay tra thuc te (dd/MM/yyyy) (Neu chua tra thi de trong): ");
-        ngaytrathucte=sc.nextLine();   
-        if(ngaytrathucte.isEmpty()) ngaytrathucte="null";
+        ngaytrathucte="null";
         dsctpm.nhap(maphieumuon);
     }
     public void xuat(){

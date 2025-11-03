@@ -1,4 +1,6 @@
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -79,7 +81,16 @@ public class QuanLyThuVien {
         dsphieumuon.docFile();
         dsnxb.docFile();
     }
+    public void xoaHetMoiThuTrongFile(String ma){
+        try(PrintWriter p=new PrintWriter(new FileWriter(ma))){
+
+        }catch(Exception e){
+            System.out.println("loi xoa noi dung file");
+        }
+    }
     public void ghiTatCaFile(){
+        xoaHetMoiThuTrongFile("Chitietphieumuon.txt");
+        xoaHetMoiThuTrongFile("Chitietphieunhapsach.txt");
         dss.ghiFile();
         dstg.ghiFile();
         dstl.ghiFile();
@@ -218,6 +229,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -309,6 +321,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -331,6 +344,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 0:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -399,6 +413,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -421,6 +436,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 0:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -490,6 +506,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
@@ -512,6 +529,7 @@ public class QuanLyThuVien {
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
                     }while(chon!=3);
+                    break;
                 case 0:
                     System.out.println("Quay lai menu chinh");
                     break;
@@ -580,8 +598,8 @@ public class QuanLyThuVien {
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
-                        System.out.println("1.Thong ke theo gioi tinh");
-                        System.out.println("2.Thong ke theo tuoi");
+                        System.out.println("1.Thong ke tong so the loai");
+                        System.out.println("2.Thong ke theo tu khoa");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
@@ -982,7 +1000,7 @@ public class QuanLyThuVien {
         System.out.println("|| >> 5. Tim kiem chi tiet PM");
         System.out.println("|| >> 6. Thong ke chi tiet PM"); 
         System.out.println(subBorder);
-        System.out.println("|| >> 0. QUAY LAI MENU CHINH");
+        System.out.println("|| >> 0. QUAY LAI MENU TRUOC");
         System.out.println(subBorder);
         System.out.print(">>> Nhap lua chon: ");
             System.out.print("Ban chon: ");
@@ -1028,7 +1046,7 @@ public class QuanLyThuVien {
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
-                        System.out.println("1.Thong ke theo ma sach");
+                        System.out.println("1.Thong ke so phieu");
                         System.out.println("2.Thong ke theo so luong");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
@@ -1036,7 +1054,7 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                p.getDS().thongKeTheoMaSach();
+                                p.getDS().thongKeSoPhieu();
                                 break;
                             case 2:
                                 p.getDS().thongKeTheoSoLuong();
@@ -1271,6 +1289,7 @@ public class QuanLyThuVien {
                     String maPNS = sc.nextLine();
                     PhieuNhapSach p = dspns.getPhieuByMa(maPNS);
                     if(p!=null) menuChiTietPhieuNhapSach(p);
+                    else System.out.println("Khong tim thay phieu nhap sach co ma: "+maPNS);
                     break;
                 case 0:
                     System.out.println("Quay lai menu chinh");
@@ -1342,7 +1361,7 @@ public class QuanLyThuVien {
                 case 6:
                     do{
                         System.out.println("-------Menu Thong Ke-------");
-                        System.out.println("1.Thong ke theo ma sach");
+                        System.out.println("1. Thong ke so phieu");
                         System.out.println("2.Thong ke so luong");
                         System.out.println("3.Quay lai");
                         System.out.print("Ban chon: ");
@@ -1350,8 +1369,7 @@ public class QuanLyThuVien {
                         sc.nextLine();
                         switch(chon){
                             case 1:
-                                p.getDSCTPNS().thongKeTheoMaSach();
-                                
+                                p.getDSCTPNS().thongKeSoPhieu();
                                 break;
                             case 2:
                                 p.getDSCTPNS().thongKeSoLuong();
@@ -1391,18 +1409,20 @@ public class QuanLyThuVien {
     public void thongKeTheoMaNhanVien(){
         Map<String,Double> count=new HashMap<>();
         for(PhieuNhapSach pns:dspns.getDS())
-            count.put(pns.getMaNhanVien(),count.getOrDefault(pns.getMaNhanVien(),0.0)+pns.getTongTien());
+            count.put(pns.getMaNhanVien(),count.getOrDefault(pns.getMaNhanVien(),0.00)+pns.getTongTien());
             boolean kt=false;
         for(Map.Entry<String,Double> entry :count.entrySet()){
             NhanVien nv=dsnv.traVeNhanVienTheoMa(entry.getKey());
+            if(nv==null) continue;
             if(!kt){
-                System.out.println("+---------------+----------------------+------------+-----------+");
-                System.out.printf("| %-13s | %-20s | %-10s | %-9s |\n","Ma nhan vien","Ho","Ten","Tong tien");
-                System.out.println("|---------------|----------------------|------------|-----------|");
-            }
-            kt=true;
-            System.out.printf("| %-13s | %-20s | %-10s | %-9s |\n",nv.getManhanvien(),nv.getHo(),nv.getTen(),entry.getValue());
+                System.out.println("+---------------+----------------------+------------+----------------------+");
+                System.out.printf("| %-13s | %-20s | %-10s | %-20s |\n","Ma nhan vien","Ho","Ten","Tong tien");
+                System.out.println("|---------------|----------------------|------------|----------------------|");
+                kt=true;
+            } 
+            System.out.printf("| %-13s | %-20s | %-10s | %-20.2f |\n",nv.getManhanvien(),nv.getHo(),nv.getTen(),entry.getValue());
         }
+        if(kt) System.out.println("+---------------+----------------------+------------+----------------------+");
     }
     public static void main(String[] args){
         QuanLyThuVien ql =new QuanLyThuVien();

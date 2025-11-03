@@ -201,13 +201,9 @@ public class DanhSachChiTietPhieuMuon {
             }
         System.out.println("Khong tim thay chi tiet phieu muon nao!");
     }
-    public Map<String,Integer> thongKeTheoMaSach(){
-        Map<String,Integer> count=new HashMap<>();
-        for(ChiTietPhieuMuon ctpm:ds)
-            count.put(ctpm.getMaSach(),count.getOrDefault(ctpm.getMaSach(),0)+1);
-        for(Map.Entry<String,Integer> entry :count.entrySet())
-            System.out.println("So luong chi tiet phieu muon cua sach co ma "+entry.getKey()+": "+entry.getValue());
-        return count;
+    public int thongKeSoPhieu(){
+        System.out.println("Tong so phieu chi tiet: "+ds.length);
+        return ds.length;
     }
     public Map<Integer,Integer> thongKeTheoSoLuong(){
         Map<Integer,Integer> count=new HashMap<>();

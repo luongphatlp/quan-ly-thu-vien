@@ -70,4 +70,5 @@ public class PhieuMuon {
     public String toString(){
         return maphieumuon+","+madocgia+","+manhanvien+","+ngaylapphieu+","+ngaytra+","+ngaytrathucte; 
     }
+    public DanhSachChiTietPhieuMuon getDSachChiTietPhieuNhapSach(){return dsctpm;}
 }

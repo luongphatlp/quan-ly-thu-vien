@@ -492,6 +492,7 @@ public class DanhSachSach {
             for(Map.Entry<String,Integer> entry: thongke.entrySet())
                 System.out.println("Nha xuat ban: "+ entry.getKey() +" - So luong sach: "+entry.getValue());
     }
+    public Sach[] getDS(){return ds;}
     public static void main(String[] args){
         DanhSachSach ds=new DanhSachSach();
         ds.docFile();

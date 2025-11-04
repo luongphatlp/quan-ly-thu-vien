@@ -73,4 +73,5 @@ public class PhieuNhapSach {
     @Override public String toString(){
         return maphieunhapsach+","+manhanvien+","+manhacungcap+","+ngaynhap;
     }
+    public DanhSachChiTietPhieuNhapSach getDSachChiTietPhieuNhapSach(){return dsctpns;}
 }

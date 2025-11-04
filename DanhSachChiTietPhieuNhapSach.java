@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class DanhSachChiTietPhieuNhapSach {
     private ChiTietPhieuNhapSach[] ds;

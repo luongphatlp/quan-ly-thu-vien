@@ -3,8 +3,8 @@ TG002,Tran Thi,Bao,Nu,1980-07-25
 TG003,Le Van,Cuong,Nam,1968-11-09
 TG004,Pham Thi,Dung,Nu,1972-05-16
 TG005,Hoang Van,Em,Nam,1985-02-28
-TG006,Bui Thi,Ha,Nu,1990-12-05
+TG006,Bui Thi,Ha,Nu,1995-10-05
 TG007,Vu Van,Giang,Nam,1978-09-20
 TG008,Dang Thi,Hanh,Nu,1982-04-14
 TG009,Do Van,Isao,Nam,1965-06-30
-TG010,Nguyen Thi,Jun,Nu,1995-01-22
+TG010,Nguyen Thi,Jun,Nu,2000-01-22

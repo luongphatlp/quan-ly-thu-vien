@@ -2,8 +2,8 @@ import java.util.Scanner;
 class SachThamKhao extends Sach{
     private String linhvuc,loaidocgia;
     public SachThamKhao(){}
-    public SachThamKhao(String masach,String tensach,String matheloai,String madocgia,String manxb,String namxuatban,String linhvuc,String loaidocgia){
-        super(masach,tensach,matheloai,madocgia,manxb,namxuatban);
+    public SachThamKhao(String masach,String tensach,String matheloai,String matacgia,String manxb,String namxuatban,String linhvuc,String loaidocgia){
+        super(masach,tensach,matheloai,matacgia,manxb,namxuatban);
         this.linhvuc=linhvuc;
         this.loaidocgia=loaidocgia;
     }

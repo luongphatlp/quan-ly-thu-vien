@@ -163,7 +163,7 @@ public class QuanLyThuVien {
                 case 11:
                     menuNhaCungCap();
                     break;
-                case 12:
+                case 0:
                     System.out.println("Cam on ban da su dung chuong trinh!");
                     break;
                 default:
@@ -248,6 +248,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -340,6 +341,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -432,6 +434,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -525,6 +528,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -702,6 +706,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -798,6 +803,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -885,6 +891,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -973,6 +980,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -1047,8 +1055,7 @@ public class QuanLyThuVien {
                     do{
                         System.out.println("-------Menu Thong Ke-------");
                         System.out.println("1.Thong ke so phieu");
-                        System.out.println("2.Thong ke theo so luong");
-                        System.out.println("3.Quay lai");
+                        System.out.println("2.Quay lai");
                         System.out.print("Ban chon: ");
                         chon=sc.nextInt();
                         sc.nextLine();
@@ -1057,14 +1064,12 @@ public class QuanLyThuVien {
                                 p.getDS().thongKeSoPhieu();
                                 break;
                             case 2:
-                                p.getDS().thongKeTheoSoLuong();
-                                break;
-                            case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
-                    }while(chon!=3);
+                    }while(chon!=2);
                     break;
                 case 0:
                     System.out.println("Quay lai menu Phieu Muon");
@@ -1182,6 +1187,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -1376,6 +1382,7 @@ public class QuanLyThuVien {
                                 break;
                             case 3:
                                 System.out.println("Thoat thong ke");
+                                break;
                             default:
                                 System.out.println("Nhap sai vui long nhap lai");
                         }
@@ -1428,6 +1435,6 @@ public class QuanLyThuVien {
         QuanLyThuVien ql =new QuanLyThuVien();
         ql.docTatCaFile();
         ql.menu();
-        ql.ghiTatCaFile();
+        //ql.ghiTatCaFile();
     }
 }

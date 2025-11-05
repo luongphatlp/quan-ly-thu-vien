@@ -8,7 +8,7 @@ public class TacGia implements Nguoi {
     private String gioitinh;
     private String ngaysinh;
 
-    public int sotuoi(){
+    @Override public int sotuoi(){
         LocalDate date1=LocalDate.parse(ngaysinh);
         LocalDate date2=LocalDate.now();
         Period tuoi=Period.between(date1, date2);

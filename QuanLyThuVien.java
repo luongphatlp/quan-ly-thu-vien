@@ -1435,7 +1435,7 @@ public class QuanLyThuVien {
     public void thongKeTheoPhieuMuon(){
         Map<String,Integer> count =new HashMap<>();
             for(PhieuMuon pm:dsphieumuon.getDS()){
-                for(ChiTietPhieuMuon ctpns:pm.getDSachChiTietPhieuNhapSach().getDS()){
+                for(ChiTietPhieuMuon ctpns:pm.getDSachChiTietPhieuMuon().getDS()){
                     count.put(ctpns.getMaSach(),count.getOrDefault(ctpns.getMaSach(),0)+ctpns.getSolLuong());
                 }
             }    

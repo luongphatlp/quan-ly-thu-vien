@@ -100,41 +100,35 @@ public class DanhSachPhieuMuon {
             if(ma.equals(ds[i].getMaPhieuMuon())){
                 while(sl>0){
                     System.out.println("Ban muon sua thong tin gi?");
-                    System.out.println("1. Sua ma phieu muon.");
-                    System.out.println("2. Sua ma doc gia.");
-                    System.out.println("3. Sua ma nhan vien.");
-                    System.out.println("4. Sua ngay lap phieu.");
-                    System.out.println("5. Sua ngay tra.");
-                    System.out.println("6. Sua ngay tra thuc te.");
+                    System.out.println("1. Sua ma doc gia.");
+                    System.out.println("2. Sua ma nhan vien.");
+                    System.out.println("3. Sua ngay lap phieu.");
+                    System.out.println("4. Sua ngay tra.");
+                    System.out.println("5. Sua ngay tra thuc te.");
                     System.out.println("Nhap lua chon cua ban: ");
                     c=sc.nextInt();
                     sc.nextLine();
                     if(c==1){
-                        System.out.println("Nhap ma phieu muon moi: ");
-                        ds[i].setMaPhieuMuon(sc.nextLine());
-                        kt=true;
-                        break;
-                    }else if(c==2){
                         System.out.println("Nhap ma doc gia moi: ");
                         ds[i].setMaDocGia(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==3){
+                    }else if(c==2){
                         System.out.println("Nhap ma nhan vien moi: ");
                         ds[i].setMaNhanVien(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==4){
+                    }else if(c==3){
                         System.out.println("Nhap ngay lap phieu moi: ");
                         ds[i].setNgayLapPhieu(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==5){
+                    }else if(c==4){
                         System.out.println("Nhap ngay tra moi: ");
                         ds[i].setNgayTra(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==6){
+                    }else if(c==5){
                         System.out.println("Nhap ngay tra thuc te moi: ");
                         ds[i].setNgayTraThucTe(sc.nextLine());
                         kt=true;

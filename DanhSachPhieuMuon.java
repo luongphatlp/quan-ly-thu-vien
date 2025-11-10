@@ -192,7 +192,10 @@ public class DanhSachPhieuMuon {
                 if(parts.length==6){
                     PhieuMuon p=new PhieuMuon(parts[0],parts[1],parts[2],parts[3],parts[4],parts[5]);
                     p.getDS().docFile(parts[0]);
-                    if(them(p)) capNhatSoLuongPhieuMuon(p,dss);
+                    if(them(p)) {
+                        if(p.getNgayTraThucTe()==null || p.getNgayTraThucTe().equals("null"))
+                        capNhatSoLuongPhieuMuon(p,dss);
+                    }
                 }
             }
         }catch(Exception e){
@@ -271,6 +274,32 @@ public class DanhSachPhieuMuon {
             int soluongmuon=ct.getSolLuong();
             dss.capNhatSoLuong(masach, -soluongmuon);
         }
+    }
+    public void capNhatSoLuongKhiTra(PhieuMuon pm,DanhSachSach dss){
+        DanhSachChiTietPhieuMuon dsct=pm.getDS();
+        for(ChiTietPhieuMuon ct:dsct.getDS()){
+            String masach=ct.getMaSach();
+            int soluongtra=ct.getSolLuong();
+            dss.capNhatSoLuong(masach, soluongtra);
+        }
+    }
+    public void traSach(DanhSachSach dss){
+        System.out.print("Nhap ma phieu muon can tra: ");
+        String ma=sc.nextLine();
+        PhieuMuon pm=getPhieuByMa(ma);
+        if(pm==null) {
+            System.out.println("Khong tim thay ma phieu muon");
+            return;
+        }
+        if(pm.getNgayTraThucTe()!=null && !pm.getNgayTraThucTe().equals("null")){
+            System.out.println("Phieu nay da duoc tra vao ngay "+pm.getNgayTraThucTe());
+            return;
+        }
+        capNhatSoLuongKhiTra(pm, dss);
+        System.out.print("Nhap ngay tra thuc te: ");
+        String ngaytra=sc.nextLine();
+        pm.setNgayTraThucTe(ngaytra);
+        System.out.println("Tra sach thanh cong. Da cap nhat lai so luong kho");
     }
     
 }

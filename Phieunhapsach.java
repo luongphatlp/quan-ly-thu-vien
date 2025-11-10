@@ -49,16 +49,16 @@ public class PhieuNhapSach {
         this.tongtien=tongtien;
         return tongtien;
     }
-    public void nhap(){
-        System.out.println("Nhap ma phieu nhap sach: ");
+    public void nhap(DanhSachSach dss){
+        System.out.print("Nhap ma phieu nhap sach: ");
         maphieunhapsach=sc.nextLine();
-        System.out.println("Nhap ma nhan vien: ");
+        System.out.print("Nhap ma nhan vien: ");
         manhanvien=sc.nextLine();
-        System.out.println("Nhap ma nha cung cap: ");
+        System.out.print("Nhap ma nha cung cap: ");
         manhacungcap=sc.nextLine();
-        System.out.println("Nhap ngay nhap: ");
+        System.out.print("Nhap ngay nhap: ");
         ngaynhap=sc.nextLine();
-        dsctpns.nhap(maphieunhapsach);
+        dsctpns.nhap(maphieunhapsach,dss);
         tongtien=tinhTongTien();
     }
     public void xuat(){
@@ -66,9 +66,6 @@ public class PhieuNhapSach {
     }
     public void xuatChiTiet(){
         dsctpns.xuat();
-    }
-    public void nhapChiTiet(){
-        dsctpns.nhap(maphieunhapsach);
     }
     @Override public String toString(){
         return maphieunhapsach+","+manhanvien+","+manhacungcap+","+ngaynhap;

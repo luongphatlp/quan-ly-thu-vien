@@ -66,51 +66,53 @@ public class DanhSachSach {
         int sl=sc.nextInt();
         for(int i=0;i<sl;i++){
             int k=5;
-            Sach s=null;
-            boolean kt=false;
-            while(k>0 && !kt){
-                System.out.println("Nhap lua chon loai sach (1.Sach giao khoa 2.Sach tham khao)");
-                int c=sc.nextInt();
-                sc.nextLine();
-                if(c==1){
-                    s=new SachGiaoKhoa();
-                }else if(c==2){
-                    s=new SachThamKhao();
-                }else{
-                    System.out.println("Lua chon khong dung.Vui long chon lai.");
-                    k--;
-                    continue;
-                }
-                s.nhap();
-                if(them(s))
-                    kt=true;
-                else{
-                    k--;
-                    System.out.println("Ma sach da ton tai vui long nhap lai");
-                } 
+        Sach s=null;
+        boolean kt=false;
+        System.out.println("Nhap thong tin sach thu "+(i+1)+": ");
+        while(k>0 && !kt){
+            System.out.println("Ban muon chon loai sach gi?");
+            System.out.println("1. Sach giao khoa");
+            System.out.println("2. Sach tham khao");
+            System.out.println("Nhap lua chon cua ban: ");
+            int c=sc.nextInt();
+            sc.nextLine();
+            if(c==1){
+                s=new SachGiaoKhoa();
+            }else if(c==2){
+                s=new SachThamKhao();
+            }else{
+                System.out.println("Lua chon khong dung.Vui long chon lai.");
+                k--;
+                continue;
             }
-            if(!kt){
-                System.out.println("Nhap qua so lan quy dinh");
-                return;
+            s.nhap();
+            if(them(s))
+                kt=true;
+            else{
+                System.out.println("Ma sach da ton tai vui long nhap lai.");
+                k--;
             } 
+        }
+        if(kt)
+            System.out.println("Them thanh cong.");
+        else 
+            System.out.println("Them khong thanh cong.");
         }
     }
     public void xuat(){
-        System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+");
-        System.out.printf("| %-10s | %-20s | %-11s | %-10s | %-15s | %-15s | %-58s |\n", "Ma sach", "Ten sach", "Ma the loai", "Ma tac gia", "Ma nha xuat ban","Nam xuat ban","Thong tin bo sung");
-        System.out.println("|------------|----------------------|-------------|------------|-----------------|-----------------|------------------------------------------------------------|");
+        xuatt();
         for(int i=0;i<ds.length;i++){
             ds[i].xuat();
         }
-        System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+\n");
+        System.out.println("+------------+----------------------+--------------+------------+------------+------------+------------+------------+-----+--------------------+--------------+");
     }
     private void xuatt(){
-        System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+");
-        System.out.printf("| %-10s | %-20s | %-11s | %-10s | %-15s | %-15s | %-58s |\n", "Ma sach", "Ten sach", "Ma the loai", "Ma tac gia", "Ma nha xuat ban","Nam xuat ban","Thong tin bo sung");
-        System.out.println("|------------|----------------------|-------------|------------|-----------------|-----------------|------------------------------------------------------------|");
+        System.out.println("+------------+----------------------+--------------+------------+-----------+------------+------------+------------+-----+-----------------+--------------+");
+                System.out.printf("| %-10s | %-20s | %-12s | %-10s | %-10s| %-10s | %-10s | %-10s | %-3s | %-15s | %-12s |\n","Ma sach", "Ten sach", "Ma the loai", "Ma tac gia", " Ma NXB", "Nam XB","So luong","Mon", "Lop","Linh vuc", "Doc gia");
+                System.out.println("+------------+----------------------+--------------+------------+-----------+------------+------------+------------+-----+-----------------+--------------+");
     }
     private void xuatd(){
-        System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------------------------------------------------------+");
+        System.out.println("+------------+----------------------+-------------+------------+-----------------+-----------------+------------+------------------------------------------------------------+");
     }
     public int timKiem(String ma){
         for(int i=0;i<ds.length;i++)
@@ -265,6 +267,7 @@ public class DanhSachSach {
             }
         }
     }
+    
     public void docFile(){
         File file=new File("Sach.txt");
         if(!file.exists()){
@@ -275,12 +278,12 @@ public class DanhSachSach {
             while(f.hasNextLine()){
                 String line=f.nextLine();
                 String[] parts=line.split(",");
-                if(parts.length==9){
+                if(parts.length==10){
                     ds=Arrays.copyOf(ds,ds.length+1);
                     if("GK".equals(parts[0]))
-                        ds[ds.length-1]=new SachGiaoKhoa(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],parts[8]);
+                        ds[ds.length-1]=new SachGiaoKhoa(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],Integer.parseInt(parts[7]),parts[8],parts[9]);
                     else if("TK".equals(parts[0]))
-                        ds[ds.length-1]=new SachThamKhao(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],parts[8]);
+                        ds[ds.length-1]=new SachThamKhao(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],Integer.parseInt(parts[7]),parts[8],parts[9]);
                 }    
             }
         }catch(FileNotFoundException e){
@@ -314,10 +317,10 @@ public class DanhSachSach {
     }
     public void timKiemTheoTen(){
         System.out.println("Nhap ten sach muon tim: ");
-        String ten=sc.nextLine();
+        String ten=sc.nextLine().toLowerCase();
         boolean kt=false;
         for(int i=0;i<ds.length;i++)
-            if(ds[i].getTenSach().contains(ten)){
+            if(ds[i].getTenSach().toLowerCase().contains(ten)){
                 if(!kt) xuatt();
                 ds[i].xuat();
                 kt=true;
@@ -482,16 +485,32 @@ public class DanhSachSach {
         System.out.println("So sach tham khao: "+stk);
         return sgk+" "+stk;
     }
-    public void thongKeTheoNXB(){
-        Map<String,Integer> thongke= new HashMap<>();
-        for(Sach s:ds){
-            String nxb=s.getMaNXB();
-            thongke.put(nxb, thongke.getOrDefault(nxb, 0)+1);
-        }
-        System.out.println("Thong ke theo NXB");
-            for(Map.Entry<String,Integer> entry: thongke.entrySet())
-                System.out.println("Nha xuat ban: "+ entry.getKey() +" - So luong sach: "+entry.getValue());
+    public void thongketheoNXB(){
+        Map<String,Integer> count=new HashMap<>();
+        for(Sach s:ds)
+        count.put(s.getMaNXB(),count.getOrDefault(s.getMaNXB(),0)+1);
+        for(Map.Entry<String,Integer> entry: count.entrySet())
+            System.out.println("So luong sach cua nha xuat ban "+entry.getKey()+": "+entry.getValue());
     }
+
+    public boolean capNhatSoLuong(String masach,int soluongthaydoi){
+        Sach s=laySachTuMa(masach);
+        if(s==null){
+            System.out.println("Khong tim thay ma sach " +masach+" de cap nhat so luong");
+            return false;
+        }
+        if(soluongthaydoi<0){
+            int soluonggiam=Math.abs(soluongthaydoi);
+            if(s.getSoLuong()<soluonggiam){
+                System.out.println("Khong du so luong sach "+s.getMaSach()+". So luong hien co: "+s.getSoLuong());
+                return false;
+            }
+        }
+        int slmoi=s.getSoLuong()+soluongthaydoi;
+        s.setSoLuong(slmoi);
+        return true;
+    }
+
     public Sach[] getDS(){return ds;}
     public static void main(String[] args){
         DanhSachSach ds=new DanhSachSach();

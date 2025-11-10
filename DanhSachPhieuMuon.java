@@ -22,7 +22,7 @@ public class DanhSachPhieuMuon {
                 return false;
         return true;
     }
-    public void nhap(){
+    public void nhap(DanhSachSach dss){
         System.out.println("Nhap so luong phieu muon can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
@@ -32,9 +32,12 @@ public class DanhSachPhieuMuon {
             System.out.println("Nhap thong tin cua phieu muon thu "+(i+1)+":");
             while(k>0 && !kt){
                 PhieuMuon pm=new PhieuMuon();
-                pm.nhap();
-                if(them(pm))
+                pm.nhap(dss);
+                if(them(pm)){
                     kt=true;
+                    capNhatSoLuongPhieuMuon(pm,dss);
+                    System.out.println("Them phieu muon va cap nhat so luong sach thanh cong.");
+                }
                 else{
                     System.out.println("Ma phieu muon da ton tai vui long nhap lai");
                     k--;
@@ -69,14 +72,17 @@ public class DanhSachPhieuMuon {
         }
         return false;
     }
-    public void them(){
+    public void them(DanhSachSach dss){
         int k=5;
             boolean kt=false;
             while(k>0 && !kt){
                 PhieuMuon pm=new PhieuMuon();
-                pm.nhap();
-                if(them(pm))
+                pm.nhap(dss);
+                if(them(pm)){
                     kt=true;
+                    capNhatSoLuongPhieuMuon(pm,dss);
+                    System.out.println("Them phieu muon va cap nhat so luong sach thanh cong.");
+                }
                 else{
                     System.out.println("Ma phieu muon da ton tai vui long nhap lai");
                     k--;
@@ -88,7 +94,7 @@ public class DanhSachPhieuMuon {
             }
     }
     public PhieuMuon sua(){
-        System.out.println("Nhap ma phieu muon can sua: ");
+        System.out.print("Nhap ma phieu muon can sua: ");
         String ma=sc.nextLine();
         return sua(ma);
     }
@@ -100,35 +106,41 @@ public class DanhSachPhieuMuon {
             if(ma.equals(ds[i].getMaPhieuMuon())){
                 while(sl>0){
                     System.out.println("Ban muon sua thong tin gi?");
-                    System.out.println("1. Sua ma doc gia.");
-                    System.out.println("2. Sua ma nhan vien.");
-                    System.out.println("3. Sua ngay lap phieu.");
-                    System.out.println("4. Sua ngay tra.");
-                    System.out.println("5. Sua ngay tra thuc te.");
+                    System.out.println("1. Sua ma phieu muon.");
+                    System.out.println("2. Sua ma doc gia.");
+                    System.out.println("3. Sua ma nhan vien.");
+                    System.out.println("4. Sua ngay lap phieu.");
+                    System.out.println("5. Sua ngay tra.");
+                    System.out.println("6. Sua ngay tra thuc te.");
                     System.out.println("Nhap lua chon cua ban: ");
                     c=sc.nextInt();
                     sc.nextLine();
                     if(c==1){
+                        System.out.println("Nhap ma phieu muon moi: ");
+                        ds[i].setMaPhieuMuon(sc.nextLine());
+                        kt=true;
+                        break;
+                    }else if(c==2){
                         System.out.println("Nhap ma doc gia moi: ");
                         ds[i].setMaDocGia(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==2){
+                    }else if(c==3){
                         System.out.println("Nhap ma nhan vien moi: ");
                         ds[i].setMaNhanVien(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==3){
+                    }else if(c==4){
                         System.out.println("Nhap ngay lap phieu moi: ");
                         ds[i].setNgayLapPhieu(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==4){
+                    }else if(c==5){
                         System.out.println("Nhap ngay tra moi: ");
                         ds[i].setNgayTra(sc.nextLine());
                         kt=true;
                         break;
-                    }else if(c==5){
+                    }else if(c==6){
                         System.out.println("Nhap ngay tra thuc te moi: ");
                         ds[i].setNgayTraThucTe(sc.nextLine());
                         kt=true;
@@ -167,7 +179,7 @@ public class DanhSachPhieuMuon {
         }
         System.out.println("Khong tim thay ma phieu muon can xoa: "+ma);
     }
-    public void docFile(){
+    public void docFile(DanhSachSach dss){
         File file=new File("Phieumuon.txt");
         if(!file.exists()){
             System.out.println("File khong ton tai.");
@@ -180,7 +192,7 @@ public class DanhSachPhieuMuon {
                 if(parts.length==6){
                     PhieuMuon p=new PhieuMuon(parts[0],parts[1],parts[2],parts[3],parts[4],parts[5]);
                     p.getDS().docFile(parts[0]);
-                    them(p);
+                    if(them(p)) capNhatSoLuongPhieuMuon(p,dss);
                 }
             }
         }catch(Exception e){
@@ -202,9 +214,9 @@ public class DanhSachPhieuMuon {
         String ma=sc.nextLine();
         timKiemTheoMaPhieuMuon(ma);
     }
-    public void timKiemTheoMaPhieuMuon(String keyword) {
+    public void timKiemTheoMaPhieuMuon(String ma) {
         for (PhieuMuon pm : ds)
-            if (keyword.equals(pm.getMaPhieuMuon())){
+            if (ma.equals(pm.getMaPhieuMuon())){
                 xuatt();
                 pm.xuat();
                 xuatd();
@@ -215,9 +227,9 @@ public class DanhSachPhieuMuon {
     public void timKiemTheoNgayLapPhieu(){
         System.out.println("Nhap ngay lap phieu cua phieu muon muon tim(yyyy-mm-dd): ");
         String ma=sc.nextLine();
-        timKiemTheoMaDocGia(ma);
+        timKiemTheoNgayLapPhieu(ma);
     }
-    public void timKiemTheoMaDocGia(String ma){
+    public void timKiemTheoNgayLapPhieu(String ma){
         boolean kt=false;
         for (PhieuMuon pm : ds)
             if (ma.equals(pm.getNgayLapPhieu())){
@@ -236,6 +248,7 @@ public class DanhSachPhieuMuon {
         }
         return count;
     }
+
     public void thongKeTheoMaNhanVien(){
         Map<String,Integer> count=new HashMap<>();
         for(PhieuMuon pm:ds)
@@ -250,10 +263,15 @@ public class DanhSachPhieuMuon {
                 return p;
         return null;
     }
-    public static void main(String[] args){
-        DanhSachPhieuMuon ds=new DanhSachPhieuMuon();
-        ds.docFile();
-        ds.xuat();
+
+    private void capNhatSoLuongPhieuMuon(PhieuMuon pm,DanhSachSach dss){
+        DanhSachChiTietPhieuMuon dsct=pm.getDS();
+        for(ChiTietPhieuMuon ct:dsct.getDS()){
+            String masach=ct.getMaSach();
+            int soluongmuon=ct.getSolLuong();
+            dss.capNhatSoLuong(masach, -soluongmuon);
+        }
     }
+    
 }
 

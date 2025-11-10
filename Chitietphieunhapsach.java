@@ -6,7 +6,6 @@ public class ChiTietPhieuNhapSach {
     private int soluong;
     private double dongia;
     private double thanhtien;
-
     public ChiTietPhieuNhapSach() {}
 
     public ChiTietPhieuNhapSach(String maphieunhapsach, String masach, int soluong, double dongia) {
@@ -40,7 +39,7 @@ public class ChiTietPhieuNhapSach {
 
     Scanner sc = new Scanner(System.in);
 
-    public void nhap(String ma) {
+    public void nhap(String ma,DanhSachSach dss) {
         maphieunhapsach = ma;
         System.out.print("Nhap ma sach: ");
         masach = sc.nextLine();

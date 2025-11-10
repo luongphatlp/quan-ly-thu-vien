@@ -44,19 +44,19 @@ public class PhieuMuon {
     public void setNgayTraThucTe(String ngaytrathucte) {this.ngaytrathucte = ngaytrathucte;}
 
     Scanner sc = new Scanner(System.in);
-    public void nhap(){
-        System.out.println("Nhap ma phieu muon: ");
+    public void nhap(DanhSachSach dss){
+        System.out.print("Nhap ma phieu muon: ");
         maphieumuon=sc.nextLine();
-        System.out.println("Nhap ma doc gia: ");
+        System.out.print("Nhap ma doc gia: ");
         madocgia=sc.nextLine();
-        System.out.println("Nhap ma nhan vien: ");
+        System.out.print("Nhap ma nhan vien: ");
         manhanvien=sc.nextLine();
-        System.out.println("Nhap ngay lap phieu (dd/MM/yyyy): ");
+        System.out.print("Nhap ngay lap phieu: ");
         ngaylapphieu=sc.nextLine();
-        System.out.println("Nhap ngay tra (dd/MM/yyyy): ");
+        System.out.print("Nhap ngay tra: ");
         ngaytra=sc.nextLine();
         ngaytrathucte="null";
-        dsctpm.nhap(maphieumuon);
+        dsctpm.nhap(maphieumuon,dss);
     }
     public void xuat(){
         System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-16s |\n",maphieumuon,madocgia,manhanvien,ngaylapphieu,ngaytra,ngaytrathucte);
@@ -64,11 +64,9 @@ public class PhieuMuon {
     public void xuatChiTiet(){
         dsctpm.xuat();
     }
-    public void nhapChiTiet(){
-        dsctpm.nhap(maphieumuon);
-    }
+    
     public String toString(){
         return maphieumuon+","+madocgia+","+manhanvien+","+ngaylapphieu+","+ngaytra+","+ngaytrathucte; 
     }
-    public DanhSachChiTietPhieuMuon getDSachChiTietPhieuNhapSach(){return dsctpm;}
+    public DanhSachChiTietPhieuMuon getDSachChiTietPhieuMuon(){return dsctpm;}
 }

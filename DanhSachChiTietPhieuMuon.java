@@ -22,8 +22,8 @@ public class DanhSachChiTietPhieuMuon {
                 return false;
         return true;
     }
-    public void nhap(String ma){
-        System.out.println("Nhap so luong chi tiet phieu muon can nhap them: ");
+    public void nhap(String ma,DanhSachSach dss){
+        System.out.print("Nhap so luong chi tiet phieu muon can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
         for(int i=0;i<sl;i++){
@@ -32,7 +32,7 @@ public class DanhSachChiTietPhieuMuon {
             System.out.println("Nhap thong tin cua chi tiet phieu muon thu "+(i+1)+":");
             while(k>0 && !kt){
                 ChiTietPhieuMuon ctpm=new ChiTietPhieuMuon();
-                ctpm.nhap(ma);
+                ctpm.nhap(ma,dss);
                 if(them(ctpm))
                     kt=true;
                 else{
@@ -68,12 +68,12 @@ public class DanhSachChiTietPhieuMuon {
         }
         return false;
     }
-    public void them(String ma){
+    public void them(String ma,DanhSachSach dss){
         int k=5;
             boolean kt=false;
             while(k>0 && !kt){
                 ChiTietPhieuMuon ctpm=new ChiTietPhieuMuon();
-                ctpm.nhap(ma);
+                ctpm.nhap(ma,dss);
                 if(them(ctpm))
                     kt=true;
                 else{
@@ -137,7 +137,7 @@ public class DanhSachChiTietPhieuMuon {
                 for(int j=i;j<ds.length-1;j++)
                     ds[j]=ds[j+1];
                 ds=Arrays.copyOf(ds,ds.length-1);
-                System.out.println("Xoa nha cung cap thanh cong.");
+                System.out.println("Xoa thanh cong.");
                 return;
             }
         }
@@ -171,7 +171,7 @@ public class DanhSachChiTietPhieuMuon {
         }
     }
     public void timKiemTheoSoLuong(){
-        System.out.println("Nhap ma phieu muon cua chi tiet phieu muon muon tim: ");
+        System.out.print("Nhap ma phieu muon cua chi tiet phieu muon muon tim: ");
         int sl=sc.nextInt();
         timKiemTheoSoLuong(sl);
     }
@@ -186,8 +186,9 @@ public class DanhSachChiTietPhieuMuon {
         if(kt) xuatd();
         else System.out.println("Khong tim thay chi tiet phieu muon nao!");
     }
+    
     public void timKiemTheoMaSach(){
-        System.out.println("Nhap ma sach cua chi tiet phieu muon muon tim: ");
+        System.out.print("Nhap ma sach cua chi tiet phieu muon muon tim: ");
         String mas=sc.nextLine();
         timKiemTheoMaSach(mas);
     }
@@ -213,6 +214,7 @@ public class DanhSachChiTietPhieuMuon {
             System.out.println("So luong phieu muon duoc tao boi nhan vien co ma "+entry.getKey()+": "+entry.getValue());
         return count;
     }
+
     public int soLuongSachDocGiaMuon(String ma){
         int sl=0;
         for(ChiTietPhieuMuon p:ds)
@@ -225,4 +227,4 @@ public class DanhSachChiTietPhieuMuon {
         ds.xuat();
         ds.ghiFile();
     }
-}   
+}    

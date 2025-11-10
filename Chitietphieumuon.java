@@ -10,6 +10,7 @@ public class ChiTietPhieuMuon {
         this.masach=masach;
         this.soluong=soluong;
     }
+    
     public ChiTietPhieuMuon(ChiTietPhieuMuon ctpm){
         this.maphieumuon=ctpm.maphieumuon;
         this.masach=ctpm.masach;
@@ -23,7 +24,7 @@ public class ChiTietPhieuMuon {
     public void setSoLuong(int soluong){this.soluong=soluong;}
 
     Scanner sc= new Scanner(System.in);
-    public void nhap(String ma){
+    public void nhap(String ma,DanhSachSach dss){
         maphieumuon=ma;
         System.out.println("Nhap ma sach: ");
         masach=sc.nextLine();

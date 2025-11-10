@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Arrays;
 
-
 public class DanhSachChiTietPhieuNhapSach {
     private ChiTietPhieuNhapSach[] ds;
 
@@ -41,8 +40,8 @@ public class DanhSachChiTietPhieuNhapSach {
         return kq;
     }
     Scanner sc=new Scanner(System.in);
-    public void nhap(String ma){
-        System.out.println("Nhap so luong chi tiet phieu nhap sach can nhap them: ");
+    public void nhap(String ma,DanhSachSach dss){
+        System.out.print("Nhap so luong chi tiet phieu nhap sach can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
         for(int i=0;i<sl;i++){
@@ -51,11 +50,11 @@ public class DanhSachChiTietPhieuNhapSach {
             System.out.println("Nhap thong tin cua chi tiet phieu nhap sach thu "+(i+1)+":");
             while(k>0 && !kt){
                 ChiTietPhieuNhapSach pns=new ChiTietPhieuNhapSach();
-                pns.nhap(ma);
+                pns.nhap(ma,dss);
                 if(them(pns))
                     kt=true;
                 else{
-                    System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                    System.out.println("Ma sach da ton tai vui long nhap lai");
                     k--;
                 }
             }
@@ -65,24 +64,16 @@ public class DanhSachChiTietPhieuNhapSach {
             }
         }
     }
-    public boolean them(ChiTietPhieuNhapSach p){
-        if(kiemTraMaDuyNhat(p.getMaSach())){
-            ds=Arrays.copyOf(ds,ds.length+1);
-            ds[ds.length-1]=new ChiTietPhieuNhapSach(p);
-            return true;
-        }
-        return false;
-    }
-    public void them(String ma){
+    public void them(String ma,DanhSachSach dss){
         int k=5;
         boolean kt=false;
         while(k>0 && !kt){
             ChiTietPhieuNhapSach pns=new ChiTietPhieuNhapSach();
-            pns.nhap(ma);
+            pns.nhap(ma,dss);
             if(them(pns))
                 kt=true;
             else{
-                System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
+                System.out.println("Ma sach da ton tai vui long nhap lai");
                 k--;
             }
         }
@@ -91,6 +82,16 @@ public class DanhSachChiTietPhieuNhapSach {
             return;
         }
     }
+    
+    public boolean them(ChiTietPhieuNhapSach p){
+        if(kiemTraMaDuyNhat(p.getMaSach())){
+            ds=Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1]=new ChiTietPhieuNhapSach(p);
+            return true;
+        }
+        return false;
+    }
+    
     public void sua(){
         System.out.println("Nhap ma sach cua chi tiet phieu nhap sach can sua: ");
         String mas=sc.nextLine();
@@ -196,29 +197,32 @@ public class DanhSachChiTietPhieuNhapSach {
         xuatd();
     }
     public void timKiemTheoMaSach(){
-        System.out.println("Nhap ma sach cua chi tiet phieu nhap sach muon tim: ");
+        System.out.print("Nhap ma sach cua chi tiet phieu nhap sach muon tim: ");
         String ma=sc.nextLine();
         boolean kt=false;
         for(ChiTietPhieuNhapSach pns:ds)
             if(ma.equals(pns.getMaSach())){
-                if(!kt) xuatt();
+                if(!kt) {
+                    xuatt();
+                    kt=true;
+                }
                 pns.xuat();
-                kt =true;
-                return;
             }
         if(kt) xuatd();
         else System.out.println("Khong tim thay chi tiet phieu nhap co ma sach: "+ma); 
     }
     public void timKiemTheoSoLuong(){
-        System.out.println("Nhap so luong sach cua chi tiet phieu nhap sach muon tim: ");
+        System.out.print("Nhap so luong sach cua chi tiet phieu nhap sach muon tim: ");
         int sl=sc.nextInt();
         sc.nextLine();
         boolean kt=false;
         for(ChiTietPhieuNhapSach pns:ds)
             if(sl==pns.getSoLuong()){
-                if(!kt)xuatt();
+                if(!kt){
+                    xuatt();
+                    kt= true;
+                }
                 pns.xuat();
-                kt= true;
             }
         if(kt)    xuatd();
         else System.out.println("Khong tim thay chi tiet phieu nhap co so luong: "+sl);

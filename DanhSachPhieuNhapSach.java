@@ -32,14 +32,17 @@ public class DanhSachPhieuNhapSach {
         }
         return false;
     }
-    public void them(){
+    public void them(DanhSachSach dss){
         int k=5;
         boolean kt=false;
         while(k>0 && !kt){
             PhieuNhapSach pns=new PhieuNhapSach();
-            pns.nhap();
-            if(them(pns))
+            pns.nhap(dss);
+            if(them(pns)){
                 kt=true;
+                capNhatSoLuongPhieuNhap(pns, dss);
+                System.out.println("Them phieu nhap va cap nhat so luong sach thanh cong.");
+            }
             else{
                 System.out.println("Ma phieu nhap sach da ton tai vui long nhap lai");
                 k--;
@@ -50,7 +53,7 @@ public class DanhSachPhieuNhapSach {
             return;
         }
     }
-    public void nhap(){
+    public void nhap(DanhSachSach dss){
         System.out.println("Nhap so luong phieu nhap sach can nhap them: ");
         int sl=sc.nextInt();
         sc.nextLine();
@@ -60,7 +63,8 @@ public class DanhSachPhieuNhapSach {
             System.out.println("Nhap thong tin cua phieu nhap sach thu "+(i+1)+":");
             while(k>0 && !kt){
                 PhieuNhapSach pns=new PhieuNhapSach();
-                pns.nhap();
+                pns.nhap(dss);
+                capNhatSoLuongPhieuNhap(pns, dss);
                 if(them(pns))
                     kt=true;
                 else{
@@ -89,7 +93,7 @@ public class DanhSachPhieuNhapSach {
         }
         xuatd();
     }
-    public void docFile(){
+    public void docFile(DanhSachSach dss){
         File file=new File("Phieunhapsach.txt");
         if(!file.exists()){
             System.out.println("File doc khong ton tai.");
@@ -103,7 +107,7 @@ public class DanhSachPhieuNhapSach {
                     PhieuNhapSach phieu=new PhieuNhapSach(parts[0],parts[1],parts[2],parts[3]);
                     phieu.getDSCTPNS().docFile(parts[0]);
                     phieu.tinhTongTien();
-                    them(phieu);
+                    if(them(phieu)) capNhatSoLuongPhieuNhap(phieu, dss);
                 }
             }
         }catch(FileNotFoundException e){
@@ -182,7 +186,7 @@ public class DanhSachPhieuNhapSach {
         System.out.println("Khong tim thay ma phieu nhap sach can xoa: "+ma);
     }
     public void timKiemTheoMaPhieuNhapSach(){
-        System.out.println("Nhap ma tac gia muon tim: ");
+        System.out.println("Nhap ma phieu nhap muon tim: ");
         String ma=sc.nextLine();
         for(PhieuNhapSach pns:ds)
             if(ma.equals(pns.getMaPhieuNhapSach())){
@@ -214,16 +218,23 @@ public class DanhSachPhieuNhapSach {
         for(Map.Entry<String,Integer> entry :count.entrySet())
             System.out.println("So luong phieu nhap sach cua nha cung cap co ma "+entry.getKey()+": "+entry.getValue());
     }
+
     public PhieuNhapSach getPhieuByMa(String ma){
         for(PhieuNhapSach p:ds)
             if(ma.equals(p.getMaPhieuNhapSach()))
                 return p;
         return null;
     }
-    public PhieuNhapSach[] getDS(){return ds;}
-    public static void main(String[] args) {
-        DanhSachPhieuNhapSach dspns=new DanhSachPhieuNhapSach();
-        dspns.docFile();
-        dspns.xuat();
+
+    private void capNhatSoLuongPhieuNhap(PhieuNhapSach pns,DanhSachSach dss){
+        DanhSachChiTietPhieuNhapSach dsct=pns.getDSCTPNS();
+        for(ChiTietPhieuNhapSach ct:dsct.getDS()){
+            String masach=ct.getMaSach();
+            int soluongnhap=ct.getSoLuong();
+            dss.capNhatSoLuong(masach, soluongnhap);
+        }
+
     }
+    public PhieuNhapSach[] getDS(){return ds;}
+         
 }
